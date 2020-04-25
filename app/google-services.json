@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "148786247354",
+    "firebase_url": "https://letswalk-f7187.firebaseio.com",
+    "project_id": "letswalk-f7187",
+    "storage_bucket": "letswalk-f7187.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:148786247354:android:d73d5ae05abbc330ebb483",
+        "android_client_info": {
+          "package_name": "com.example.lwfb"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "148786247354-r1tnsritks2j1adgjhug8eh8073m52hl.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.lwfb",
+            "certificate_hash": "3914fb67c12d45d8ec99dd56ff85361a94776338"
+          }
+        },
+        {
+          "client_id": "148786247354-8kftme5t329rms47367b009974p2rmoe.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDWVIAjUBs95EpHxIaEMyL0H4i0y2XmuqY"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "148786247354-8kftme5t329rms47367b009974p2rmoe.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
