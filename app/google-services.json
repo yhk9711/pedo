@@ -1,0 +1,53 @@
+{
+  "project_info": {
+    "project_number": "168345392445",
+    "firebase_url": "https://letswalk-e990b.firebaseio.com",
+    "project_id": "letswalk-e990b",
+    "storage_bucket": "letswalk-e990b.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:168345392445:android:c1fdaabd5b60ed3f2ea154",
+        "android_client_info": {
+          "package_name": "com.example.fbtest"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "168345392445-rvmt1vdgkd8agq299sdoort16dslttc1.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.fbtest",
+            "certificate_hash": "2ab090c4a2bd7a3f649cd6f053ed6d48fd3553eb"
+          }
+        },
+        {
+          "client_id": "168345392445-thh2p5ehj6t1pobp7c4qqmak6dp5si1a.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAbjj9gNjcVxFx-qcUhcNhntWAToVZ9LnA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "168345392445-thh2p5ehj6t1pobp7c4qqmak6dp5si1a.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        },
+        "ads_service": {
+
+          "status": 2
+
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

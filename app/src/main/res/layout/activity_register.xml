@@ -1,0 +1,281 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="#FFFFFF"
+    tools:context="com.example.fbtest.MainActivity">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:gravity="center"
+        android:text="회원가입"
+        android:textColor="#1B5019"
+        android:textColorHint="#356a4c"
+        android:textSize="30dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center">
+
+    <TextView
+
+        android:id="@+id/text_id"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@+id/textView3"
+
+        android:text="ID: "
+
+
+        android:textColor="#1B5019"
+        android:textColorHint="#356a4c"
+        android:textSize="15dp"
+
+        />
+
+
+    <EditText
+
+        android:id="@+id/edit_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_below="@+id/textView2"
+
+        android:ems="10"
+
+        android:inputType="textPersonName"
+        android:maxLength="10"
+        android:backgroundTint="#1B5019"
+        android:hint="      영문, 숫자 10자 이내"
+        android:textColorHint="#1B5019"
+        android:textColor="#000000"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center">
+
+    <TextView
+
+        android:id="@+id/text_pw"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="PW: "
+
+        android:textSize="15dp"
+
+        android:textColorHint="#356a4c"
+        android:textColor="#1B5019"
+
+        />
+
+
+
+    <EditText
+
+        android:id="@+id/edit_pw"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:ems="10"
+
+        android:maxLength="10"
+        android:inputType="textPassword"
+        android:backgroundTint="#1B5019"
+        android:hint="    영문, 숫자 10자 이내"
+        android:textColorHint="#1B5019"
+        android:textColor="#000000"
+        />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center">
+
+    <TextView
+
+        android:id="@+id/text_name"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:gravity="center"
+
+        android:text="NAME: "
+
+        android:textSize="15dp"
+
+        android:textColorHint="#356a4c"
+        android:textColor="#1B5019"
+
+        />
+
+
+
+    <EditText
+
+        android:id="@+id/edit_name"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:gravity="center"
+
+        android:ems="10"
+
+        android:maxLength="10"
+
+        android:inputType="textPersonName"
+
+        android:backgroundTint="#1B5019"
+        android:textColor="#000000"/>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center">
+
+    <TextView
+
+        android:id="@+id/text_age"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="AGE: "
+        android:textSize="15dp"
+        android:textColorHint="#356a4c"
+        android:textColor="#1B5019"
+
+        />
+
+
+    <EditText
+
+        android:id="@+id/edit_age"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:gravity="center"
+
+        android:ems="10"
+
+        android:maxLength="2"
+
+        android:inputType="number"
+        android:backgroundTint="#1B5019"
+        android:textColor="#000000"
+        />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center">
+
+    <TextView
+
+        android:id="@+id/text_gender"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:gravity="center"
+
+        android:text="GENDER: "
+
+        android:textSize="15dp"
+
+        android:textColorHint="#356a4c"
+        android:textColor="#1B5019"
+        />
+
+
+
+    <CheckBox
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:gravity="center"
+
+        android:text="Man"
+
+        android:textSize="15dp"
+
+        android:id="@+id/check_man"
+
+        android:textColorHint="#356a4c"
+        android:textColor="#1B5019"
+        android:buttonTint="#1B5019"
+        />
+
+
+
+    <CheckBox
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:gravity="center"
+
+        android:text="Woman"
+
+        android:textSize="15dp"
+
+        android:id="@+id/check_woman"
+        android:textColorHint="#356a4c"
+        android:textColor="#1B5019"
+        android:buttonTint="#1B5019"
+         />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center">
+
+
+    <Button
+
+        android:id="@+id/btn_insert"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_alignParentEnd="true"
+        android:background="#1B5019"
+        android:text="가입완료" />
+
+    </LinearLayout>
+
+
+</LinearLayout>
