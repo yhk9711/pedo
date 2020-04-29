@@ -1,0 +1,2 @@
+rootProject.name='lets_walk_firebase'
+include ':app'
