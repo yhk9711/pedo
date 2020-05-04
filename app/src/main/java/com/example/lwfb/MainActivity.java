@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     String pass;
     String loginId, loginPwd;
     String dt_id;
+    String step_num;
 
     @Override
 
@@ -63,13 +64,17 @@ public class MainActivity extends AppCompatActivity {
                         if(dt.getKey().equals(loginId))
                         {
                             pass = map.get("pw");
+                            step_num = String.valueOf(map.get("step"));
+
                             Log.d("password", pass);
+                            Log.d("step", step_num);
                         }
                         if(loginId.equals(dt_id) && loginPwd.equals(pass)) {
                             Toast.makeText(MainActivity.this, loginId +"님 자동로그인 입니다.", Toast.LENGTH_SHORT).show();
                             Log.d("자동로그인 성공함",pass);
-                            Intent intent = new Intent(MainActivity.this, PedoActivity.class);
+                            Intent intent = new Intent(MainActivity.this, com.example.lwfb.PedoActivity.class);
                             intent.putExtra("id", dt_id);
+                            intent.putExtra("step", step_num);
                             startActivity(intent);
                             finish();
                         }
@@ -102,6 +107,8 @@ public class MainActivity extends AppCompatActivity {
                             if(dt.getKey().equals(checkId.getText().toString()))
                             {
                                 pass = map.get("pw");
+                                step_num = String.valueOf(map.get("step"));
+
                                 Log.d("password", pass);
                                 if(pass.equals(checkpw.getText().toString()))
                                 {
@@ -111,11 +118,16 @@ public class MainActivity extends AppCompatActivity {
                                     SharedPreferences.Editor autoLogin = auto.edit();
                                     autoLogin.putString("inputId", checkId.getText().toString());
                                     autoLogin.putString("inputPwd", checkpw.getText().toString());
+
                                     //꼭 commit()을 해줘야 값이 저장됩니다 ㅎㅎ
                                     autoLogin.commit();
                                     Toast.makeText(getApplicationContext(), "로그인에 성공하셨습니다.", Toast.LENGTH_LONG).show();
-                                    Intent intent = new Intent(getApplicationContext(), PedoActivity.class);
+                                    Intent intent = new Intent(getApplicationContext(), com.example.lwfb.PedoActivity.class);
                                     intent.putExtra("id", dt_id);
+                                    intent.putExtra("step", step_num);
+//                                    Intent intent2 = new Intent(getApplicationContext(), com.example.lwfb.RealService.class);
+//                                    intent.putExtra("id", dt_id);
+//                                    intent.putExtra("step", step_num);
                                     startActivity(intent);
                                     //Intent theIntent = new Intent(this, PedoActivity.class);
 
