@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
                             Intent intent = new Intent(MainActivity.this, com.example.lets_walk_firebase.PedoActivity.class);
                             intent.putExtra("id", dt_id);
                             intent.putExtra("step", step_num);
+
                             startActivity(intent);
                             finish();
                         }

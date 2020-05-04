@@ -1,6 +1,5 @@
 package com.example.lets_walk_firebase;
 
-
 import android.app.Activity;
 import android.content.Intent;
 import android.content.SharedPreferences;
@@ -62,6 +61,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
     //DatabaseReference ref = database.getReference("MEMBER");
 
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pedometer);
 
@@ -84,11 +84,13 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
         cnt = Integer.parseInt(step_value);
 
+        tView.setText("" + (cnt));
+        kView.setText("" + cnt/30);
+        String km = String.format("%.1f",(cnt/1.5));
+        dView.setText("" + km);
+        gView.setText("" + (goal- cnt));
 
-        tView.setText("" + cnt);
-        kView.setText("" + kcal);
-        dView.setText("" + dis);
-        gView.setText("" +  goal);
+
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerView = (View) findViewById(R.id.drawerView);
@@ -125,8 +127,19 @@ public class PedoActivity extends Activity implements SensorEventListener {
             startActivity(intent);
         }
 
-        if (RealService.serviceIntent==null) {
+
+
+        if (RealService.serviceIntent==null){
+            String id_value2 = null;
+            Intent i2 = getIntent();
+            i2.getStringExtra("id");
+            Bundle bundle2 = getIntent().getExtras();
+            if(bundle2 != null){
+                id_value2 = bundle2.getString("id");
+                Log.d("id", id_value2);
+            }
             serviceIntent = new Intent(this, RealService.class);
+            serviceIntent.putExtra("id", id_value2);
             startService(serviceIntent);
         } else {
             serviceIntent = RealService.serviceIntent;//getInstance().getApplication();
@@ -225,6 +238,12 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 }
                 FirebasePost user = new FirebasePost();
                 user.WriteStep(id_value, cnt);
+
+                //Intent intent = new Intent(PedoActivity.this, com.example.lets_walk_firebase.RealService.class);
+                //intent.putExtra("cnt", String.valueOf(cnt));
+                //startService(intent);
+
+
 
 
                 //Intent intent = new Intent(getApplicationContext(), MyService.class);
