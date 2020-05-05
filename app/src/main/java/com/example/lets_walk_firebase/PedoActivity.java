@@ -1,7 +1,11 @@
 package com.example.lets_walk_firebase;
 
+
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -19,23 +23,27 @@ import android.widget.Toast;
 import androidx.annotation.NonNull;
 import androidx.drawerlayout.widget.DrawerLayout;
 
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+
 
 public class PedoActivity extends Activity implements SensorEventListener {
 
     private DrawerLayout drawerLayout;
     private View drawerView;
 
-
+    private DatabaseReference databaseReference;
 
     public static int cnt = 0;
-    public static int kcal = cnt/30;
-    public static double dis = cnt/ 1.5 ;
-    public static int goal=10000;
+    public static int kcal = cnt / 30;
+    public static double dis = cnt / 1.5;
+    public static int goal = 10000;
 
     private TextView tView;
     private TextView kView;
     private TextView dView;
     private TextView gView;
+    private TextView fView;
 
     private long lastTime;
     private float speed;
@@ -65,6 +73,8 @@ public class PedoActivity extends Activity implements SensorEventListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pedometer);
 
+        databaseReference = FirebaseDatabase.getInstance().getReference("CALORIE");
+
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         accelerormeterSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
@@ -72,23 +82,31 @@ public class PedoActivity extends Activity implements SensorEventListener {
         kView = (TextView) findViewById(R.id.kcalnum);
         dView = (TextView) findViewById(R.id.distancenum);
         gView = (TextView) findViewById(R.id.numtogoal2);
+        fView = (TextView) findViewById(R.id.kcalfoodname);
 
         String step_value = null;
         Intent i = getIntent();
         i.getStringExtra("step");
         Bundle bundle = getIntent().getExtras();
-        if(bundle != null){
+        if (bundle != null) {
             step_value = bundle.getString("step");
             Log.d("step_value", step_value);
         }
 
         cnt = Integer.parseInt(step_value);
+        kcal = cnt/30;
+
+
+
+
+
 
         tView.setText("" + (cnt));
-        kView.setText("" + cnt/30);
-        String km = String.format("%.1f",(cnt/1.5));
+        kView.setText("" + cnt / 30);
+        String km = String.format("%.1f", (cnt / 1.5));
         dView.setText("" + km);
-        gView.setText("" + (goal- cnt));
+        gView.setText("" + (goal - cnt));
+
 
 
 
@@ -96,7 +114,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
         drawerView = (View) findViewById(R.id.drawerView);
         drawerLayout.setDrawerListener(listener);
         //drawerLayout.openDrawer(drawerView);
-        Button logout = (Button)findViewById(R.id.button);
+        Button logout = (Button) findViewById(R.id.button);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -128,13 +146,12 @@ public class PedoActivity extends Activity implements SensorEventListener {
         }
 
 
-
-        if (RealService.serviceIntent==null){
+        if (RealService.serviceIntent == null) {
             String id_value2 = null;
             Intent i2 = getIntent();
             i2.getStringExtra("id");
             Bundle bundle2 = getIntent().getExtras();
-            if(bundle2 != null){
+            if (bundle2 != null) {
                 id_value2 = bundle2.getString("id");
                 Log.d("id", id_value2);
             }
@@ -151,12 +168,11 @@ public class PedoActivity extends Activity implements SensorEventListener {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (serviceIntent!=null) {
+        if (serviceIntent != null) {
             stopService(serviceIntent);
             serviceIntent = null;
         }
     }
-
 
 
     DrawerLayout.DrawerListener listener = new DrawerLayout.DrawerListener() {
@@ -183,17 +199,44 @@ public class PedoActivity extends Activity implements SensorEventListener {
     @Override
     public void onStart() {
         super.onStart();
-        if (accelerormeterSensor != null)
+        if (accelerormeterSensor != null) {
             sensorManager.registerListener(this, accelerormeterSensor,
                     SensorManager.SENSOR_DELAY_GAME);
+            IntentFilter intentFilter = new IntentFilter();
+            intentFilter.addAction("com.example.lets_walk_firebase");
+            registerReceiver(broadcastReceiver, intentFilter);
+            Log.e("감지", "onstart");
+            tView.setText("" + (cnt));
+            kView.setText("" + cnt / 30);
+            String km = String.format("%.1f", (cnt / 1.5));
+            dView.setText("" + km);
+            gView.setText("" + (goal - cnt));
+        }
     }
 
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.e("감지", "받아짐");
+            String pass = intent.getStringExtra("DATAPASSED");
+            cnt = Integer.parseInt(pass);
+            //String s1 = intent.getStringExtra("DATAPASSED");
+            tView.setText("" + (cnt));
+            kView.setText("" + cnt / 30);
+            String km = String.format("%.1f", (cnt / 1.5));
+            dView.setText("" + km);
+            gView.setText("" + (goal - cnt));
+        }
+    };
 
     @Override
     public void onStop() {
         super.onStop();
-        if (sensorManager != null)
+        if (sensorManager != null) {
             sensorManager.unregisterListener(this);
+            unregisterReceiver(broadcastReceiver);
+            Log.e("감지", "onstop");
+        }
     }
 
     @Override
@@ -202,7 +245,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             long currentTime = System.currentTimeMillis();
             long gabOfTime = (currentTime - lastTime);
-            if (gabOfTime > 100) {
+            if (gabOfTime > 95) {
                 lastTime = currentTime;
                 x = event.values[SensorManager.DATA_X];
                 y = event.values[SensorManager.DATA_Y];
@@ -212,10 +255,10 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
                 if (speed > SHAKE_THRESHOLD) {
                     tView.setText("" + (++cnt));
-                    kView.setText("" + cnt/30);
-                    String km = String.format("%.1f",(cnt/1.5));
+                    kView.setText("" + cnt / 30);
+                    String km = String.format("%.1f", (cnt / 1.5));
                     dView.setText("" + km);
-                    gView.setText("" + (goal- cnt));
+                    gView.setText("" + (goal - cnt));
                 }
                 lastX = event.values[DATA_X];
                 lastY = event.values[DATA_Y];
@@ -232,18 +275,20 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 Intent i = getIntent();
                 i.getStringExtra("id");
                 Bundle bundle = getIntent().getExtras();
-                if(bundle != null){
+                if (bundle != null) {
                     id_value = bundle.getString("id");
-                    Log.d("id", id_value);
+                    //Log.d("id", id_value);
                 }
                 FirebasePost user = new FirebasePost();
                 user.WriteStep(id_value, cnt);
 
+                Intent intent2 = new Intent(getApplicationContext(), com.example.lets_walk_firebase.RealService.class);
+                intent2.putExtra("id", id_value);
+                kcal = cnt/30;
+
                 //Intent intent = new Intent(PedoActivity.this, com.example.lets_walk_firebase.RealService.class);
                 //intent.putExtra("cnt", String.valueOf(cnt));
                 //startService(intent);
-
-
 
 
                 //Intent intent = new Intent(getApplicationContext(), MyService.class);
@@ -256,7 +301,6 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
                 //Map<String, Object> userUpdates = new HashMap<>();
                 //userUpdates.put("id_value/step", cnt);
-
 
 
             }

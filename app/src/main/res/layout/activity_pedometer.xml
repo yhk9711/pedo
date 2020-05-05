@@ -17,7 +17,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="109dp"
+            android:layout_height="68dp"
             android:gravity="center">
 
             <TextView
@@ -114,6 +114,35 @@
                 android:textSize="30dp" />
 
         </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="71dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/kcalfoodname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="음식 "
+                android:textColor="#1B5019"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/kcalfood"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="만큼의 칼로리를 소모하였습니다."
+                android:textColor="#1B5019"
+                android:textSize="20dp"
+                />
+
+
+
+        </LinearLayout>
+
 
         <LinearLayout
             android:layout_width="match_parent"

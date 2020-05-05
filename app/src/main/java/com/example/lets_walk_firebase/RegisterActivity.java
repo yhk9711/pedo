@@ -1,7 +1,5 @@
 package com.example.lets_walk_firebase;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -226,73 +224,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     };
 
-
-
-    private AdapterView.OnItemLongClickListener longClickListener = new AdapterView.OnItemLongClickListener() {
-
-        @Override
-
-        public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-
-            Log.d("Long Click", "position = " + position);
-
-            final String[] nowData = arrayData.get(position).split("\\s+");
-
-            ID = nowData[0];
-
-            String viewData = nowData[0] + ", " + nowData[1] + ", " + nowData[2] + ", " + nowData[3] + ", " + nowData[4];
-
-            AlertDialog.Builder dialog = new AlertDialog.Builder(RegisterActivity.this);
-
-            dialog.setTitle("데이터 삭제")
-
-                    .setMessage("해당 데이터를 삭제 하시겠습니까?" + "\n" + viewData)
-
-                    .setPositiveButton("네", new DialogInterface.OnClickListener() {
-
-                        @Override
-
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            postFirebaseDatabase(false);
-
-                            getFirebaseDatabase();
-
-                            setInsertMode();
-
-                            edit_ID.setEnabled(true);
-
-                            Toast.makeText(RegisterActivity.this, "데이터를 삭제했습니다.", Toast.LENGTH_SHORT).show();
-
-                        }
-
-                    })
-
-                    .setNegativeButton("아니오", new DialogInterface.OnClickListener() {
-
-                        @Override
-
-                        public void onClick(DialogInterface dialog, int which) {
-
-                            Toast.makeText(RegisterActivity.this, "삭제를 취소했습니다.", Toast.LENGTH_SHORT).show();
-
-                            setInsertMode();
-
-                            edit_ID.setEnabled(true);
-
-                        }
-
-                    })
-
-                    .create()
-
-                    .show();
-
-            return false;
-
-        }
-
-    };
 
 
 
