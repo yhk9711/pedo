@@ -87,6 +87,11 @@ public class FirebasePost {
         mDatabase.child("MEMBER").child(userId).child("step").setValue(stepValue);
     }
 
+    public void WriteGoal(String userId, int Goal){
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("MEMBER").child(userId).child("goal_step").setValue(Goal);
+    }
+
 
 
 }

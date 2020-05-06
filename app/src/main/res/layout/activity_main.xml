@@ -7,49 +7,118 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="#FFFFFF"
-    tools:context=".MainActivity">
+    android:background="#d3ebf2"
+    tools:context="com.example.lets_walk_firebase.MainActivity">
 
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="match_parent"
+
+    <TextView
+        android:id="@+id/blank"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        app:srcCompat="@drawable/letswalklogo" />
+        android:gravity="center"
+        android:text="  로그인  "
+
+        android:textStyle="bold"
+        android:textColor="#639cd4"
+        android:textSize="50dp" />
+
+    <TextView
+        android:id="@+id/blank_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="     "
+        android:textColor="#000000"
+        android:textSize="30dp" />
 
     <EditText
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:id="@+id/checkId"
         android:layout_height="50dp"
         android:gravity="center"
         android:hint="아이디 입력"
-        android:textColorHint="#356a4c"
+        android:textColorHint="#505152"
         android:textColor="#000000"
-        android:backgroundTint="#1B5019"
-        />
-    <EditText
+        android:background="@drawable/round_corner"
+        android:backgroundTint="#ffffff"/>
+
+    <TextView
+        android:id="@+id/blank1"
         android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        android:gravity="center"
+        android:text="     "
+        android:textColor="#1B5019"
+        android:textSize="25dp" />
+
+    <EditText
+        android:layout_width="300dp"
         android:id="@+id/checkpw"
         android:layout_height="50dp"
         android:gravity="center"
         android:hint="비밀번호 입력"
-        android:textColorHint="#356a4c"
+        android:textColorHint="#505152"
         android:textColor="#000000"
-        android:backgroundTint="#1B5019"
+        android:backgroundTint="#ffffff"
+        android:background="@drawable/round_corner"
         android:inputType="textPassword"
         />
 
+    <TextView
+        android:id="@+id/blank2"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        android:gravity="center"
+        android:text="     "
+        android:textColor="#1B5019"
+        android:textSize="25dp" />
+
     <Button
         android:id="@+id/login"
-        android:layout_width="wrap_content"
+        android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="#1B5019"
+        android:backgroundTint="#52789e"
+        android:background="@drawable/round_corner"
+        android:stateListAnimator="@null"
         android:text="로그인" />
+
+    <TextView
+        android:id="@+id/blank3"
+        android:layout_width="wrap_content"
+        android:layout_height="10dp"
+        android:gravity="center"
+        android:text="     "
+        android:textColor="#1B5019"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/blank4"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="     "
+        android:textColor="#1B5019"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/blank5"
+        android:layout_width="wrap_content"
+        android:layout_height="30dp"
+        android:gravity="center"
+        android:text="아이디가 없으신가요?"
+        android:textColor="#505152"
+        android:textSize="15dp" />
 
     <Button
         android:id="@+id/register"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:backgroundTint="#1B5019"
+        android:layout_height="30dp"
+        android:backgroundTint="#52789e"
+        android:textColorHint="#505152"
+        android:textColor="#ffffff"
+        android:background="@drawable/round_corner"
+        android:stateListAnimator="@null"
         android:text="회원가입" />
+
 
 </LinearLayout>

@@ -36,7 +36,10 @@
             android:name=".PedoActivity"
             android:screenOrientation="unspecified"
             android:windowSoftInputMode="adjustResize"></activity>
-
+        <activity
+            android:name=".MyInfo"
+            android:screenOrientation="unspecified"
+            android:windowSoftInputMode="adjustResize"></activity>
 
         <service
             android:name=".RealService"
@@ -51,14 +54,14 @@
         <receiver android:name=".AlarmRecever"/>
 
         <receiver
-            android:name=".RebootRecever"
-            android:enabled="true"
-            android:exported="false"
-            android:process=":remote">
-            <intent-filter>
-                <action android:name="android.intent.action.BOOT_COMPLETED" />
-            </intent-filter>
-        </receiver>
+        android:name=".RebootRecever"
+        android:enabled="true"
+        android:exported="false"
+        android:process=":remote">
+        <intent-filter>
+            <action android:name="android.intent.action.BOOT_COMPLETED" />
+        </intent-filter>
+    </receiver>
     </application>
 
 </manifest>

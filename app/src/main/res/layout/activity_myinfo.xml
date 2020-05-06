@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#d3ebf2"
+    android:orientation="vertical"
+    tools:context=".MyInfo">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="73dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/goalsteptext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="마이 페이지"
+                android:textStyle="bold"
+                android:textColor="#639cd4"
+                android:textSize="30dp" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="346dp"
+            android:layout_height="309dp"
+            app:srcCompat="@drawable/stepgraph" />
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/nowstepnum"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="71dp"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="걸음 수 그래프"-->
+        <!--            android:textColor="#1B5019"-->
+        <!--            android:textSize="25dp" />-->
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/averagestep1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="최근 일주일 동안 "
+                android:textColor="#639cd4"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/averagestep2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="하루 평균 "
+                android:textColor="#639cd4"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/averagestep3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="9786"
+                android:textStyle="bold"
+                android:textColor="#639cd4"
+                android:textSize="25dp" />
+
+            <TextView
+                android:id="@+id/averagestep4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text=" 걸음 걸었습니다"
+                android:textColor="#639cd4"
+                android:textSize="20dp" />
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="71dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/numtogoal1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="목표 걸음 수: "
+                android:textStyle="bold"
+                android:textColor="#639cd4"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/edit_goal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:ems="7"
+                android:maxLength="5"
+                android:inputType="number"
+                android:backgroundTint="#1B5019"
+                android:textColor="#000000"
+                />
+            <TextView
+                android:id="@+id/blank"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="  "
+                android:textColor="#1B5019"
+                android:textSize="20dp" />
+            <Button
+                android:id="@+id/btn_changed"
+                android:layout_width="62dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:background="#639cd4"
+                android:gravity="center"
+                android:text="수정" />
+        </LinearLayout>
+
+
+    </LinearLayout>
+    <include layout="@layout/nav1"/>
+</androidx.drawerlayout.widget.DrawerLayout>

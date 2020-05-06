@@ -83,7 +83,7 @@ public class RealService extends Service implements SensorEventListener {
                     String pass = Integer.toString(PedoActivity.cnt);
                     intent1.putExtra("DATAPASSED", pass);
                     sendBroadcast(intent1);
-                    Log.e("감지", "이벤트 발생");
+                    //Log.e("감지", "이벤트 발생");
                 }
                 lastX = event.values[DATA_X];
                 lastY = event.values[DATA_Y];
@@ -114,7 +114,7 @@ public class RealService extends Service implements SensorEventListener {
 
     protected void onHandleIntent(Intent intent) {
         Intent intent1 = new Intent();
-        intent1.setAction("com.example.lwfb");
+        intent1.setAction("com.example.lets_walk_firebase");
         intent1.putExtra("DATAPASSED", PedoActivity.cnt);
         sendBroadcast(intent1);
     }
