@@ -34,6 +34,10 @@
             android:name=".PedoActivity"
             android:screenOrientation="unspecified"
             android:windowSoftInputMode="adjustResize"></activity>
+        <activity
+            android:name=".MyInfo"
+            android:screenOrientation="unspecified"
+            android:windowSoftInputMode="adjustResize"></activity>
 
         <service
             android:name=".RealService"

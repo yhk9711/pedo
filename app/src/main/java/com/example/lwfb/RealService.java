@@ -9,6 +9,7 @@ import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
 import android.os.Handler;
 import android.os.IBinder;
+import android.util.Log;
 import android.widget.Toast;
 
 //import android.support.v4.app.NotificationCompat;
@@ -32,19 +33,18 @@ public class RealService extends Service implements SensorEventListener {
     // 서비스를 생성할 때 호출
     public void onCreate() {
         super.onCreate();
-
-
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         accelerormeterSensor = sensorManager
                 .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
     }
+
     @Override
     public void onStart(Intent intent, int startId) {
         serviceIntent = intent;
         // Log.e("MyService", "Service startId = " + startId);
         super.onStart(intent, startId);
-
+        Log.e("감지", "onstartservice");
         if (accelerormeterSensor != null)
             sensorManager.registerListener(this, accelerormeterSensor,
                     SensorManager.SENSOR_DELAY_GAME);
@@ -64,7 +64,7 @@ public class RealService extends Service implements SensorEventListener {
             long currentTime = System.currentTimeMillis();
             long gabOfTime = (currentTime - lastTime);
 
-            if (gabOfTime > 100) {
+            if (gabOfTime > 95) {
                 lastTime = currentTime;
                 x = event.values[SensorManager.DATA_X];
                 y = event.values[SensorManager.DATA_Y];
@@ -76,8 +76,12 @@ public class RealService extends Service implements SensorEventListener {
                     PedoActivity.cnt++;
                     FirebasePost user = new FirebasePost();
                     user.WriteStep(id_value, PedoActivity.cnt);
-
-
+                    Intent intent1 = new Intent();
+                    intent1.setAction("com.example.lwfb");
+                    String pass = Integer.toString(PedoActivity.cnt);
+                    intent1.putExtra("DATAPASSED", pass);
+                    sendBroadcast(intent1);
+                    Log.e("감지", "이벤트 발생");
                 }
                 lastX = event.values[DATA_X];
                 lastY = event.values[DATA_Y];
@@ -86,6 +90,7 @@ public class RealService extends Service implements SensorEventListener {
         }
         // }
     }
+
     public void showToast(final Application application, final String msg) {
         Handler h = new Handler(application.getMainLooper());
         h.post(new Runnable() {
@@ -99,8 +104,17 @@ public class RealService extends Service implements SensorEventListener {
     public void onDestroy() {
         super.onDestroy();
         serviceIntent = null;
-        if (sensorManager != null)
+        if (sensorManager != null) {
             sensorManager.unregisterListener(this);
+            Log.e("감지", "onstartservice");
+        }
+    }
+
+    protected void onHandleIntent(Intent intent) {
+        Intent intent1 = new Intent();
+        intent1.setAction("com.example.lwfb");
+        intent1.putExtra("DATAPASSED", PedoActivity.cnt);
+        sendBroadcast(intent1);
     }
 
     public IBinder onBind(Intent intent) {

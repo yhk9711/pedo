@@ -65,7 +65,7 @@
             android:layout_marginTop="220dp"
             android:layout_marginBottom="10dp"
             android:background="#1B5019"
-            android:text="내 정보"
+            android:text="마이 페이지"
             android:textColor="#FFFFFF" />
 
         <LinearLayout

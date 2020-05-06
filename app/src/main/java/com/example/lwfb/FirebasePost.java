@@ -9,7 +9,6 @@ import java.util.HashMap;
 import java.util.Map;
 
 
-
 @IgnoreExtraProperties
 
 public class FirebasePost {
@@ -26,6 +25,8 @@ public class FirebasePost {
 
     public int step;
 
+    public int goal_step;
+
     private DatabaseReference mDatabase;
 
 
@@ -38,7 +39,7 @@ public class FirebasePost {
 
 
 
-    public FirebasePost(String id, String pw, String name, Long age, String gender, int step) {
+    public FirebasePost(String id, String pw, String name, Long age, String gender, int step, int goal_step) {
 
         this.id = id;
 
@@ -51,6 +52,8 @@ public class FirebasePost {
         this.gender = gender;
 
         this.step = step;
+
+        this.goal_step = goal_step;
 
     }
 
@@ -74,12 +77,19 @@ public class FirebasePost {
 
         result.put("step", step);
 
+        result.put("goal_step", goal_step);
+
         return result;
 
     }
     public void WriteStep(String userId, int stepValue){
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("MEMBER").child(userId).child("step").setValue(stepValue);
+    }
+
+    public void WriteGoal(String userId, int Goal){
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("MEMBER").child(userId).child("goal_step").setValue(Goal);
     }
 
 

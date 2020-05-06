@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity {
     String loginId, loginPwd;
     String dt_id;
     String step_num;
+    String goal_step;
 
     @Override
 
@@ -108,6 +109,7 @@ public class MainActivity extends AppCompatActivity {
                             {
                                 pass = map.get("pw");
                                 step_num = String.valueOf(map.get("step"));
+                                goal_step= String.valueOf(map.get("goal_step"));
 
                                 Log.d("password", pass);
                                 if(pass.equals(checkpw.getText().toString()))
@@ -125,6 +127,7 @@ public class MainActivity extends AppCompatActivity {
                                     Intent intent = new Intent(getApplicationContext(), com.example.lwfb.PedoActivity.class);
                                     intent.putExtra("id", dt_id);
                                     intent.putExtra("step", step_num);
+                                    intent.putExtra("goal_step", goal_step);
 //                                    Intent intent2 = new Intent(getApplicationContext(), com.example.lwfb.RealService.class);
 //                                    intent.putExtra("id", dt_id);
 //                                    intent.putExtra("step", step_num);

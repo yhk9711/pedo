@@ -67,6 +67,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     String PW;
     String name;
     int step = 0;
+    int goal_step = 10000;
 
     long age;
 
@@ -315,7 +316,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         if(add){
 
-            FirebasePost post = new FirebasePost(ID, PW, name, age, gender, step);
+            FirebasePost post = new FirebasePost(ID, PW, name, age, gender, step, goal_step);
 
             postValues = post.toMap();
 
@@ -349,7 +350,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                     FirebasePost get = postSnapshot.getValue(FirebasePost.class);
 
-                    String[] info = {get.id, get.pw, get.name, String.valueOf(get.age), get.gender, String.valueOf(get.step)};
+                    String[] info = {get.id, get.pw, get.name, String.valueOf(get.age), get.gender, String.valueOf(get.step), String.valueOf(get.goal_step)};
 
                     //     String Result = setTextLength(info[0],10) + setTextLength(info[1],10) + setTextLength(info[2],10) + setTextLength(info[3],10) +  setTextLength(info[4],10);
 
@@ -359,7 +360,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                     Log.d("getFirebaseDatabase", "key: " + key);
 
-                    Log.d("getFirebaseDatabase", "info: " + info[0] + info[1] + info[2] + info[3] + info[4] + info[5]);
+                    Log.d("getFirebaseDatabase", "info: " + info[0] + info[1] + info[2] + info[3] + info[4] + info[5] + info[6]);
 
                 }
 

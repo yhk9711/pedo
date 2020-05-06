@@ -2,7 +2,10 @@ package com.example.lwfb;
 
 
 import android.app.Activity;
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
 import android.content.SharedPreferences;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -13,6 +16,7 @@ import android.os.Bundle;
 import android.os.PowerManager;
 import android.util.Log;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -27,12 +31,12 @@ public class PedoActivity extends Activity implements SensorEventListener {
     private View drawerView;
 
 
-
     public static int cnt = 0;
-    public static int kcal = cnt/30;
-    public static double dis = cnt/ 1.5 ;
-    public static int goal=10000;
+    public static int kcal = cnt / 30;
+    public static double dis = cnt / 1.5;
+    public static int goal = 10000;
 
+    private TextView fView;
     private TextView tView;
     private TextView kView;
     private TextView dView;
@@ -69,6 +73,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         accelerormeterSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
+        fView = (TextView) findViewById(R.id.goalstepnum);
         tView = (TextView) findViewById(R.id.cntView);
         kView = (TextView) findViewById(R.id.kcalnum);
         dView = (TextView) findViewById(R.id.distancenum);
@@ -78,26 +83,42 @@ public class PedoActivity extends Activity implements SensorEventListener {
         Intent i = getIntent();
         i.getStringExtra("step");
         Bundle bundle = getIntent().getExtras();
-        if(bundle != null){
+        if (bundle != null) {
             step_value = bundle.getString("step");
             Log.d("step_value", step_value);
         }
 
+        String goal_step = null;
+        Intent i2 = getIntent();
+        i2.getStringExtra("goal_step");
+        Bundle bundle1 = getIntent().getExtras();
+        if(bundle1 != null){
+            goal_step = bundle1.getString("goal_step");
+            Log.d("goal_step", goal_step);
+        }
+
+
         cnt = Integer.parseInt(step_value);
+        goal = Integer.parseInt(goal_step);
 
 
+        fView.setText("" + goal);
         tView.setText("" + (cnt));
-        kView.setText("" + cnt/30);
-        String km = String.format("%.1f",(cnt/1.5));
+        kView.setText("" + cnt / 30);
+        String km = String.format("%.1f", (cnt / 1.5));
         dView.setText("" + km);
-        gView.setText("" + (goal- cnt));
+        gView.setText("" + (goal - cnt));
 
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerView = (View) findViewById(R.id.drawerView);
         drawerLayout.setDrawerListener(listener);
         //drawerLayout.openDrawer(drawerView);
-        Button logout = (Button)findViewById(R.id.button);
-        logout.setOnClickListener(new View.OnClickListener() {
+        Button logout = (Button) findViewById(R.id.button);
+        Button myInfo = (Button) findViewById(R.id.myinfo);
+
+
+
+        logout.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
                 //SharedPreferences에 저장된 값들을 로그아웃 버튼을 누르면 삭제하기 위해
@@ -114,6 +135,26 @@ public class PedoActivity extends Activity implements SensorEventListener {
             }
         });
 
+        myInfo.setOnClickListener(new OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(PedoActivity.this, MyInfo.class);
+                String id_value2 = null;
+                Intent i2 = getIntent();
+                i2.getStringExtra("id");
+                Bundle bundle2 = getIntent().getExtras();
+                if (bundle2 != null) {
+                    id_value2 = bundle2.getString("id");
+                    //Log.d("id", id_value2);
+                }
+                intent.putExtra("id", id_value2);
+                startActivity(intent);
+            }
+        });
+
+
+
+
         PowerManager pm = (PowerManager) getApplicationContext().getSystemService(POWER_SERVICE);
 
         boolean isWhiteListing = false;
@@ -128,13 +169,12 @@ public class PedoActivity extends Activity implements SensorEventListener {
         }
 
 
-
-        if (RealService.serviceIntent==null){
+        if (RealService.serviceIntent == null) {
             String id_value2 = null;
-            Intent i2 = getIntent();
-            i2.getStringExtra("id");
+            Intent i3 = getIntent();
+            i3.getStringExtra("id");
             Bundle bundle2 = getIntent().getExtras();
-            if(bundle2 != null){
+            if (bundle2 != null) {
                 id_value2 = bundle2.getString("id");
                 Log.d("id", id_value2);
             }
@@ -151,12 +191,11 @@ public class PedoActivity extends Activity implements SensorEventListener {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (serviceIntent!=null) {
+        if (serviceIntent != null) {
             stopService(serviceIntent);
             serviceIntent = null;
         }
     }
-
 
 
     DrawerLayout.DrawerListener listener = new DrawerLayout.DrawerListener() {
@@ -183,17 +222,46 @@ public class PedoActivity extends Activity implements SensorEventListener {
     @Override
     public void onStart() {
         super.onStart();
-        if (accelerormeterSensor != null)
+        if (accelerormeterSensor != null) {
             sensorManager.registerListener(this, accelerormeterSensor,
                     SensorManager.SENSOR_DELAY_GAME);
+            IntentFilter intentFilter = new IntentFilter();
+            intentFilter.addAction("com.example.lwfb");
+            registerReceiver(broadcastReceiver, intentFilter);
+            Log.e("감지", "onstart");
+            fView.setText("" + goal);
+            tView.setText("" + (cnt));
+            kView.setText("" + cnt / 30);
+            String km = String.format("%.1f", (cnt / 1.5));
+            dView.setText("" + km);
+            gView.setText("" + (goal - cnt));
+        }
     }
 
+    BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            Log.e("감지", "받아짐");
+            String pass = intent.getStringExtra("DATAPASSED");
+            cnt = Integer.parseInt(pass);
+            //String s1 = intent.getStringExtra("DATAPASSED");
+            fView.setText("" + goal);
+            tView.setText("" + (cnt));
+            kView.setText("" + cnt / 30);
+            String km = String.format("%.1f", (cnt / 1.5));
+            dView.setText("" + km);
+            gView.setText("" + (goal - cnt));
+        }
+    };
 
     @Override
     public void onStop() {
         super.onStop();
-        if (sensorManager != null)
+        if (sensorManager != null) {
             sensorManager.unregisterListener(this);
+            unregisterReceiver(broadcastReceiver);
+            Log.e("감지", "onstop");
+        }
     }
 
     @Override
@@ -202,7 +270,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             long currentTime = System.currentTimeMillis();
             long gabOfTime = (currentTime - lastTime);
-            if (gabOfTime > 100) {
+            if (gabOfTime > 95) {
                 lastTime = currentTime;
                 x = event.values[SensorManager.DATA_X];
                 y = event.values[SensorManager.DATA_Y];
@@ -211,11 +279,12 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 speed = Math.abs(x + y + z - lastX - lastY - lastZ) / gabOfTime * 10000;
 
                 if (speed > SHAKE_THRESHOLD) {
+                    fView.setText("" + goal);
                     tView.setText("" + (++cnt));
-                    kView.setText("" + cnt/30);
-                    String km = String.format("%.1f",(cnt/1.5));
+                    kView.setText("" + cnt / 30);
+                    String km = String.format("%.1f", (cnt / 1.5));
                     dView.setText("" + km);
-                    gView.setText("" + (goal- cnt));
+                    gView.setText("" + (goal - cnt));
                 }
                 lastX = event.values[DATA_X];
                 lastY = event.values[DATA_Y];
@@ -232,9 +301,9 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 Intent i = getIntent();
                 i.getStringExtra("id");
                 Bundle bundle = getIntent().getExtras();
-                if(bundle != null){
+                if (bundle != null) {
                     id_value = bundle.getString("id");
-                    Log.d("id", id_value);
+                    //Log.d("id", id_value);
                 }
                 FirebasePost user = new FirebasePost();
                 user.WriteStep(id_value, cnt);
@@ -247,8 +316,6 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 //startService(intent);
 
 
-
-
                 //Intent intent = new Intent(getApplicationContext(), MyService.class);
                 //startService(intent);
                 //HashMap<String, Object> childUpdates = null;
@@ -259,7 +326,6 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
                 //Map<String, Object> userUpdates = new HashMap<>();
                 //userUpdates.put("id_value/step", cnt);
-
 
 
             }
