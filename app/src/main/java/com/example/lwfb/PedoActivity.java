@@ -94,7 +94,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
         Bundle bundle1 = getIntent().getExtras();
         if(bundle1 != null){
             goal_step = bundle1.getString("goal_step");
-            Log.d("goal_step", goal_step);
+//            Log.d("goal_step", goal_step);
         }
 
 

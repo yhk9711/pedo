@@ -8,8 +8,8 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="#FFFFFF"
-    tools:context=".RegisterActivity">
+    android:background="#d3ebf2"
+    tools:context="com.example.lwfb.MainActivity">
 
     <TextView
         android:id="@+id/textView2"
@@ -18,9 +18,19 @@
         android:layout_alignParentEnd="true"
         android:gravity="center"
         android:text="회원가입"
-        android:textColor="#1B5019"
-        android:textColorHint="#356a4c"
+        android:textStyle="bold"
+        android:textColor="#639cd4"
+        android:textColorHint="#d3ebf2"
         android:textSize="30dp" />
+
+    <TextView
+        android:id="@+id/blank_"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="     "
+        android:textColor="#000000"
+        android:textSize="25dp" />
 
 
     <LinearLayout
@@ -31,7 +41,7 @@
         <TextView
 
             android:id="@+id/text_id"
-
+            android:textStyle="bold"
             android:layout_width="wrap_content"
 
             android:layout_height="wrap_content"
@@ -39,10 +49,7 @@
             android:layout_below="@+id/textView3"
 
             android:text="ID: "
-
-
-            android:textColor="#1B5019"
-            android:textColorHint="#356a4c"
+            android:textColor="#639cd4"
             android:textSize="15dp"
 
             />
@@ -52,18 +59,18 @@
 
             android:id="@+id/edit_id"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:gravity="center"
             android:layout_below="@+id/textView2"
-
             android:ems="10"
-
+            android:background="@drawable/round_corner"
             android:inputType="textPersonName"
             android:maxLength="10"
-            android:backgroundTint="#1B5019"
-            android:hint="      영문, 숫자 10자 이내"
-            android:textColorHint="#1B5019"
-            android:textColor="#000000"/>
+            android:textColorHint="#505152"
+            android:textColor="#000000"
+            android:backgroundTint="#ffffff"
+            android:hint=" 영문, 숫자 10자 이내"
+            />
     </LinearLayout>
 
     <LinearLayout
@@ -80,11 +87,9 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="PW: "
-
+            android:textStyle="bold"
             android:textSize="15dp"
-
-            android:textColorHint="#356a4c"
-            android:textColor="#1B5019"
+            android:textColor="#639cd4"
 
             />
 
@@ -96,16 +101,17 @@
 
             android:layout_width="wrap_content"
 
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:gravity="center"
             android:ems="10"
 
             android:maxLength="10"
             android:inputType="textPassword"
-            android:backgroundTint="#1B5019"
-            android:hint="    영문, 숫자 10자 이내"
-            android:textColorHint="#1B5019"
+            android:hint=" 영문, 숫자 10자 이내"
+            android:textColorHint="#505152"
             android:textColor="#000000"
+            android:background="@drawable/round_corner"
+            android:backgroundTint="#ffffff"
             />
 
     </LinearLayout>
@@ -127,9 +133,8 @@
             android:text="NAME: "
 
             android:textSize="15dp"
-
-            android:textColorHint="#356a4c"
-            android:textColor="#1B5019"
+            android:textStyle="bold"
+            android:textColor="#639cd4"
 
             />
 
@@ -138,20 +143,16 @@
         <EditText
 
             android:id="@+id/edit_name"
-
             android:layout_width="wrap_content"
-
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:gravity="center"
-
             android:ems="10"
-
             android:maxLength="10"
-
             android:inputType="textPersonName"
-
-            android:backgroundTint="#1B5019"
-            android:textColor="#000000"/>
+            android:textColorHint="#505152"
+            android:textColor="#000000"
+            android:background="@drawable/round_corner"
+            android:backgroundTint="#ffffff"/>
 
     </LinearLayout>
 
@@ -168,28 +169,24 @@
             android:gravity="center"
             android:text="AGE: "
             android:textSize="15dp"
-            android:textColorHint="#356a4c"
-            android:textColor="#1B5019"
-
+            android:textColor="#639cd4"
+            android:textStyle="bold"
             />
 
 
         <EditText
 
             android:id="@+id/edit_age"
-
             android:layout_width="wrap_content"
-
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:gravity="center"
-
             android:ems="10"
-
             android:maxLength="2"
-
             android:inputType="number"
-            android:backgroundTint="#1B5019"
+            android:textColorHint="#505152"
             android:textColor="#000000"
+            android:background="@drawable/round_corner"
+            android:backgroundTint="#ffffff"
             />
 
     </LinearLayout>
@@ -211,9 +208,8 @@
             android:text="GENDER: "
 
             android:textSize="15dp"
-
-            android:textColorHint="#356a4c"
-            android:textColor="#1B5019"
+            android:textStyle="bold"
+            android:textColor="#639cd4"
             />
 
 
@@ -228,12 +224,10 @@
             android:text="Man"
 
             android:textSize="15dp"
-
             android:id="@+id/check_man"
-
-            android:textColorHint="#356a4c"
-            android:textColor="#1B5019"
-            android:buttonTint="#1B5019"
+            android:textColorHint="#639cd4"
+            android:textColor="#639cd4"
+            android:buttonTint="#639cd4"
             />
 
 
@@ -250,9 +244,9 @@
             android:textSize="15dp"
 
             android:id="@+id/check_woman"
-            android:textColorHint="#356a4c"
-            android:textColor="#1B5019"
-            android:buttonTint="#1B5019"
+            android:textColorHint="#639cd4"
+            android:textColor="#639cd4"
+            android:buttonTint="#639cd4"
             />
 
     </LinearLayout>
@@ -268,11 +262,12 @@
             android:id="@+id/btn_insert"
 
             android:layout_width="wrap_content"
-
+            android:stateListAnimator="@null"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_alignParentEnd="true"
-            android:background="#1B5019"
+            android:backgroundTint="#52789e"
+            android:background="@drawable/round_corner"
             android:text="가입완료" />
 
     </LinearLayout>
