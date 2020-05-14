@@ -67,15 +67,19 @@ public class MainActivity extends AppCompatActivity {
                             pass = map.get("pw");
                             step_num = String.valueOf(map.get("step"));
 
+
                             Log.d("password", pass);
                             Log.d("step", step_num);
                         }
                         if(loginId.equals(dt_id) && loginPwd.equals(pass)) {
                             Toast.makeText(MainActivity.this, loginId +"님 자동로그인 입니다.", Toast.LENGTH_SHORT).show();
                             Log.d("자동로그인 성공함",pass);
+                            goal_step= String.valueOf(map.get("goal_step"));
                             Intent intent = new Intent(MainActivity.this, com.example.lwfb.PedoActivity.class);
                             intent.putExtra("id", dt_id);
                             intent.putExtra("step", step_num);
+                            intent.putExtra("goal_step", goal_step);
+                            intent.putExtra("name", map.get("name"));
                             startActivity(intent);
                             finish();
                         }
@@ -128,6 +132,7 @@ public class MainActivity extends AppCompatActivity {
                                     intent.putExtra("id", dt_id);
                                     intent.putExtra("step", step_num);
                                     intent.putExtra("goal_step", goal_step);
+                                    intent.putExtra("name", map.get("name"));
 //                                    Intent intent2 = new Intent(getApplicationContext(), com.example.lwfb.RealService.class);
 //                                    intent.putExtra("id", dt_id);
 //                                    intent.putExtra("step", step_num);

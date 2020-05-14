@@ -1,16 +1,13 @@
 package com.example.lwfb;
 
-import android.app.Application;
 import android.app.Service;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.os.Handler;
 import android.os.IBinder;
 import android.util.Log;
-import android.widget.Toast;
 
 //import android.support.v4.app.NotificationCompat;
 
@@ -41,6 +38,7 @@ public class RealService extends Service implements SensorEventListener {
 
     @Override
     public void onStart(Intent intent, int startId) {
+
         serviceIntent = intent;
         // Log.e("MyService", "Service startId = " + startId);
         super.onStart(intent, startId);
@@ -48,6 +46,22 @@ public class RealService extends Service implements SensorEventListener {
         if (accelerormeterSensor != null)
             sensorManager.registerListener(this, accelerormeterSensor,
                     SensorManager.SENSOR_DELAY_GAME);
+
+//        String msg="hi";
+//        NotificationManager nm = (NotificationManager)getSystemService(Context.NOTIFICATION_SERVICE);
+//        PendingIntent pendingIntent = PendingIntent.getActivity(this, 0, new Intent(this, SplashActivity.class), PendingIntent.FLAG_UPDATE_CURRENT);
+//        Context context = this;
+//        Notification.Builder builder = new Notification.Builder(context)
+//                .setContentIntent(pendingIntent)
+//                .setSmallIcon(R.drawable.letswalklogo)
+//                .setContentTitle("DSM 알리미")
+//                .setContentText(msg)
+//                .setDefaults(Notification.DEFAULT_SOUND | Notification.DEFAULT_VIBRATE)
+//                .setTicker("DSM 알리미 - 소식 왔어요!");
+//        Notification notification = builder.build();
+//        nm.notify(1234, notification);
+
+
     }
 
     @Override
@@ -91,31 +105,31 @@ public class RealService extends Service implements SensorEventListener {
         // }
     }
 
-    public void showToast(final Application application, final String msg) {
-        Handler h = new Handler(application.getMainLooper());
-        h.post(new Runnable() {
-            @Override
-            public void run() {
-                Toast.makeText(application, msg, Toast.LENGTH_LONG).show();
-            }
-        });
-    }
+//    public void showToast(final Application application, final String msg) {
+//        Handler h = new Handler(application.getMainLooper());
+//        h.post(new Runnable() {
+//            @Override
+//            public void run() {
+//                Toast.makeText(application, msg, Toast.LENGTH_LONG).show();
+//            }
+//        });
+//    }
 
     public void onDestroy() {
         super.onDestroy();
         serviceIntent = null;
         if (sensorManager != null) {
             sensorManager.unregisterListener(this);
-            Log.e("감지", "onstartservice");
+            Log.e("감지", "onservicedestroy");
         }
     }
 
-    protected void onHandleIntent(Intent intent) {
-        Intent intent1 = new Intent();
-        intent1.setAction("com.example.lwfb");
-        intent1.putExtra("DATAPASSED", PedoActivity.cnt);
-        sendBroadcast(intent1);
-    }
+//    protected void onHandleIntent(Intent intent) {
+//        Intent intent1 = new Intent();
+//        intent1.setAction("com.example.lwfb");
+//        intent1.putExtra("DATAPASSED", PedoActivity.cnt);
+//        sendBroadcast(intent1);
+//    }
 
     public IBinder onBind(Intent intent) {
         return null;
