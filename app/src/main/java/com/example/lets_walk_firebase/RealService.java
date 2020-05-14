@@ -2,7 +2,11 @@ package com.example.lets_walk_firebase;
 
 
 import android.app.Application;
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
 import android.app.Service;
+import android.content.Context;
 import android.content.Intent;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
@@ -30,10 +34,15 @@ public class RealService extends Service implements SensorEventListener {
     SensorManager sensorManager;
     Sensor accelerormeterSensor;
 
+    NotificationManager Notifi_M;
+    Notification Notifi;
+    ServiceThread thread;
+
 
     // 서비스를 생성할 때 호출
     public void onCreate() {
         super.onCreate();
+        Log.d("여기는", "서비스의 onCreate");
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         accelerormeterSensor = sensorManager
                 .getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -41,23 +50,42 @@ public class RealService extends Service implements SensorEventListener {
     }
 
     @Override
-    public void onStart(Intent intent, int startId) {
+    public int onStartCommand(Intent intent, int flags, int startId) {
         serviceIntent = intent;
         // Log.e("MyService", "Service startId = " + startId);
         super.onStart(intent, startId);
-        Log.e("감지", "onstartservice");
+        Log.e("감지", "서비스의 onstart입니다");
+
         if (accelerormeterSensor != null)
             sensorManager.registerListener(this, accelerormeterSensor,
                     SensorManager.SENSOR_DELAY_GAME);
+
+        Notifi_M = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        myServiceHandler handler = new myServiceHandler();
+        thread = new ServiceThread(handler);
+        thread.start();
+        return START_STICKY;
     }
 
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
+/*
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
+
+        Notifi_M = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+        myServiceHandler handler = new myServiceHandler();
+
+        Log.d("여기는", "서비스의 onStartCommand");
+        return START_STICKY;
+    }
+*/
 
     @Override
     public void onSensorChanged(SensorEvent event) {
+        //Log.d("여기는", "서비스의 sensor_changed");
 
         String id_value = serviceIntent.getStringExtra("id");
 
@@ -93,6 +121,24 @@ public class RealService extends Service implements SensorEventListener {
         // }
     }
 
+    class myServiceHandler extends Handler{
+        @Override
+        public void handleMessage(android.os.Message msg) {
+            if (serviceIntent != null) {
+                Intent intent = new Intent(RealService.this, PedoActivity.class);
+                PendingIntent pendingIntent = PendingIntent.getActivity(RealService.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
+
+                Notifi = new Notification.Builder(getApplicationContext()).setContentTitle("Content Title").setContentText("Content Text").setSmallIcon(R.drawable.letswalklogo).setTicker("알림!!!").setContentIntent(pendingIntent).build();
+                Notifi.defaults = Notification.DEFAULT_SOUND;
+                Notifi.flags = Notification.FLAG_ONLY_ALERT_ONCE;
+                Notifi.flags = Notification.FLAG_AUTO_CANCEL;
+                Notifi_M.notify(777, Notifi);
+                Toast.makeText(RealService.this, "뜸?", Toast.LENGTH_LONG).show();
+            }
+        }
+    };
+
+
     public void showToast(final Application application, final String msg) {
         Handler h = new Handler(application.getMainLooper());
         h.post(new Runnable() {
@@ -105,10 +151,13 @@ public class RealService extends Service implements SensorEventListener {
 
     public void onDestroy() {
         super.onDestroy();
+
         serviceIntent = null;
+        thread.stopForever();
+        thread = null;
         if (sensorManager != null) {
             sensorManager.unregisterListener(this);
-            Log.e("감지", "onstartservice");
+            Log.e("감지_destroy", "ondestroy");
         }
     }
 

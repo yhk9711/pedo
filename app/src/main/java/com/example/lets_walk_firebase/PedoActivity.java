@@ -11,9 +11,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
-import android.net.Uri;
 import android.os.Bundle;
-import android.os.PowerManager;
 import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -41,7 +39,6 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
     private DrawerLayout drawerLayout;
     private View drawerView;
-
 
     private DatabaseReference databaseReference;
 
@@ -326,7 +323,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
         });
 
 
-        PowerManager pm = (PowerManager) getApplicationContext().getSystemService(POWER_SERVICE);
+        /*PowerManager pm = (PowerManager) getApplicationContext().getSystemService(POWER_SERVICE);
 
         boolean isWhiteListing = false;
         if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
@@ -356,17 +353,20 @@ public class PedoActivity extends Activity implements SensorEventListener {
             serviceIntent = RealService.serviceIntent;//getInstance().getApplication();
             Toast.makeText(getApplicationContext(), "already", Toast.LENGTH_LONG).show();
         }
-
+*/
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        if (serviceIntent != null) {
+        Log.d("여기는", "페도의 onDestroy");
+        /*if (serviceIntent != null) {
             stopService(serviceIntent);
             serviceIntent = null;
-        }
+        }*/
+        startService(serviceIntent);
     }
+
 
 
     DrawerLayout.DrawerListener listener = new DrawerLayout.DrawerListener() {
@@ -392,14 +392,19 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
     @Override
     public void onStart() {
+
         super.onStart();
+        if(serviceIntent != null){
+            stopService(serviceIntent);
+        }
+
         if (accelerormeterSensor != null) {
             sensorManager.registerListener(this, accelerormeterSensor,
                     SensorManager.SENSOR_DELAY_GAME);
             IntentFilter intentFilter = new IntentFilter();
             intentFilter.addAction("com.example.let_walk_firebase");
             registerReceiver(broadcastReceiver, intentFilter);
-            Log.e("감지", "onstart");
+            Log.e("페도의 ", "onstart입니다");
 
             kcal = cnt / 30;
             databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -729,7 +734,19 @@ public class PedoActivity extends Activity implements SensorEventListener {
         if (sensorManager != null) {
             sensorManager.unregisterListener(this);
             unregisterReceiver(broadcastReceiver);
-            Log.e("감지", "onstop");
+            Log.e("감지", "페도의 onstop입니다");
+
+            String id_value2 = null;
+            Intent i4 = getIntent();
+            i4.getStringExtra("id");
+            Bundle bundle2 = getIntent().getExtras();
+            if (bundle2 != null) {
+                id_value2 = bundle2.getString("id");
+                Log.d("id", id_value2);
+            }
+            serviceIntent = new Intent(this, RealService.class);
+            serviceIntent.putExtra("id", id_value2);
+            startService(serviceIntent);
         }
     }
 
