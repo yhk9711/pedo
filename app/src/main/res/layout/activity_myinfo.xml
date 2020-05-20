@@ -31,11 +31,15 @@
                 android:textSize="30dp" />
         </LinearLayout>
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="346dp"
-            android:layout_height="309dp"
-            app:srcCompat="@drawable/stepgraph" />
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barchart"
+            android:layout_width="match_parent"
+            android:layout_height="340dp" />
+        <!--        <ImageView-->
+        <!--            android:id="@+id/imageView"-->
+        <!--            android:layout_width="346dp"-->
+        <!--            android:layout_height="309dp"-->
+        <!--            app:srcCompat="@drawable/stepgraph" />-->
 
         <!--        <TextView-->
         <!--            android:id="@+id/nowstepnum"-->
@@ -129,7 +133,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="  "
-                android:textColor="#1B5019"
+                android:textColor="#639cd4"
                 android:textSize="20dp" />
             <Button
                 android:id="@+id/btn_changed"
@@ -141,7 +145,12 @@
                 android:text="수정" />
         </LinearLayout>
 
-
+        <!--        <Button-->
+        <!--            android:id="@+id/logout"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:text="Button"-->
+        <!--            android:background="#1B5019"/>-->
     </LinearLayout>
     <include layout="@layout/nav1"/>
 </androidx.drawerlayout.widget.DrawerLayout>

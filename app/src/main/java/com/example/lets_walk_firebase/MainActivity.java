@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         loginId = auto.getString("inputId",null);
         loginPwd = auto.getString("inputPwd",null);
 
-        if(loginId !=null && loginPwd != null) {
+        if(loginId != null && loginPwd != null) {
             databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {

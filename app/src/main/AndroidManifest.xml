@@ -25,6 +25,24 @@
         </activity>
 
         <activity
+            android:name=".NoticeActivity"
+            android:screenOrientation="unspecified"
+            android:windowSoftInputMode="adjustResize"></activity>
+
+        <activity
+            android:name=".FriendListActivity"
+            android:screenOrientation="unspecified"
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity
+            android:name=".FindFriendActivity"
+            android:screenOrientation="unspecified"
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity
+            android:name=".HomeTrainActivity"
+            android:screenOrientation="unspecified"
+            android:windowSoftInputMode="adjustResize"></activity>
+
+        <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustResize">
         </activity>

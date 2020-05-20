@@ -1,0 +1,129 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="#d3ebf2"
+    tools:context="com.example.lets_walk_firebase.MainActivity">
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:gravity="center"
+        android:text="홈 트레이닝"
+        android:textColor="#639cd4"
+        android:textColorHint="#d3ebf2"
+        android:textSize="30dp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/blank19"
+        android:layout_width="161dp"
+        android:layout_height="10dp"
+        android:gravity="center"
+        android:text="     "
+        android:textColor="#000000"
+        android:textSize="25dp" />
+
+    <TextView
+        android:id="@+id/blank_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="못 걸은 양을 홈트레이닝으로 채워보아요!"
+        android:textColor="#000000"
+        android:textSize="15dp" />
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/high"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/round_corner"
+            android:backgroundTint="#52789e"
+            android:gravity="center"
+            android:stateListAnimator="@null"
+            android:textSize="30dp"
+            android:text="상" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/blank17"
+        android:layout_width="161dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="     "
+        android:textColor="#000000"
+        android:textSize="25dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/medi"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/round_corner"
+            android:backgroundTint="#52789e"
+            android:gravity="center"
+            android:stateListAnimator="@null"
+            android:textSize="30dp"
+            android:text="중" />
+    </LinearLayout>
+    <TextView
+        android:id="@+id/blank18"
+        android:layout_width="161dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="     "
+        android:textColor="#000000"
+        android:textSize="25dp" />
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/low"
+            android:layout_width="55dp"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:background="@drawable/round_corner"
+            android:backgroundTint="#52789e"
+            android:gravity="center"
+            android:stateListAnimator="@null"
+            android:textSize="30dp"
+            android:text="하" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/blank_3"
+        android:layout_width="198dp"
+        android:layout_height="9dp"
+        android:gravity="center"
+        android:text="     "
+        android:textColor="#000000"
+        android:textSize="25dp" />
+
+    <ImageView
+        android:id="@+id/imageView5"
+        android:layout_width="351dp"
+        android:layout_height="241dp"
+        app:srcCompat="@drawable/homt" />
+
+
+</LinearLayout>

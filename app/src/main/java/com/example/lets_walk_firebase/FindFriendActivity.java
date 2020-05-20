@@ -9,21 +9,25 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 
-public class FriendsActivity extends AppCompatActivity {
+public class FindFriendActivity extends AppCompatActivity {
 
-    EditText idSelect;
-    Button select;
+    EditText edit_id;
+    Button find_friend;
 
     private DatabaseReference databaseReference;
 
-    @Override
-    protected void onCreate(Bundle savedInstanceState){
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_friends);
+    protected void onCreate(Bundle savedInstanceState) {
 
-        idSelect = (EditText)findViewById(R.id.id_select);
-        select = (Button)findViewById(R.id.select_button);
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_findfriend);
+
+
+        edit_id = (EditText)findViewById(R.id.edit_id);
+        find_friend = (Button)findViewById(R.id.find_friend);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("MEMBER");
+
+
     }
 }
+

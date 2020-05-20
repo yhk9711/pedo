@@ -17,10 +17,21 @@ import android.os.IBinder;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
+import java.util.Map;
+
 //import android.support.v4.app.NotificationCompat;
 
 public class RealService extends Service implements SensorEventListener {
     public static Intent serviceIntent = null;
+    public static int intentNum = 0;
     private long lastTime;
     private float speed;
     private float lastX;
@@ -38,10 +49,16 @@ public class RealService extends Service implements SensorEventListener {
     Notification Notifi;
     ServiceThread thread;
 
+    private DatabaseReference databaseReference;
+
 
     // 서비스를 생성할 때 호출
     public void onCreate() {
         super.onCreate();
+
+        /*String step_value = serviceIntent.getStringExtra("step");
+        PedoActivity.cnt = Integer.parseInt(step_value);*/
+
         Log.d("여기는", "서비스의 onCreate");
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         accelerormeterSensor = sensorManager
@@ -52,6 +69,32 @@ public class RealService extends Service implements SensorEventListener {
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         serviceIntent = intent;
+
+
+        /*String step_value = serviceIntent.getStringExtra("step");
+        PedoActivity.cnt = Integer.parseInt(step_value);*/
+
+        String id_value = serviceIntent.getStringExtra("id");
+
+        Log.d("서비스 start의 id_val", id_value);
+
+        databaseReference = FirebaseDatabase.getInstance().getReference("MEMBER").child(id_value);
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+
+                Map<String, String> map = (Map) dataSnapshot.getValue();
+                String value = String.valueOf(map.get("step"));
+                PedoActivity.cnt = Integer.parseInt(value);
+                //PedoActivity.kcal = PedoActivity.cnt / 30;
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         // Log.e("MyService", "Service startId = " + startId);
         super.onStart(intent, startId);
         Log.e("감지", "서비스의 onstart입니다");
@@ -64,7 +107,7 @@ public class RealService extends Service implements SensorEventListener {
         myServiceHandler handler = new myServiceHandler();
         thread = new ServiceThread(handler);
         thread.start();
-        return START_STICKY;
+        return START_REDELIVER_INTENT;
     }
 
     @Override
@@ -87,7 +130,9 @@ public class RealService extends Service implements SensorEventListener {
     public void onSensorChanged(SensorEvent event) {
         //Log.d("여기는", "서비스의 sensor_changed");
 
+
         String id_value = serviceIntent.getStringExtra("id");
+
 
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             long currentTime = System.currentTimeMillis();
@@ -102,12 +147,16 @@ public class RealService extends Service implements SensorEventListener {
                         * 10000;
 
                 if (speed > SHAKE_THRESHOLD) {
+
+
                     PedoActivity.cnt++;
                     PedoActivity.kcal = PedoActivity.cnt/30;
                     FirebasePost user = new FirebasePost();
+
                     user.WriteStep(id_value, PedoActivity.cnt);
                     Intent intent1 = new Intent();
                     intent1.setAction("com.example.lets_walk_firebase");
+
                     String pass = Integer.toString(PedoActivity.cnt);
                     intent1.putExtra("DATAPASSED", pass);
                     sendBroadcast(intent1);
@@ -128,12 +177,13 @@ public class RealService extends Service implements SensorEventListener {
                 Intent intent = new Intent(RealService.this, PedoActivity.class);
                 PendingIntent pendingIntent = PendingIntent.getActivity(RealService.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-                Notifi = new Notification.Builder(getApplicationContext()).setContentTitle("Content Title").setContentText("Content Text").setSmallIcon(R.drawable.letswalklogo).setTicker("알림!!!").setContentIntent(pendingIntent).build();
+                Notifi = new Notification.Builder(getApplicationContext()).setContentTitle("렛츠워크").setContentText("실행되고 있어요!").setSmallIcon(R.drawable.logo).setTicker("알림!!!").setContentIntent(pendingIntent).build();
                 Notifi.defaults = Notification.DEFAULT_SOUND;
                 Notifi.flags = Notification.FLAG_ONLY_ALERT_ONCE;
                 Notifi.flags = Notification.FLAG_AUTO_CANCEL;
                 Notifi_M.notify(777, Notifi);
-                Toast.makeText(RealService.this, "뜸?", Toast.LENGTH_LONG).show();
+                Toast.makeText(RealService.this, "", Toast.LENGTH_LONG).show();
+
             }
         }
     };
@@ -152,7 +202,8 @@ public class RealService extends Service implements SensorEventListener {
     public void onDestroy() {
         super.onDestroy();
 
-        serviceIntent = null;
+        //serviceIntent = null;
+
         thread.stopForever();
         thread = null;
         if (sensorManager != null) {
