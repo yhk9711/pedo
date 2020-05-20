@@ -23,6 +23,7 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
@@ -67,11 +68,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     int step = 0;
     int goal_step = 10000;
 
+    List<String> friends = new ArrayList<String>();
+
     long age;
 
     String gender = "";
 
     String sort = "id";
+
 
 
 
@@ -90,6 +94,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
+
+
+
 
         setContentView(R.layout.activity_register);
 
@@ -204,13 +211,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                 check_Man.setChecked(true);
 
-                gender = "Man";
+                gender = "남";
 
             }else{
 
                 check_Woman.setChecked(true);
 
-                gender = "Woman";
+                gender = "여";
 
             }
 
@@ -239,6 +246,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     public void postFirebaseDatabase(boolean add){
 
+        /*String[] strData = {"hello", "dmlwn1010"};
+        List<String> listData = new ArrayList<String>();
+        listData = Arrays.asList(strData);*/
+
+        friends.add(ID);
         mPostReference = FirebaseDatabase.getInstance().getReference();
 
         Map<String, Object> childUpdates = new HashMap<>();
@@ -247,7 +259,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         if(add){
 
-            FirebasePost post = new FirebasePost(ID, PW, name, age, gender, step, goal_step);
+            FirebasePost post = new FirebasePost(ID, PW, name, age, gender, step, goal_step, friends);
 
             postValues = post.toMap();
 
@@ -256,6 +268,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         childUpdates.put("/MEMBER/" + ID, postValues);
 
         mPostReference.updateChildren(childUpdates);
+
 
     }
 
@@ -371,7 +384,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                 check_Woman.setChecked(false);
 
-                gender = "Man";
+                gender = "남";
 
                 break;
 
@@ -381,7 +394,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                 check_Man.setChecked(false);
 
-                gender = "Woman";
+                gender = "여";
 
                 break;
 

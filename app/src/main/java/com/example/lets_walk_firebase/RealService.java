@@ -182,12 +182,11 @@ public class RealService extends Service implements SensorEventListener {
                 Notifi.flags = Notification.FLAG_ONLY_ALERT_ONCE;
                 Notifi.flags = Notification.FLAG_AUTO_CANCEL;
                 Notifi_M.notify(777, Notifi);
-                Toast.makeText(RealService.this, "", Toast.LENGTH_LONG).show();
+                //Toast.makeText(RealService.this, "", Toast.LENGTH_LONG).show();
 
             }
         }
     };
-
 
     public void showToast(final Application application, final String msg) {
         Handler h = new Handler(application.getMainLooper());

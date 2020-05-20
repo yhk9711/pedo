@@ -37,12 +37,24 @@ public class MainActivity extends AppCompatActivity {
     String step_num;
     String goal_step;
 
+    //PedoActivity pedoActivity;
+
+
+
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
 
+
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Log.e("여기는 main의 ", "oncreate");
+        if(PedoActivity.serviceIntent != null){
+            stopService(PedoActivity.serviceIntent);
+        }
+
         databaseReference = FirebaseDatabase.getInstance().getReference("MEMBER");
         checkId = (EditText)findViewById(R.id.checkId);
         checkpw = (EditText)findViewById(R.id.checkpw);
@@ -51,8 +63,14 @@ public class MainActivity extends AppCompatActivity {
         loginId = auto.getString("inputId",null);
         loginPwd = auto.getString("inputPwd",null);
 
+        if(PedoActivity.serviceIntent != null){
+            stopService(PedoActivity.serviceIntent);
+        }
+
         if(loginId != null && loginPwd != null) {
             databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+
+
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     Iterator<DataSnapshot> child = dataSnapshot.getChildren().iterator();

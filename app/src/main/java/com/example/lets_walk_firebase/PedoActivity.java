@@ -69,9 +69,9 @@ public class PedoActivity extends Activity implements SensorEventListener {
     private SensorManager sensorManager;
     private Sensor accelerormeterSensor;
 
-    private Intent serviceIntent;
+    public static Intent serviceIntent;
 
-    RealService realService;
+
 
     String dt_id;
     String kcal_num;
@@ -294,10 +294,16 @@ public class PedoActivity extends Activity implements SensorEventListener {
         logout.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
+
                 //SharedPreferences에 저장된 값들을 로그아웃 버튼을 누르면 삭제하기 위해
                 //SharedPreferences를 불러옵니다. 메인에서 만든 이름으로
                 Intent intent = new Intent(PedoActivity.this, MainActivity.class);
                 startActivity(intent);
+                if(serviceIntent != null){
+                    stopService(serviceIntent);
+                }
                 SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
                 SharedPreferences.Editor editor = auto.edit();
                 //editor.clear()는 auto에 들어있는 모든 정보를 기기에서 지웁니다.
@@ -305,6 +311,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 editor.commit();
                 Toast.makeText(PedoActivity.this, "로그아웃.", Toast.LENGTH_SHORT).show();
                 finish();
+
             }
         });
 
