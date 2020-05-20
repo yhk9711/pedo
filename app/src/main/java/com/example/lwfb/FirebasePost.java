@@ -6,6 +6,7 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.IgnoreExtraProperties;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -27,6 +28,8 @@ public class FirebasePost {
 
     public int goal_step;
 
+    public static List<String> friends;
+
     private DatabaseReference mDatabase;
 
 
@@ -39,7 +42,7 @@ public class FirebasePost {
 
 
 
-    public FirebasePost(String id, String pw, String name, Long age, String gender, int step, int goal_step) {
+    public FirebasePost(String id, String pw, String name, Long age, String gender, int step, int goal_step, List<String>friends) {
 
         this.id = id;
 
@@ -55,6 +58,8 @@ public class FirebasePost {
 
         this.goal_step = goal_step;
 
+        this.friends = friends;
+
     }
 
 
@@ -64,6 +69,7 @@ public class FirebasePost {
     public Map<String, Object> toMap() {
 
         HashMap<String, Object> result = new HashMap<>();
+
 
         result.put("id", id);
 
@@ -79,6 +85,8 @@ public class FirebasePost {
 
         result.put("goal_step", goal_step);
 
+        result.put("friends", friends);
+
         return result;
 
     }
@@ -90,6 +98,11 @@ public class FirebasePost {
     public void WriteGoal(String userId, int Goal){
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("MEMBER").child(userId).child("goal_step").setValue(Goal);
+    }
+
+    public void WriteFriends(String userId, List<String> friend){
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("MEMBER").child(userId).child("friends").setValue(friend);
     }
 
 

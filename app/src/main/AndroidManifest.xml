@@ -39,7 +39,7 @@
         <activity
             android:name=".MyInfo"
             android:screenOrientation="unspecified"
-            android:windowSoftInputMode="adjustResize"></activity>
+            android:windowSoftInputMode="stateHidden"></activity>
         <activity
             android:name=".NoticeActivity"
             android:screenOrientation="unspecified"
@@ -52,11 +52,15 @@
         <activity
             android:name=".FindFriendActivity"
             android:screenOrientation="unspecified"
-            android:windowSoftInputMode="adjustResize"></activity>
+            android:windowSoftInputMode="stateHidden"></activity>
         <activity
             android:name=".HomeTrainActivity"
             android:screenOrientation="unspecified"
             android:windowSoftInputMode="adjustResize"></activity>
+        <activity
+            android:name=".FoundFriendActivity"
+            android:screenOrientation="unspecified"
+            android:windowSoftInputMode="stateHidden"></activity>
 
         <service
             android:name=".RealService"
