@@ -3,12 +3,21 @@ package com.example.lets_walk_firebase;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ListView;
+import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 
-public class FriendListActivity extends AppCompatActivity {
+import java.util.ArrayList;
 
+public class FriendListActivity extends AppCompatActivity implements ListViewBtnAdapter.ListBtnClickListener{
+    String name = "박연휘";
+    Integer step=100000;
+    String my_id;
+    //    Button find_friend = (Button) findViewById(R.id.find_friend);
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -23,6 +32,89 @@ public class FriendListActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-//        find_friend.setOnClickListener(this);
+        ListView listview ;
+        ListViewBtnAdapter adapter;
+        ArrayList<ListViewBtnItem> items = new ArrayList<ListViewBtnItem>() ;
+
+        // items 로드.
+        loadItemsFromDB(items) ;
+
+        // Adapter 생성
+        adapter = new ListViewBtnAdapter(this, R.layout.listview, items, this) ;
+
+        // 리스트뷰 참조 및 Adapter달기
+        listview = (ListView) findViewById(R.id.listview1);
+        listview.setAdapter(adapter);
+        listview.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView parent, View v, int position, long id) {
+            }
+        }) ;
+        my_id=null;
+//        Intent i4 = getIntent();
+//        i4.getStringExtra("my_id");
+//        Bundle bundle4 = getIntent().getExtras();
+//        if (bundle4 != null) {
+//            my_id = bundle4.getString("my_id");
+//            Log.d("my_id",my_id);
+//        }
+        Intent intent = new Intent(getApplicationContext(), FindFriendActivity.class);
+        intent.putExtra("my_id", my_id);
+    }
+    public boolean loadItemsFromDB(ArrayList<ListViewBtnItem> list) {
+        ListViewBtnItem item ;
+        int i ;
+
+        if (list == null) {
+            list = new ArrayList<ListViewBtnItem>() ;
+        }
+
+        // 순서를 위한 i 값을 1로 초기화.
+        i = 1 ;
+
+        // 아이템 생성.
+        item = new ListViewBtnItem() ;
+        item.setIcon(ContextCompat.getDrawable(this, R.drawable.firstimg)) ;
+        item.setText(Integer.toString(i)+"등" + "   "+ name+ "   "+ Integer.toString(step) +"걸음") ;
+        list.add(item) ;
+        i++ ;
+
+        item = new ListViewBtnItem() ;
+        item.setIcon(ContextCompat.getDrawable(this, R.drawable.secondimg)) ;
+        item.setText(Integer.toString(i)+"등" + "   "+name+ "   "+ Integer.toString(step) +"걸음") ;
+        list.add(item) ;
+        i++ ;
+
+        item = new ListViewBtnItem() ;
+        item.setIcon(ContextCompat.getDrawable(this, R.drawable.thirdimg)) ;
+        item.setText(Integer.toString(i)+"등"+ "   " +name+ "   "+ Integer.toString(step) +"걸음") ;
+        list.add(item) ;
+        i++ ;
+
+        item = new ListViewBtnItem() ;
+        item.setIcon(ContextCompat.getDrawable(this, R.drawable.norank)) ;
+        item.setText(Integer.toString(i)+"등"+ "   " +name+ "   "+ Integer.toString(step) +"걸음") ;
+        list.add(item) ;
+        i++ ;
+
+        item = new ListViewBtnItem() ;
+        item.setIcon(ContextCompat.getDrawable(this, R.drawable.norank)) ;
+        item.setText(Integer.toString(i)+"등"+ "   " +name+ "   "+ Integer.toString(step) +"걸음") ;
+        list.add(item) ;
+        i++ ;
+
+        item = new ListViewBtnItem() ;
+        item.setIcon(ContextCompat.getDrawable(this, R.drawable.norank)) ;
+        item.setText(Integer.toString(i)+"등"+ "   " +name+ "   "+ Integer.toString(step) +"걸음") ;
+        list.add(item) ;
+
+
+        return true ;
+    }
+
+
+    @Override
+    public void onListBtnClick(int position) {
+        Toast.makeText(this, Integer.toString(position+1) + " Item is selected..", Toast.LENGTH_SHORT).show() ;
     }
 }

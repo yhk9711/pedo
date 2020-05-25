@@ -25,6 +25,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.List;
 import java.util.Map;
 
 //import android.support.v4.app.NotificationCompat;
@@ -82,11 +83,13 @@ public class RealService extends Service implements SensorEventListener {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-
                 Map<String, String> map = (Map) dataSnapshot.getValue();
                 String value = String.valueOf(map.get("step"));
                 PedoActivity.cnt = Integer.parseInt(value);
                 //PedoActivity.kcal = PedoActivity.cnt / 30;
+                Map<String, List<String>> map2 = (Map) dataSnapshot.getValue();
+                List<String> friend = map2.get("friends");
+                PedoActivity.friends = friend;
             }
 
             @Override
@@ -117,10 +120,8 @@ public class RealService extends Service implements SensorEventListener {
 /*
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-
         Notifi_M = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         myServiceHandler handler = new myServiceHandler();
-
         Log.d("여기는", "서비스의 onStartCommand");
         return START_STICKY;
     }
@@ -187,6 +188,7 @@ public class RealService extends Service implements SensorEventListener {
             }
         }
     };
+
 
     public void showToast(final Application application, final String msg) {
         Handler h = new Handler(application.getMainLooper());

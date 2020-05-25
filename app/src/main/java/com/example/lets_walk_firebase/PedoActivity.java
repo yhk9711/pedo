@@ -33,9 +33,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class PedoActivity extends Activity implements SensorEventListener {
+
+    public static List<String> friends = new ArrayList<String>();
+
+
 
     private DrawerLayout drawerLayout;
     private View drawerView;
@@ -46,6 +51,8 @@ public class PedoActivity extends Activity implements SensorEventListener {
     public static int kcal = cnt / 30;
     public static double dis = cnt / 1.5;
     public static int goal = 10000;
+    public static String my_id;
+
 
     private TextView fView;
     private TextView tView;
@@ -69,9 +76,9 @@ public class PedoActivity extends Activity implements SensorEventListener {
     private SensorManager sensorManager;
     private Sensor accelerormeterSensor;
 
-    public static Intent serviceIntent;
+    private Intent serviceIntent;
 
-
+    RealService realService;
 
     String dt_id;
     String kcal_num;
@@ -88,6 +95,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pedometer);
 
+        friends.add(my_id);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("CALORIE").child("0");
 
@@ -294,16 +302,10 @@ public class PedoActivity extends Activity implements SensorEventListener {
         logout.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-
-
-
                 //SharedPreferences에 저장된 값들을 로그아웃 버튼을 누르면 삭제하기 위해
                 //SharedPreferences를 불러옵니다. 메인에서 만든 이름으로
                 Intent intent = new Intent(PedoActivity.this, MainActivity.class);
                 startActivity(intent);
-                if(serviceIntent != null){
-                    stopService(serviceIntent);
-                }
                 SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
                 SharedPreferences.Editor editor = auto.edit();
                 //editor.clear()는 auto에 들어있는 모든 정보를 기기에서 지웁니다.
@@ -311,7 +313,6 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 editor.commit();
                 Toast.makeText(PedoActivity.this, "로그아웃.", Toast.LENGTH_SHORT).show();
                 finish();
-
             }
         });
 
@@ -1062,8 +1063,12 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 FirebasePost user = new FirebasePost();
                 user.WriteStep(id_value, cnt);
 
-                Intent intent2 = new Intent(getApplicationContext(), com.example.lets_walk_firebase.RealService.class);
+                Intent intent2 = new Intent(getApplicationContext(), RealService.class);
                 intent2.putExtra("id", id_value);
+//
+//                Intent intent3 = new Intent(PedoActivity.this, com.example.lwfb.FriendListActivity.class);
+//                intent3.putExtra("my_id",id_value);
+                my_id=id_value;
 
                 //Intent intent = new Intent(PedoActivity.this, com.example.lets_walk_firebase.RealService.class);
                 //intent.putExtra("cnt", String.valueOf(cnt));

@@ -28,7 +28,7 @@ public class FirebasePost {
 
     public int goal_step;
 
-    public List<String> friends;
+    public static List<String> friends;
 
     private DatabaseReference mDatabase;
 
@@ -98,6 +98,11 @@ public class FirebasePost {
     public void WriteGoal(String userId, int Goal){
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("MEMBER").child(userId).child("goal_step").setValue(Goal);
+    }
+
+    public void WriteFriends(String userId, List<String> friend){
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("MEMBER").child(userId).child("friends").setValue(friend);
     }
 
 

@@ -37,24 +37,12 @@ public class MainActivity extends AppCompatActivity {
     String step_num;
     String goal_step;
 
-    //PedoActivity pedoActivity;
-
-
-
     @Override
 
     protected void onCreate(Bundle savedInstanceState) {
 
-
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
-        Log.e("여기는 main의 ", "oncreate");
-        if(PedoActivity.serviceIntent != null){
-            stopService(PedoActivity.serviceIntent);
-        }
-
         databaseReference = FirebaseDatabase.getInstance().getReference("MEMBER");
         checkId = (EditText)findViewById(R.id.checkId);
         checkpw = (EditText)findViewById(R.id.checkpw);
@@ -63,14 +51,8 @@ public class MainActivity extends AppCompatActivity {
         loginId = auto.getString("inputId",null);
         loginPwd = auto.getString("inputPwd",null);
 
-        if(PedoActivity.serviceIntent != null){
-            stopService(PedoActivity.serviceIntent);
-        }
-
         if(loginId != null && loginPwd != null) {
             databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-
-
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
                     Iterator<DataSnapshot> child = dataSnapshot.getChildren().iterator();
@@ -93,7 +75,7 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, loginId +"님 자동로그인 입니다.", Toast.LENGTH_SHORT).show();
                             Log.d("자동로그인 성공함",pass);
                             goal_step= String.valueOf(map.get("goal_step"));
-                            Intent intent = new Intent(MainActivity.this, com.example.lets_walk_firebase.PedoActivity.class);
+                            Intent intent = new Intent(MainActivity.this, PedoActivity.class);
                             intent.putExtra("id", dt_id);
                             intent.putExtra("step", step_num);
                             intent.putExtra("goal_step", goal_step);
@@ -146,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
                                     //꼭 commit()을 해줘야 값이 저장됩니다 ㅎㅎ
                                     autoLogin.commit();
                                     Toast.makeText(getApplicationContext(), "로그인에 성공하셨습니다.", Toast.LENGTH_LONG).show();
-                                    Intent intent = new Intent(getApplicationContext(), com.example.lets_walk_firebase.PedoActivity.class);
+                                    Intent intent = new Intent(getApplicationContext(), PedoActivity.class);
                                     intent.putExtra("id", dt_id);
                                     intent.putExtra("step", step_num);
                                     intent.putExtra("goal_step", goal_step);

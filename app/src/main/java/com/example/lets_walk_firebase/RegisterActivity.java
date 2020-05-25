@@ -27,6 +27,9 @@ import java.util.List;
 import java.util.Map;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener{
+    //public static String[] strData= new String[100];
+
+    //static List<String> data;
 
     private DatabaseReference mPostReference;
 
@@ -68,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     int step = 0;
     int goal_step = 10000;
 
-    List<String> friends = new ArrayList<String>();
+    public List<String> friends = new ArrayList<String>();
 
     long age;
 
@@ -245,12 +248,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
 
     public void postFirebaseDatabase(boolean add){
-
-        /*String[] strData = {"hello", "dmlwn1010"};
-        List<String> listData = new ArrayList<String>();
-        listData = Arrays.asList(strData);*/
+        //strData[0]=ID;
+        //List<String> listData = new ArrayList<String>();
+        //listData = Arrays.asList(strData);
 
         friends.add(ID);
+        FirebasePost.friends=friends;
+        Log.d("regis.fr", String.valueOf(friends));
+
         mPostReference = FirebaseDatabase.getInstance().getReference();
 
         Map<String, Object> childUpdates = new HashMap<>();
@@ -372,7 +377,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                 edit_ID.setCursorVisible(true);
 
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
 
                 break;

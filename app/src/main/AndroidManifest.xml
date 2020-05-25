@@ -25,24 +25,6 @@
         </activity>
 
         <activity
-            android:name=".NoticeActivity"
-            android:screenOrientation="unspecified"
-            android:windowSoftInputMode="adjustResize"></activity>
-
-        <activity
-            android:name=".FriendListActivity"
-            android:screenOrientation="unspecified"
-            android:windowSoftInputMode="adjustResize"></activity>
-        <activity
-            android:name=".FindFriendActivity"
-            android:screenOrientation="unspecified"
-            android:windowSoftInputMode="adjustResize"></activity>
-        <activity
-            android:name=".HomeTrainActivity"
-            android:screenOrientation="unspecified"
-            android:windowSoftInputMode="adjustResize"></activity>
-
-        <activity
             android:name=".MainActivity"
             android:windowSoftInputMode="adjustResize">
         </activity>
@@ -57,29 +39,48 @@
         <activity
             android:name=".MyInfo"
             android:screenOrientation="unspecified"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name=".NoticeActivity"
+            android:screenOrientation="unspecified"
             android:windowSoftInputMode="adjustResize"></activity>
+
+        <activity
+            android:name=".FriendListActivity"
+            android:screenOrientation="unspecified"
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity
+            android:name=".FindFriendActivity"
+            android:screenOrientation="unspecified"
+            android:windowSoftInputMode="stateHidden"></activity>
+        <activity
+            android:name=".HomeTrainActivity"
+            android:screenOrientation="unspecified"
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity
+            android:name=".FoundFriendActivity"
+            android:screenOrientation="unspecified"
+            android:windowSoftInputMode="stateHidden"></activity>
 
         <service
             android:name=".RealService"
             android:enabled="true"
             android:exported="true" />
 
-        <service
-            android:name=".RestartService"
-            android:enabled="true"
-            android:exported="true" />
+        <!--        <service-->
+        <!--            android:name=".RestartService"-->
+        <!--            android:enabled="true"-->
+        <!--            android:exported="true" />-->
 
-        <receiver android:name=".AlarmRecever"/>
-
-        <receiver
-        android:name=".RebootRecever"
-        android:enabled="true"
-        android:exported="false"
-        android:process=":remote">
-        <intent-filter>
-            <action android:name="android.intent.action.BOOT_COMPLETED" />
-        </intent-filter>
-    </receiver>
+        <!--        <receiver android:name=".AlarmRecever"/>-->
+        <!--        <receiver-->
+        <!--            android:name=".BootReceiver"-->
+        <!--            android:enabled="true"-->
+        <!--            android:exported="false" >-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="android.intent.action.BOOT_COMPLETED" />-->
+        <!--            </intent-filter>-->
+        <!--        </receiver>-->
     </application>
 
 </manifest>
