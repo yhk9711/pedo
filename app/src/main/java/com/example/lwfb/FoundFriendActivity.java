@@ -10,6 +10,9 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class FoundFriendActivity extends AppCompatActivity {
     //    String dt_id = null;
     /*String name = null;
@@ -19,7 +22,7 @@ public class FoundFriendActivity extends AppCompatActivity {
     private TextView nameView;
     private TextView ageView;
     private TextView genderView;
-//    List<String> friends = new ArrayList<String>();
+    List<String> afriend=new ArrayList<String>();
     //String my_id;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,7 +56,7 @@ public class FoundFriendActivity extends AppCompatActivity {
             Log.d("Fgender", gender_value);
             fillTextView(R.id.friendgender, gender_value);
         }
-        Log.d("my_id",PedoActivity.my_id);
+//        Log.d("my_id",PedoActivity.my_id);
 //        String my_id=null;
 //        Intent i4 = getIntent();
 //        i4.getStringExtra("my_id");
@@ -75,15 +78,31 @@ public class FoundFriendActivity extends AppCompatActivity {
                     id_value = bundle5.getString("id");
                     Log.d("Fid", id_value);
                 }
-
-
                 Log.d("dt_id",id_value);
+                afriend=RegisterActivity.friends;
+                int a=0;
+                for (String s : afriend){
+                    Log.d("s",s);
+                    Log.d("friends", String.valueOf(RegisterActivity.friends));
+                    if (s.equals(id_value)){
+                        Log.d("se",s);
+                        Log.d("id_value",id_value);
+                        Toast.makeText(getApplicationContext(), "이미 친구 관계입니다.", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(FoundFriendActivity.this, FindFriendActivity.class);
+                        startActivity(intent);
+                        a=1;
+                        break;
+                    }
+                    else{
+                    }
+                }
+                if (a==0){
                 RegisterActivity.friends.add(id_value);
                 Toast.makeText(getApplicationContext(), "친구 추가가 완료 되었습니다.", Toast.LENGTH_SHORT).show();
-
                 dtid(id_value);
                 Intent intent = new Intent(FoundFriendActivity.this, FindFriendActivity.class);
                 startActivity(intent);
+                }
             }
         });
 
@@ -95,12 +114,7 @@ public class FoundFriendActivity extends AppCompatActivity {
 
     }
     private void dtid(String id){
-        //FirebasePost.friends.add(id);
-        Log.d("id",id);
         FirebasePost p = new FirebasePost();
-        p.WriteStep(id, 23);
-//        p.WriteStep(PedoActivity.my_id, 34);
-        Log.d("fire.fr", String.valueOf(FirebasePost.friends));
         p.WriteFriends(PedoActivity.my_id, RegisterActivity.friends);
         Intent intent = new Intent(getApplicationContext(), com.example.lwfb.FindFriendActivity.class);
         startActivity(intent);
