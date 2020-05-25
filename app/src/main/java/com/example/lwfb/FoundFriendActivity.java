@@ -10,9 +10,6 @@ import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import java.util.ArrayList;
-import java.util.List;
-
 public class FoundFriendActivity extends AppCompatActivity {
     //    String dt_id = null;
     /*String name = null;
@@ -22,7 +19,7 @@ public class FoundFriendActivity extends AppCompatActivity {
     private TextView nameView;
     private TextView ageView;
     private TextView genderView;
-    List<String> friends = new ArrayList<String>();
+//    List<String> friends = new ArrayList<String>();
     //String my_id;
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +78,7 @@ public class FoundFriendActivity extends AppCompatActivity {
 
 
                 Log.d("dt_id",id_value);
-
+                RegisterActivity.friends.add(id_value);
                 Toast.makeText(getApplicationContext(), "친구 추가가 완료 되었습니다.", Toast.LENGTH_SHORT).show();
 
                 dtid(id_value);
@@ -102,9 +99,9 @@ public class FoundFriendActivity extends AppCompatActivity {
         Log.d("id",id);
         FirebasePost p = new FirebasePost();
         p.WriteStep(id, 23);
-        //p.WriteStep(my_id, 34);
+//        p.WriteStep(PedoActivity.my_id, 34);
         Log.d("fire.fr", String.valueOf(FirebasePost.friends));
-        //p.WriteFriends(id, friends);
+        p.WriteFriends(PedoActivity.my_id, RegisterActivity.friends);
         Intent intent = new Intent(getApplicationContext(), com.example.lwfb.FindFriendActivity.class);
         startActivity(intent);
     }

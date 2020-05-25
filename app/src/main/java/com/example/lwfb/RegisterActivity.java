@@ -71,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     int step = 0;
     int goal_step = 10000;
 
-    List<String> friends = new ArrayList<String>();
+    public static List<String> friends = new ArrayList<String>();
 
     long age;
 
