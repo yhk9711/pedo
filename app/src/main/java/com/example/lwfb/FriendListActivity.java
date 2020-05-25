@@ -16,7 +16,7 @@ import java.util.ArrayList;
 public class FriendListActivity extends AppCompatActivity implements ListViewBtnAdapter.ListBtnClickListener{
     String name = "박연휘";
     Integer step=100000;
-
+    String my_id;
 //    Button find_friend = (Button) findViewById(R.id.find_friend);
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -50,6 +50,16 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
             public void onItemClick(AdapterView parent, View v, int position, long id) {
             }
         }) ;
+        my_id=null;
+//        Intent i4 = getIntent();
+//        i4.getStringExtra("my_id");
+//        Bundle bundle4 = getIntent().getExtras();
+//        if (bundle4 != null) {
+//            my_id = bundle4.getString("my_id");
+//            Log.d("my_id",my_id);
+//        }
+        Intent intent = new Intent(getApplicationContext(), com.example.lwfb.FindFriendActivity.class);
+        intent.putExtra("my_id", my_id);
     }
     public boolean loadItemsFromDB(ArrayList<ListViewBtnItem> list) {
         ListViewBtnItem item ;

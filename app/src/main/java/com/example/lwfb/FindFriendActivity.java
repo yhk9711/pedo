@@ -32,6 +32,8 @@ public class FindFriendActivity extends AppCompatActivity {
     String name;
     String age;
     String gender;
+    String my_id;
+//    String my_id;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -39,7 +41,14 @@ public class FindFriendActivity extends AppCompatActivity {
         find = (Button)findViewById(R.id.find_friend2);
         Friend_ID = (EditText) findViewById(R.id.friend_id);
         databaseReference = FirebaseDatabase.getInstance().getReference("MEMBER");
-
+        my_id=null;
+//        Intent i4 = getIntent();
+//        i4.getStringExtra("my_id");
+//        Bundle bundle4 = getIntent().getExtras();
+//        if (bundle4 != null) {
+//            my_id = bundle4.getString("my_id");
+//            Log.d("my_id",my_id);
+//        }
         find.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -52,6 +61,7 @@ public class FindFriendActivity extends AppCompatActivity {
                         while(child.hasNext()) {
                             DataSnapshot dt = child.next();
                             dt_id = dt.getKey();
+//                            my_id= dt_id;
                             Map<String, String> map = (Map) dt.getValue();
 
                             while (dt.getKey().equals(Friend_ID.getText().toString())) {
@@ -65,6 +75,7 @@ public class FindFriendActivity extends AppCompatActivity {
                                 //Toast.makeText(getApplicationContext(), "로그인에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), com.example.lwfb.FoundFriendActivity.class);
                                 intent.putExtra("id", dt_id);
+//                                intent.putExtra("my_id", my_id);
                                 intent.putExtra("name", name);
                                 intent.putExtra("age", age);
                                 intent.putExtra("gender", gender);

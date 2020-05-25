@@ -46,6 +46,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
     public static int kcal = cnt / 30;
     public static double dis = cnt / 1.5;
     public static int goal = 10000;
+    public static String my_id;
 
     private TextView fView;
     private TextView tView;
@@ -1057,8 +1058,10 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
                 Intent intent2 = new Intent(getApplicationContext(), com.example.lwfb.RealService.class);
                 intent2.putExtra("id", id_value);
-                Intent intent3 = new Intent(getApplicationContext(), com.example.lwfb.FoundFriendActivity.class);
-                intent3.putExtra("my_id", id_value);
+//
+//                Intent intent3 = new Intent(PedoActivity.this, com.example.lwfb.FriendListActivity.class);
+//                intent3.putExtra("my_id",id_value);
+                my_id=id_value;
 
                 //Intent intent = new Intent(PedoActivity.this, com.example.lets_walk_firebase.RealService.class);
                 //intent.putExtra("cnt", String.valueOf(cnt));

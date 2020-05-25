@@ -23,6 +23,7 @@ public class FoundFriendActivity extends AppCompatActivity {
     private TextView ageView;
     private TextView genderView;
     List<String> friends = new ArrayList<String>();
+    //String my_id;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -55,26 +56,35 @@ public class FoundFriendActivity extends AppCompatActivity {
             Log.d("Fgender", gender_value);
             fillTextView(R.id.friendgender, gender_value);
         }
+        Log.d("my_id",PedoActivity.my_id);
+//        String my_id=null;
+//        Intent i4 = getIntent();
+//        i4.getStringExtra("my_id");
+//        Bundle bundle4 = getIntent().getExtras();
+//        if (bundle4 != null) {
+//            my_id = bundle4.getString("my_id");
+//            Log.d("my_id",my_id);
+//        }
 
 
         Button add_friend = (Button) findViewById(R.id.add_friend);
         add_friend.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {String id_value = null;
-                Intent i4 = getIntent();
-                i4.getStringExtra("id");
-                Bundle bundle4 = getIntent().getExtras();
-                if (bundle4 != null) {
-                    id_value = bundle4.getString("id");
+                Intent i5 = getIntent();
+                i5.getStringExtra("id");
+                Bundle bundle5 = getIntent().getExtras();
+                if (bundle5 != null) {
+                    id_value = bundle5.getString("id");
                     Log.d("Fid", id_value);
                 }
 
 
-                //Log.d("dt_id",id_value);
+                Log.d("dt_id",id_value);
 
                 Toast.makeText(getApplicationContext(), "친구 추가가 완료 되었습니다.", Toast.LENGTH_SHORT).show();
 
-                //dtid(id_value);
+                dtid(id_value);
                 Intent intent = new Intent(FoundFriendActivity.this, FindFriendActivity.class);
                 startActivity(intent);
             }
@@ -87,25 +97,17 @@ public class FoundFriendActivity extends AppCompatActivity {
         View.setText(text);
 
     }
-//    private void dtid(String id){
-//        String my_id=null;
-//        Intent i5 = getIntent();
-//        i5.getStringExtra("my_id");
-//        Bundle bundle5 = getIntent().getExtras();
-//        if (bundle5 != null) {
-//            my_id = bundle5.getString("my_id");
-//        }
-//        //FirebasePost.friends.add(id);
-//        Log.d("id",id);
-//        Log.d("my_id",my_id);
-//        FirebasePost p = new FirebasePost();
-//        p.WriteStep(id, 23);
-//        p.WriteStep(my_id, 34);
-//        Log.d("fire.fr", String.valueOf(FirebasePost.friends));
-//        //p.WriteFriends(id, friends);
-//        Intent intent = new Intent(getApplicationContext(), com.example.lwfb.FindFriendActivity.class);
-//        startActivity(intent);
-//    }
+    private void dtid(String id){
+        //FirebasePost.friends.add(id);
+        Log.d("id",id);
+        FirebasePost p = new FirebasePost();
+        p.WriteStep(id, 23);
+        //p.WriteStep(my_id, 34);
+        Log.d("fire.fr", String.valueOf(FirebasePost.friends));
+        //p.WriteFriends(id, friends);
+        Intent intent = new Intent(getApplicationContext(), com.example.lwfb.FindFriendActivity.class);
+        startActivity(intent);
+    }
 
 //    @Override
 //    public void onClick(View v) {
