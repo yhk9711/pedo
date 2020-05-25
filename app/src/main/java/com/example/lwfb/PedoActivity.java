@@ -1057,6 +1057,8 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
                 Intent intent2 = new Intent(getApplicationContext(), com.example.lwfb.RealService.class);
                 intent2.putExtra("id", id_value);
+                Intent intent3 = new Intent(getApplicationContext(), com.example.lwfb.FoundFriendActivity.class);
+                intent3.putExtra("my_id", id_value);
 
                 //Intent intent = new Intent(PedoActivity.this, com.example.lets_walk_firebase.RealService.class);
                 //intent.putExtra("cnt", String.valueOf(cnt));

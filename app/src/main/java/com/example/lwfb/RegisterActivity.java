@@ -253,6 +253,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         //listData = Arrays.asList(strData);
 
         friends.add(ID);
+        FirebasePost.friends=friends;
+        Log.d("regis.fr", String.valueOf(friends));
 
         mPostReference = FirebaseDatabase.getInstance().getReference();
 
