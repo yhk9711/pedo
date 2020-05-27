@@ -76,7 +76,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
     private SensorManager sensorManager;
     private Sensor accelerormeterSensor;
 
-    private Intent serviceIntent;
+    public static Intent serviceIntent;
 
     RealService realService;
 

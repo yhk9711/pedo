@@ -43,6 +43,12 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        Log.e("여기는 main의 ", "oncreate");
+        if(PedoActivity.serviceIntent != null){
+            stopService(PedoActivity.serviceIntent);
+        }
+
         databaseReference = FirebaseDatabase.getInstance().getReference("MEMBER");
         checkId = (EditText)findViewById(R.id.checkId);
         checkpw = (EditText)findViewById(R.id.checkpw);

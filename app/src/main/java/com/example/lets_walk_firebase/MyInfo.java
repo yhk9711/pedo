@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -45,6 +46,8 @@ public class MyInfo extends AppCompatActivity {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerView = (View) findViewById(R.id.drawerView);
         drawerLayout.setDrawerListener(listener);
+        TextView name = (TextView) findViewById(R.id.nameofuser);
+        name.setText("" + PedoActivity.my_id + " 님");
         //drawerLayout.openDrawer(drawerView);
         Button logout = (Button) findViewById(R.id.button);
         logout.setOnClickListener(new View.OnClickListener() {
