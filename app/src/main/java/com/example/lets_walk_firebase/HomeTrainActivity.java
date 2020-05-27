@@ -20,6 +20,11 @@ public class HomeTrainActivity extends AppCompatActivity {
 
     protected void onCreate(Bundle savedInstanceState) {
 
+
+
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_hometrain);
+
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerView = (View) findViewById(R.id.drawerView);
         drawerLayout.setDrawerListener(listener);
@@ -29,9 +34,7 @@ public class HomeTrainActivity extends AppCompatActivity {
         Button logout = (Button) findViewById(R.id.button);
         Button friendlist = (Button) findViewById(R.id.friendlist);
         Button notice = (Button) findViewById(R.id.notice);
-
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_hometrain);
+        Button myInfo = (Button) findViewById(R.id.myinfo);
 
         high = (Button)findViewById(R.id.high);
         high.setOnClickListener(new View.OnClickListener() {
@@ -59,6 +62,24 @@ public class HomeTrainActivity extends AppCompatActivity {
 
             }
         });
+        myInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeTrainActivity.this, MyInfo.class);
+                /*String id_value2 = null;
+                Intent i2 = getIntent();
+                i2.getStringExtra("id");
+                Bundle bundle2 = getIntent().getExtras();
+                if (bundle2 != null) {
+                    id_value2 = bundle2.getString("id");
+                    //Log.d("id", id_value2);
+                }
+                intent.putExtra("id", id_value2);
+                intent.putExtra("name", user_name);*/
+                startActivity(intent);
+            }
+        });
+
         friendlist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -114,5 +135,7 @@ public class HomeTrainActivity extends AppCompatActivity {
         }
         //drawerLayout.openDrawer(drawerView);
     };
+
+
 
 }

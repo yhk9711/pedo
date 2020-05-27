@@ -134,9 +134,8 @@ public class PedoActivity extends Activity implements SensorEventListener {
         i3.getStringExtra("name");
         Bundle bundle22 = getIntent().getExtras();
         if (bundle22 != null) {
-            user_name = bundle22.getString("name");
-            my_name = user_name;
-
+            my_name = bundle22.getString("name");
+            user_name = my_name;
         }
 
         String main_id = null;
@@ -348,7 +347,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
         friendlist.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(PedoActivity.this, FriendListActivity.class);
+                Intent intent123 = new Intent(PedoActivity.this, FriendListActivity.class);
                 String id_value2 = null;
                 Intent i2 = getIntent();
                 i2.getStringExtra("id");
@@ -357,9 +356,9 @@ public class PedoActivity extends Activity implements SensorEventListener {
                     id_value2 = bundle2.getString("id");
                     //Log.d("id", id_value2);
                 }
-                intent.putExtra("id", id_value2);
-                intent.putExtra("name", user_name);
-                startActivity(intent);
+                intent123.putExtra("id", id_value2);
+                intent123.putExtra("name", user_name);
+                startActivity(intent123);
             }
         });
         notice.setOnClickListener(new OnClickListener() {

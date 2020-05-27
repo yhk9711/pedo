@@ -1,175 +1,188 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#d3ebf2"
-    android:gravity="center"
     android:orientation="vertical"
-    tools:context="com.example.lets_walk_firebase.MainActivity">
+    tools:context=".FoundFriendActivity">
 
-    <TextView
-        android:id="@+id/textView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:gravity="center"
-        android:text="친구 찾기"
-        android:textColor="#639cd4"
-        android:textColorHint="#d3ebf2"
-        android:textSize="30dp"
-        android:textStyle="bold" />
-
-    <TextView
-        android:id="@+id/blank_1"
-        android:layout_width="161dp"
-        android:layout_height="121dp"
-        android:gravity="center"
-        android:text="     "
-        android:textColor="#000000"
-        android:textSize="25dp" />
-
-
-    <LinearLayout
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_main"
         android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center">
-
-
-        <EditText
-
-            android:id="@+id/edit_id"
-            android:layout_width="wrap_content"
-            android:layout_height="30dp"
-            android:layout_below="@+id/textView2"
-            android:background="@drawable/round_corner"
-            android:backgroundTint="#ffffff"
-            android:ems="10"
-            android:gravity="center"
-            android:hint="친구 ID를 입력하세요."
-            android:inputType="textPersonName"
-            android:maxLength="10"
-            android:textColor="#000000"
-            android:textColorHint="#505152" />
+        android:layout_height="match_parent"
+        android:background="#d3ebf2"
+        android:gravity="center"
+        android:orientation="vertical"
+        tools:context="com.example.lets_walk_firebase.MainActivity">
 
         <TextView
-            android:id="@+id/blank_2"
+            android:id="@+id/textView2"
             android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:gravity="center"
+            android:text="친구 찾기"
+            android:textColor="#639cd4"
+            android:textColorHint="#d3ebf2"
+            android:textSize="30dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/blank_1"
+            android:layout_width="161dp"
+            android:layout_height="121dp"
+            android:gravity="center"
+            android:text="     "
+            android:textColor="#000000"
+            android:textSize="25dp" />
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center">
+
+
+            <EditText
+
+                android:id="@+id/edit_id"
+                android:layout_width="wrap_content"
+                android:layout_height="30dp"
+                android:layout_below="@+id/textView2"
+                android:background="@drawable/round_corner"
+                android:backgroundTint="#ffffff"
+                android:ems="10"
+                android:gravity="center"
+                android:hint="친구 ID를 입력하세요."
+                android:inputType="textPersonName"
+                android:maxLength="10"
+                android:textColor="#000000"
+                android:textColorHint="#505152" />
+
+            <TextView
+                android:id="@+id/blank_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="     "
+                android:textColor="#000000"
+                android:textSize="25dp" />
+
+            <Button
+                android:id="@+id/find_friend"
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/round_corner"
+                android:backgroundTint="#52789e"
+                android:gravity="center"
+                android:stateListAnimator="@null"
+                android:text="검색" />
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:id="@+id/bottom2line"
+            android:layout_width="match_parent"
+            android:layout_height="10dp"
+            android:layout_marginTop="50dp"
+            android:background="#80ffffff"
+            android:orientation="horizontal"></LinearLayout>
+
+        <TextView
+            android:id="@+id/blank_6"
+            android:layout_width="198dp"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="     "
             android:textColor="#000000"
             android:textSize="25dp" />
 
-        <Button
-            android:id="@+id/find_friend"
-            android:layout_width="55dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:background="@drawable/round_corner"
-            android:backgroundTint="#52789e"
-            android:gravity="center"
-            android:stateListAnimator="@null"
-            android:text="검색" />
-    </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="center">
 
+            <ImageView
+                android:id="@+id/imageView5"
+                android:layout_width="54dp"
+                android:layout_height="241dp"
+                app:srcCompat="@drawable/user" />
 
-    <LinearLayout
-        android:id="@+id/bottom2line"
-        android:layout_width="match_parent"
-        android:layout_height="10dp"
-        android:layout_marginTop="50dp"
-        android:background="#80ffffff"
-        android:orientation="horizontal"></LinearLayout>
+            <TextView
+                android:id="@+id/blank_10"
+                android:layout_width="wrap_content"
+                android:layout_height="58dp"
+                android:gravity="center"
+                android:text="  "
+                android:textColor="#000000"
+                android:textSize="25dp" />
 
-    <TextView
-        android:id="@+id/blank_6"
-        android:layout_width="198dp"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="     "
-        android:textColor="#000000"
-        android:textSize="25dp" />
+            <TextView
+                android:id="@+id/friendname"
+                android:layout_width="98dp"
+                android:layout_height="58dp"
+                android:gravity="center"
+                android:text="박연휘"
+                android:textColor="#000000"
+                android:textSize="20dp" />
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center">
+            <TextView
+                android:id="@+id/friendage"
+                android:layout_width="60dp"
+                android:layout_height="58dp"
+                android:gravity="center"
+                android:text="24"
+                android:textColor="#000000"
+                android:textSize="20dp" />
 
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="54dp"
-            android:layout_height="241dp"
-            app:srcCompat="@drawable/user" />
+            <TextView
+                android:id="@+id/friendgender"
+                android:layout_width="55dp"
+                android:layout_height="58dp"
+                android:gravity="center"
+                android:text="여"
+                android:textColor="#000000"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/blank_11"
+                android:layout_width="wrap_content"
+                android:layout_height="58dp"
+                android:gravity="center"
+                android:text="  "
+                android:textColor="#000000"
+                android:textSize="25dp" />
+
+            <Button
+                android:id="@+id/add_friend"
+                android:layout_width="55dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/round_corner"
+                android:backgroundTint="#52789e"
+                android:gravity="center"
+                android:stateListAnimator="@null"
+                android:text="추가" />
+
+        </LinearLayout>
 
         <TextView
-            android:id="@+id/blank_10"
-            android:layout_width="wrap_content"
-            android:layout_height="58dp"
+            android:id="@+id/blank_5"
+            android:layout_width="198dp"
+            android:layout_height="151dp"
             android:gravity="center"
-            android:text="  "
+            android:text="     "
             android:textColor="#000000"
             android:textSize="25dp" />
 
-        <TextView
-            android:id="@+id/friendname"
-            android:layout_width="98dp"
-            android:layout_height="58dp"
-            android:gravity="center"
-            android:text="박연휘"
-            android:textColor="#000000"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/friendage"
-            android:layout_width="60dp"
-            android:layout_height="58dp"
-            android:gravity="center"
-            android:text="24"
-            android:textColor="#000000"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/friendgender"
-            android:layout_width="55dp"
-            android:layout_height="58dp"
-            android:gravity="center"
-            android:text="여"
-            android:textColor="#000000"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/blank_11"
-            android:layout_width="wrap_content"
-            android:layout_height="58dp"
-            android:gravity="center"
-            android:text="  "
-            android:textColor="#000000"
-            android:textSize="25dp" />
-        <Button
-            android:id="@+id/add_friend"
-            android:layout_width="55dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:background="@drawable/round_corner"
-            android:backgroundTint="#52789e"
-            android:gravity="center"
-            android:stateListAnimator="@null"
-            android:text="추가" />
 
     </LinearLayout>
 
-    <TextView
-        android:id="@+id/blank_5"
-        android:layout_width="198dp"
-        android:layout_height="151dp"
-        android:gravity="center"
-        android:text="     "
-        android:textColor="#000000"
-        android:textSize="25dp" />
-
-
-</LinearLayout>
+    <include layout="@layout/nav1" />
+</androidx.drawerlayout.widget.DrawerLayout>

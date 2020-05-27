@@ -1,15 +1,21 @@
 package com.example.lets_walk_firebase;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.ContextCompat;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import java.util.ArrayList;
 
@@ -17,11 +23,99 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
     String name = "박연휘";
     Integer step=100000;
     String my_id;
+    private DrawerLayout drawerLayout;
+    private View drawerView;
     //    Button find_friend = (Button) findViewById(R.id.find_friend);
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_friendlist);
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerView = (View) findViewById(R.id.drawerView);
+        drawerLayout.setDrawerListener(listener);
+        TextView name = (TextView) findViewById(R.id.nameofuser);
+
+        Log.d("이름", PedoActivity.my_name);
+
+        name.setText("" + PedoActivity.my_name + " 님");
+
+        //drawerLayout.openDrawer(drawerView);
+        Button logout = (Button) findViewById(R.id.button);
+        //Button friendlist = (Button) findViewById(R.id.friendlist);
+        Button notice = (Button) findViewById(R.id.notice);
+        Button myInfo = (Button) findViewById(R.id.myinfo);
+        Button hometraining = (Button) findViewById(R.id.hometraining);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //SharedPreferences에 저장된 값들을 로그아웃 버튼을 누르면 삭제하기 위해
+                //SharedPreferences를 불러옵니다. 메인에서 만든 이름으로
+                Intent intent = new Intent(FriendListActivity.this, MainActivity.class);
+                startActivity(intent);
+                SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
+                SharedPreferences.Editor editor = auto.edit();
+                //editor.clear()는 auto에 들어있는 모든 정보를 기기에서 지웁니다.
+                editor.clear();
+                editor.commit();
+                Toast.makeText(FriendListActivity.this, "로그아웃.", Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+        myInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FriendListActivity.this, MyInfo.class);
+                /*String id_value2 = null;
+                Intent i2 = getIntent();
+                i2.getStringExtra("id");
+                Bundle bundle2 = getIntent().getExtras();
+                if (bundle2 != null) {
+                    id_value2 = bundle2.getString("id");
+                    //Log.d("id", id_value2);
+                }
+                intent.putExtra("id", id_value2);
+                intent.putExtra("name", user_name);*/
+                startActivity(intent);
+            }
+        });
+        notice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FriendListActivity.this, NoticeActivity.class);
+                /*String id_value2 = null;
+                Intent i2 = getIntent();
+                i2.getStringExtra("id");
+                Bundle bundle2 = getIntent().getExtras();
+                if (bundle2 != null) {
+                    id_value2 = bundle2.getString("id");
+                    //Log.d("id", id_value2);
+                }
+                intent.putExtra("id", id_value2);
+                intent.putExtra("name", user_name);*/
+                startActivity(intent);
+            }
+        });
+        hometraining.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FriendListActivity.this, HomeTrainActivity.class);
+                /*String id_value2 = null;
+                Intent i2 = getIntent();
+                i2.getStringExtra("id");
+                Bundle bundle2 = getIntent().getExtras();
+                if (bundle2 != null) {
+                    id_value2 = bundle2.getString("id");
+                    //Log.d("id", id_value2);
+                }
+                intent.putExtra("id", id_value2);
+                intent.putExtra("name", user_name);*/
+                startActivity(intent);
+            }
+        });
+
+
         Button button1 = (Button)findViewById(R.id.find_friend);
         button1.setOnClickListener(new View.OnClickListener() {
 
@@ -117,4 +211,25 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
     public void onListBtnClick(int position) {
         Toast.makeText(this, Integer.toString(position+1) + " Item is selected..", Toast.LENGTH_SHORT).show() ;
     }
+
+    DrawerLayout.DrawerListener listener = new DrawerLayout.DrawerListener() {
+
+        @Override
+        public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
+        }
+
+        @Override
+        public void onDrawerOpened(@NonNull View drawerView) {
+        }
+
+        @Override
+        public void onDrawerClosed(@NonNull View drawerView) {
+        }
+
+        @Override
+        public void onDrawerStateChanged(int newState) {
+        }
+        //drawerLayout.openDrawer(drawerView);
+    };
+
 }

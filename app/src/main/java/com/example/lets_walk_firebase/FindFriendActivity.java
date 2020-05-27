@@ -1,14 +1,19 @@
 package com.example.lets_walk_firebase;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,11 +34,13 @@ public class FindFriendActivity extends AppCompatActivity {
     String dt_id;
     Button find;
     private DatabaseReference databaseReference;
-    String name;
+    String my_name;
     String age;
     String gender;
     String my_id;
-//    String my_id;
+
+    private DrawerLayout drawerLayout;
+    private View drawerView;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,7 +48,87 @@ public class FindFriendActivity extends AppCompatActivity {
         find = (Button)findViewById(R.id.find_friend2);
         Friend_ID = (EditText) findViewById(R.id.friend_id);
         databaseReference = FirebaseDatabase.getInstance().getReference("MEMBER");
-        my_id=null;
+        my_id = PedoActivity.my_id;
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerView = (View) findViewById(R.id.drawerView);
+        drawerLayout.setDrawerListener(listener);
+        TextView name = (TextView) findViewById(R.id.nameofuser);
+        name.setText("" + PedoActivity.my_name + " 님");
+        //drawerLayout.openDrawer(drawerView);
+        Button logout = (Button) findViewById(R.id.button);
+        Button notice = (Button) findViewById(R.id.notice);
+        Button hometraining = (Button) findViewById(R.id.hometraining);
+        Button friendlist = (Button) findViewById(R.id.friendlist);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //SharedPreferences에 저장된 값들을 로그아웃 버튼을 누르면 삭제하기 위해
+                //SharedPreferences를 불러옵니다. 메인에서 만든 이름으로
+                Intent intent = new Intent(FindFriendActivity.this, MainActivity.class);
+                startActivity(intent);
+                SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
+                SharedPreferences.Editor editor = auto.edit();
+                //editor.clear()는 auto에 들어있는 모든 정보를 기기에서 지웁니다.
+                editor.clear();
+                editor.commit();
+                Toast.makeText(FindFriendActivity.this, "로그아웃.", Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+        notice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FindFriendActivity.this, NoticeActivity.class);
+                /*String id_value2 = null;
+                Intent i2 = getIntent();
+                i2.getStringExtra("id");
+                Bundle bundle2 = getIntent().getExtras();
+                if (bundle2 != null) {
+                    id_value2 = bundle2.getString("id");
+                    //Log.d("id", id_value2);
+                }
+                intent.putExtra("id", id_value2);
+                intent.putExtra("name", user_name);*/
+                startActivity(intent);
+            }
+        });
+        friendlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FindFriendActivity.this, FriendListActivity.class);
+                /*String id_value2 = null;
+                Intent i2 = getIntent();
+                i2.getStringExtra("id");
+                Bundle bundle2 = getIntent().getExtras();
+                if (bundle2 != null) {
+                    id_value2 = bundle2.getString("id");
+                    //Log.d("id", id_value2);
+                }
+                intent.putExtra("id", id_value2);
+                intent.putExtra("name", user_name);*/
+                startActivity(intent);
+            }
+        });
+        hometraining.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FindFriendActivity.this, HomeTrainActivity.class);
+                /*String id_value2 = null;
+                Intent i2 = getIntent();
+                i2.getStringExtra("id");
+                Bundle bundle2 = getIntent().getExtras();
+                if (bundle2 != null) {
+                    id_value2 = bundle2.getString("id");
+                    //Log.d("id", id_value2);
+                }
+                intent.putExtra("id", id_value2);
+                intent.putExtra("name", user_name);*/
+                startActivity(intent);
+            }
+        });
+
         find.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -58,18 +145,18 @@ public class FindFriendActivity extends AppCompatActivity {
                             Map<String, String> map = (Map) dt.getValue();
 
                             while (dt.getKey().equals(Friend_ID.getText().toString())) {
-                                name = map.get("name");
+                                my_name = map.get("name");
                                 age = String.valueOf(map.get("age"));
                                 gender = String.valueOf(map.get("gender"));
                                 Log.d("id", dt_id);
-                                Log.d("name", name);
+                                Log.d("name", my_name);
                                 Log.d("age", age);
                                 Log.d("gender", gender);
                                 //Toast.makeText(getApplicationContext(), "로그인에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
                                 Intent intent = new Intent(getApplicationContext(), FoundFriendActivity.class);
                                 intent.putExtra("id", dt_id);
 //                                intent.putExtra("my_id", my_id);
-                                intent.putExtra("name", name);
+                                intent.putExtra("name", my_name);
                                 intent.putExtra("age", age);
                                 intent.putExtra("gender", gender);
                                 intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
@@ -92,5 +179,24 @@ public class FindFriendActivity extends AppCompatActivity {
 
     }
 
+    DrawerLayout.DrawerListener listener = new DrawerLayout.DrawerListener() {
+
+        @Override
+        public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
+        }
+
+        @Override
+        public void onDrawerOpened(@NonNull View drawerView) {
+        }
+
+        @Override
+        public void onDrawerClosed(@NonNull View drawerView) {
+        }
+
+        @Override
+        public void onDrawerStateChanged(int newState) {
+        }
+        //drawerLayout.openDrawer(drawerView);
+    };
 
 }
