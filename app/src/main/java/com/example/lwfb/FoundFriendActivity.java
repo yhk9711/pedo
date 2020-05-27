@@ -120,17 +120,5 @@ public class FoundFriendActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-//    @Override
-//    public void onClick(View v) {
-//        switch (v.getId()) {
-//            case R.id.add_friend:
-//                Toast.makeText(getApplicationContext(), "친구 추가가 완료 되었습니다.", Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(FoundFriendActivity.this, FindFriendActivity.class);
-//                startActivity(intent);
-//                FirebasePost.friends.add(dt_id);
-//                break;
-//        }
-//
-//    }
 }
 
