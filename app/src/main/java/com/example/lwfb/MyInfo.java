@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -45,6 +46,8 @@ public class MyInfo extends AppCompatActivity {
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerView = (View) findViewById(R.id.drawerView);
         drawerLayout.setDrawerListener(listener);
+        TextView name = (TextView) findViewById(R.id.nameofuser);
+        name.setText("" + PedoActivity.my_name + " 님");
         //drawerLayout.openDrawer(drawerView);
         Button logout = (Button) findViewById(R.id.button);
         logout.setOnClickListener(new View.OnClickListener() {
@@ -157,15 +160,11 @@ public class MyInfo extends AppCompatActivity {
 
     /*
     public void onClick(View v) {
-
         switch (v.getId()) {
-
             case R.id.btn_changed:
-
                 PedoActivity.goal = Integer.parseInt(edit_goal.getText().toString());
                 setInsertMode();
                 Toast.makeText(getApplicationContext(),"목표 걸음 수가 변경되었습니다.",Toast.LENGTH_LONG).show();
-
                 String id_value = null;
                 Intent i = getIntent();
                 i.getStringExtra("id");
@@ -174,14 +173,9 @@ public class MyInfo extends AppCompatActivity {
                     id_value = bundle.getString("id");
                     //Log.d("id", id_value);
                 }
-
                 FirebasePost user = new FirebasePost();
                 user.WriteGoal(id_value, PedoActivity.goal);
-
-
                 break;
-
-
         }
     }
     */

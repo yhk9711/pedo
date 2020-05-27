@@ -52,6 +52,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
     public static double dis = cnt / 1.5;
     public static int goal = 10000;
     public static String my_id;
+    public static String my_name;
 
 
     private TextView fView;
@@ -134,8 +135,19 @@ public class PedoActivity extends Activity implements SensorEventListener {
         Bundle bundle22 = getIntent().getExtras();
         if (bundle22 != null) {
             user_name = bundle22.getString("name");
+            my_name = user_name;
 
         }
+
+        String main_id = null;
+        Intent i44 = getIntent();
+        i44.getStringExtra("id");
+        Bundle bundle33 = getIntent().getExtras();
+        if (bundle33 != null) {
+            main_id = bundle33.getString("id");
+            Log.d("id", main_id);
+        }
+        my_id = main_id;
 
 
         cnt = Integer.parseInt(step_value);
@@ -1052,23 +1064,23 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 // ChildUpdates.put("/");
 
 
-                String id_value = null;
+               /* String id_value = null;
                 Intent i = getIntent();
                 i.getStringExtra("id");
                 Bundle bundle = getIntent().getExtras();
                 if (bundle != null) {
                     id_value = bundle.getString("id");
                     //Log.d("id", id_value);
-                }
+                }*/
                 FirebasePost user = new FirebasePost();
-                user.WriteStep(id_value, cnt);
+                user.WriteStep(my_id, cnt);
 
                 Intent intent2 = new Intent(getApplicationContext(), RealService.class);
-                intent2.putExtra("id", id_value);
+                intent2.putExtra("id", my_id);
 //
 //                Intent intent3 = new Intent(PedoActivity.this, com.example.lwfb.FriendListActivity.class);
 //                intent3.putExtra("my_id",id_value);
-                my_id=id_value;
+                //my_id=id_value;
 
                 //Intent intent = new Intent(PedoActivity.this, com.example.lets_walk_firebase.RealService.class);
                 //intent.putExtra("cnt", String.valueOf(cnt));
