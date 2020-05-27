@@ -50,6 +50,9 @@ public class MyInfo extends AppCompatActivity {
         name.setText("" + PedoActivity.my_name + " 님");
         //drawerLayout.openDrawer(drawerView);
         Button logout = (Button) findViewById(R.id.button);
+        Button friendlist = (Button) findViewById(R.id.friendlist);
+        Button notice = (Button) findViewById(R.id.notice);
+        Button hometraining = (Button) findViewById(R.id.hometraining);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -64,6 +67,58 @@ public class MyInfo extends AppCompatActivity {
                 editor.commit();
                 Toast.makeText(MyInfo.this, "로그아웃.", Toast.LENGTH_SHORT).show();
                 finish();
+
+            }
+        });
+        friendlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MyInfo.this, FriendListActivity.class);
+                /*String id_value2 = null;
+                Intent i2 = getIntent();
+                i2.getStringExtra("id");
+                Bundle bundle2 = getIntent().getExtras();
+                if (bundle2 != null) {
+                    id_value2 = bundle2.getString("id");
+                    //Log.d("id", id_value2);
+                }
+                intent.putExtra("id", id_value2);
+                intent.putExtra("name", user_name);*/
+                startActivity(intent);
+            }
+        });
+        notice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MyInfo.this, NoticeActivity.class);
+                /*String id_value2 = null;
+                Intent i2 = getIntent();
+                i2.getStringExtra("id");
+                Bundle bundle2 = getIntent().getExtras();
+                if (bundle2 != null) {
+                    id_value2 = bundle2.getString("id");
+                    //Log.d("id", id_value2);
+                }
+                intent.putExtra("id", id_value2);
+                intent.putExtra("name", user_name);*/
+                startActivity(intent);
+            }
+        });
+        hometraining.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MyInfo.this, HomeTrainActivity.class);
+                /*String id_value2 = null;
+                Intent i2 = getIntent();
+                i2.getStringExtra("id");
+                Bundle bundle2 = getIntent().getExtras();
+                if (bundle2 != null) {
+                    id_value2 = bundle2.getString("id");
+                    //Log.d("id", id_value2);
+                }
+                intent.putExtra("id", id_value2);
+                intent.putExtra("name", user_name);*/
+                startActivity(intent);
             }
         });
 

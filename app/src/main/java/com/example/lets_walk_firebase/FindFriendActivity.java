@@ -42,13 +42,6 @@ public class FindFriendActivity extends AppCompatActivity {
         Friend_ID = (EditText) findViewById(R.id.friend_id);
         databaseReference = FirebaseDatabase.getInstance().getReference("MEMBER");
         my_id=null;
-//        Intent i4 = getIntent();
-//        i4.getStringExtra("my_id");
-//        Bundle bundle4 = getIntent().getExtras();
-//        if (bundle4 != null) {
-//            my_id = bundle4.getString("my_id");
-//            Log.d("my_id",my_id);
-//        }
         find.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -73,7 +66,7 @@ public class FindFriendActivity extends AppCompatActivity {
                                 Log.d("age", age);
                                 Log.d("gender", gender);
                                 //Toast.makeText(getApplicationContext(), "로그인에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getApplicationContext(), com.example.lets_walk_firebase.FoundFriendActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), FoundFriendActivity.class);
                                 intent.putExtra("id", dt_id);
 //                                intent.putExtra("my_id", my_id);
                                 intent.putExtra("name", name);
