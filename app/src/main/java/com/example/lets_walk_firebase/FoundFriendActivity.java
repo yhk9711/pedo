@@ -17,6 +17,7 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -29,6 +30,8 @@ public class FoundFriendActivity extends AppCompatActivity {
     private TextView nameView;
     private TextView ageView;
     private TextView genderView;
+
+    List<String> afriend=new ArrayList<String>();
 
     String id_value;
 
@@ -91,38 +94,59 @@ public class FoundFriendActivity extends AppCompatActivity {
                     Log.d("Fid", id_value);
                 }
 
-
                 Log.d("dt_id",id_value);
-                PedoActivity.friends.add(id_value);
-                Toast.makeText(getApplicationContext(), "친구 추가가 완료 되었습니다.", Toast.LENGTH_SHORT).show();
+                afriend = PedoActivity.friends;
+                int a = 0;
 
-                dtid(id_value);
+                for(String s : afriend){
+                    Log.d("s", s);
+                    Log.d("friends", String.valueOf(PedoActivity.friends));
 
-                databaseReference = FirebaseDatabase.getInstance().getReference("MEMBER").child(id_value);
-                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(DataSnapshot dataSnapshot) {
+                    if (s.equals(id_value)) {
+                        Log.d("s", s);
+                        Log.d("id_value",id_value);
+                        Toast.makeText(getApplicationContext(), "이미 친구 관계입니다", Toast.LENGTH_SHORT).show();
+                        Intent intent = new Intent(FoundFriendActivity.this, FindFriendActivity.class);
+                        startActivity(intent);
+                        a = 1;
+                        break;
+                    } else;
+                }
 
-                        Map<String, List<String>> map3 = (Map) dataSnapshot.getValue();
-                        Log.d("id_Value", id_value);
+                if(a == 0) {
 
-                        List<String> friend = map3.get("friends");
-                        Log.d("friend", String.valueOf(friend));
+                    PedoActivity.friends.add(id_value);
+                    Toast.makeText(getApplicationContext(), "친구 추가가 완료 되었습니다.", Toast.LENGTH_SHORT).show();
 
-                        friend.add(PedoActivity.my_id);
-                        FirebasePost pp = new FirebasePost();
-                        pp.WriteFriends(id_value, friend);
-                    }
+                    dtid(id_value);
 
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError databaseError) {
+                    databaseReference = FirebaseDatabase.getInstance().getReference("MEMBER").child(id_value);
+                    databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(DataSnapshot dataSnapshot) {
 
-                    }
-                });
+                            Map<String, List<String>> map3 = (Map) dataSnapshot.getValue();
+                            Log.d("id_Value", id_value);
+
+                            List<String> friend = map3.get("friends");
+                            Log.d("friend", String.valueOf(friend));
+
+                            friend.add(PedoActivity.my_id);
+                            FirebasePost pp = new FirebasePost();
+                            pp.WriteFriends(id_value, friend);
+                        }
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError databaseError) {
+
+                        }
+                    });
 
 
-                Intent intent = new Intent(FoundFriendActivity.this, FindFriendActivity.class);
-                startActivity(intent);
+                    Intent intent = new Intent(FoundFriendActivity.this, FindFriendActivity.class);
+                    startActivity(intent);
+                }
+
             }
         });
 

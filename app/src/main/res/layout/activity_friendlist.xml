@@ -9,7 +9,7 @@
     android:gravity="center"
     android:orientation="vertical"
     android:background="#d3ebf2"
-    tools:context="com.example.lets_walk_firebase.MainActivity">
+    tools:context=".MainActivity">
 
     <TextView
         android:id="@+id/nowmystepis"

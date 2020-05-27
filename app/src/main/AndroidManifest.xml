@@ -8,6 +8,7 @@
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
+    <uses-permission android:name="android.permission.INTERNET"/>
 
     <application
         android:allowBackup="true"
@@ -61,6 +62,19 @@
             android:name=".FoundFriendActivity"
             android:screenOrientation="unspecified"
             android:windowSoftInputMode="stateHidden"></activity>
+
+        <activity
+            android:name=".HighActivity"
+            android:configChanges="orientation|screenSize|locale"
+            android:screenOrientation="unspecified"
+            android:windowSoftInputMode="adjustResize"></activity>
+        <activity
+            android:name="com.example.lets_walk_firebase.YouTubeAPIDemoActivity">
+
+            <meta-data android:name="@string/isLaunchableActivity" android:value="false"/>
+        </activity>
+
+
 
         <service
             android:name=".RealService"
