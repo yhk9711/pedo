@@ -47,7 +47,7 @@ public class MyInfo extends AppCompatActivity {
         drawerView = (View) findViewById(R.id.drawerView);
         drawerLayout.setDrawerListener(listener);
         TextView name = (TextView) findViewById(R.id.nameofuser);
-        name.setText("" + PedoActivity.my_id + " 님");
+        name.setText("" + PedoActivity.my_name + " 님");
         //drawerLayout.openDrawer(drawerView);
         Button logout = (Button) findViewById(R.id.button);
         logout.setOnClickListener(new View.OnClickListener() {
