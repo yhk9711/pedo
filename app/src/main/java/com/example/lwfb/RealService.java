@@ -89,7 +89,7 @@ public class RealService extends Service implements SensorEventListener {
                 //PedoActivity.kcal = PedoActivity.cnt / 30;
                 Map<String, List<String>> map2 = (Map) dataSnapshot.getValue();
                 List<String> friend = map2.get("friends");
-                RegisterActivity.friends = friend;
+                PedoActivity.friends = friend;
             }
 
             @Override
@@ -178,7 +178,7 @@ public class RealService extends Service implements SensorEventListener {
                 Intent intent = new Intent(RealService.this, PedoActivity.class);
                 PendingIntent pendingIntent = PendingIntent.getActivity(RealService.this, 0, intent, PendingIntent.FLAG_UPDATE_CURRENT);
 
-                Notifi = new Notification.Builder(getApplicationContext()).setContentTitle("렛츠워크").setContentText("실행되고 있어요!").setSmallIcon(R.drawable.logo).setTicker("알림!!!").setContentIntent(pendingIntent).build();
+                Notifi = new Notification.Builder(getApplicationContext()).setContentTitle("렛츠워크").setContentText(Integer.toString(PedoActivity.cnt)+"걸음").setSmallIcon(R.drawable.logo).setTicker("알림!!!").setContentIntent(pendingIntent).build();
                 Notifi.defaults = Notification.DEFAULT_SOUND;
                 Notifi.flags = Notification.FLAG_ONLY_ALERT_ONCE;
                 Notifi.flags = Notification.FLAG_AUTO_CANCEL;

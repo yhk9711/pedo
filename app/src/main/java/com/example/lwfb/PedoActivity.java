@@ -33,9 +33,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 public class PedoActivity extends Activity implements SensorEventListener {
+
+    public static List<String> friends = new ArrayList<String>();
+
+
 
     private DrawerLayout drawerLayout;
     private View drawerView;
@@ -47,6 +52,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
     public static double dis = cnt / 1.5;
     public static int goal = 10000;
     public static String my_id;
+
 
     private TextView fView;
     private TextView tView;
@@ -89,6 +95,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pedo);
 
+        friends.add(my_id);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("CALORIE").child("0");
 
@@ -1056,7 +1063,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 FirebasePost user = new FirebasePost();
                 user.WriteStep(id_value, cnt);
 
-                Intent intent2 = new Intent(getApplicationContext(), com.example.lwfb.RealService.class);
+                Intent intent2 = new Intent(getApplicationContext(), RealService.class);
                 intent2.putExtra("id", id_value);
 //
 //                Intent intent3 = new Intent(PedoActivity.this, com.example.lwfb.FriendListActivity.class);

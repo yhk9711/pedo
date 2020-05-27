@@ -71,7 +71,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     int step = 0;
     int goal_step = 10000;
 
-    public static List<String> friends = new ArrayList<String>();
+    public List<String> friends = new ArrayList<String>();
 
     long age;
 
@@ -134,19 +134,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         check_Woman.setOnClickListener(this);
 
         /*check_ID = (CheckBox) findViewById(R.id.check_userid);
-
         check_ID.setOnClickListener(this);
-
 */
 
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
 
       /*  ListView listView = (ListView) findViewById(R.id.db_list_view);
-
         listView.setAdapter(arrayAdapter);
-
         listView.setOnItemClickListener(onClickListener);
-
         listView.setOnItemLongClickListener(longClickListener);*/
 
 
@@ -377,7 +372,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                 edit_ID.setCursorVisible(true);
 
-                Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
 
                 break;
