@@ -42,13 +42,6 @@ public class FindFriendActivity extends AppCompatActivity {
         Friend_ID = (EditText) findViewById(R.id.friend_id);
         databaseReference = FirebaseDatabase.getInstance().getReference("MEMBER");
         my_id=null;
-//        Intent i4 = getIntent();
-//        i4.getStringExtra("my_id");
-//        Bundle bundle4 = getIntent().getExtras();
-//        if (bundle4 != null) {
-//            my_id = bundle4.getString("my_id");
-//            Log.d("my_id",my_id);
-//        }
         find.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {

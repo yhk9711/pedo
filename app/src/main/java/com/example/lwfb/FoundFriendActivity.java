@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -19,30 +20,38 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
 public class FoundFriendActivity extends AppCompatActivity {
-    //    String dt_id = null;
-    /*String name = null;
-    String age = null;
-    String gender = null;
-    String dt_id = null;*/
+
     private TextView nameView;
     private TextView ageView;
     private TextView genderView;
+    EditText Friend_ID;
+    String dt_id;
+    Button find;
+    private DatabaseReference databaseReference;
+    String name;
+    String age;
+    String gender;
+    String my_id;
 
     List<String> afriend=new ArrayList<String>();
 
     String id_value;
 
-    private DatabaseReference databaseReference;
 //    List<String> friends = new ArrayList<String>();
     //String my_id;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_foundfriend);
+        find = (Button)findViewById(R.id.find_friend);
+        Friend_ID = (EditText) findViewById(R.id.edit_id);
+        databaseReference = FirebaseDatabase.getInstance().getReference("MEMBER");
+        my_id=null;
 
         String name_value = null;
         Intent i = getIntent();
@@ -72,14 +81,6 @@ public class FoundFriendActivity extends AppCompatActivity {
             fillTextView(R.id.friendgender, gender_value);
         }
         Log.d("my_id",PedoActivity.my_id);
-//        String my_id=null;
-//        Intent i4 = getIntent();
-//        i4.getStringExtra("my_id");
-//        Bundle bundle4 = getIntent().getExtras();
-//        if (bundle4 != null) {
-//            my_id = bundle4.getString("my_id");
-//            Log.d("my_id",my_id);
-//        }
 
 
         final Button add_friend = (Button) findViewById(R.id.add_friend);
@@ -107,8 +108,8 @@ public class FoundFriendActivity extends AppCompatActivity {
                         Log.d("s", s);
                         Log.d("id_value",id_value);
                         Toast.makeText(getApplicationContext(), "이미 친구 관계입니다", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(FoundFriendActivity.this, FindFriendActivity.class);
-                        startActivity(intent);
+//                        Intent intent = new Intent(FoundFriendActivity.this, FindFriendActivity.class);
+//                        startActivity(intent);
                         a = 1;
                         break;
                     } else;
@@ -144,10 +145,57 @@ public class FoundFriendActivity extends AppCompatActivity {
                     });
 
 
-                    Intent intent = new Intent(FoundFriendActivity.this, FindFriendActivity.class);
-                    startActivity(intent);
+//                    Intent intent = new Intent(FoundFriendActivity.this, FindFriendActivity.class);
+//                    startActivity(intent);
                 }
 
+            }
+        });
+        find.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+
+                databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(DataSnapshot dataSnapshot) {
+                        Iterator<DataSnapshot> child = dataSnapshot.getChildren().iterator();
+                        while(child.hasNext()) {
+                            DataSnapshot dt = child.next();
+                            dt_id = dt.getKey();
+//                            my_id= dt_id;
+                            Map<String, String> map = (Map) dt.getValue();
+
+                            while (dt.getKey().equals(Friend_ID.getText().toString())) {
+                                name = map.get("name");
+                                age = String.valueOf(map.get("age"));
+                                gender = String.valueOf(map.get("gender"));
+                                Log.d("id", dt_id);
+                                Log.d("name", name);
+                                Log.d("age", age);
+                                Log.d("gender", gender);
+                                //Toast.makeText(getApplicationContext(), "로그인에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
+                                Intent intent = new Intent(getApplicationContext(), com.example.lwfb.FoundFriendActivity.class);
+                                intent.putExtra("id", dt_id);
+//                                intent.putExtra("my_id", my_id);
+                                intent.putExtra("name", name);
+                                intent.putExtra("age", age);
+                                intent.putExtra("gender", gender);
+                                intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
+                                startActivity(intent);
+                                return;
+                            }
+                        }
+                        Log.d("error","존재하지 않는다고!!! =");
+                        Toast.makeText(getApplicationContext(),"존재하지 않는 아이디입니다.",Toast.LENGTH_SHORT).show();
+
+
+                    }
+                    @Override
+                    public void onCancelled(DatabaseError databaseError) {
+
+                    }
+                });
             }
         });
 
