@@ -28,8 +28,13 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
     String fname;
     String fstep;
     private DatabaseReference databaseReference;
-    List<String> friendlist =new ArrayList<String>();
+    public static List<String> friendlist =new ArrayList<String>();
+    List<String> friendname =new ArrayList<String>();
+    List<String> friendstep =new ArrayList<String>();
+
+    String dt_id;
     String fid;
+    ListViewBtnItem item ;
 
 //    Button find_friend = (Button) findViewById(R.id.find_friend);
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +86,9 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
                 List<String> friend = map3.get("friends");
                 Log.d("friend", String.valueOf(friend));
                 friendlist = friend;
+
             }
+
 
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
@@ -90,9 +97,7 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
         });
     }
     public boolean loadItemsFromDB(ArrayList<ListViewBtnItem> list) {
-        ListViewBtnItem item ;
         int i ;
-
         if (list == null) {
             list = new ArrayList<ListViewBtnItem>() ;
         }
@@ -100,6 +105,7 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
         // 순서를 위한 i 값을 1로 초기화.
         i = 1 ;
 
+        databaseReference = FirebaseDatabase.getInstance().getReference("MEMBER");
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
 
             @Override
@@ -107,17 +113,25 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
                 Iterator<DataSnapshot> child = dataSnapshot.getChildren().iterator();
                 while(child.hasNext()) {
                     DataSnapshot dt = child.next();
-                    fid = dt.getKey();
-                    int j =0;
+                    dt_id = dt.getKey();
                     Map<String, String> map = (Map) dt.getValue();
+                    Log.d("friendlist size", String.valueOf(friendlist.size()));
+                    for ( int j =0 ; j< friendlist.size() ;j++ ) {
+                        Log.d("j",String.valueOf(j));
+                        fid = friendlist.get(j);
+                        Log.d("fid", fid);
+                        Log.d("dt_id", dt_id);
+                        if (dt.getKey().equals(fid)) {
+                            fname = map.get("name");
+                            fstep = String.valueOf(map.get("step"));
+                            friendname.add(fname);
+                            friendstep.add(fstep);
+//                            Log.d("fname", fname);
+//                            Log.d("fstep", fstep);
+                            Log.d("friendname", String.valueOf(friendname));
+                            Log.d("friendstep", String.valueOf(friendstep));
+                        }
 
-                    while (dt.getKey().equals(friendlist.get(j))){
-                        fname = map.get("name");
-                        fstep = map.get("step");
-                        Log.d("fname", fname);
-                        Log.d("fstep", fstep);
-                        j++;
-                        return;
                     }
                 }
             }
@@ -126,13 +140,29 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
 
             }
         });
-
-        // 아이템 생성.
         item = new ListViewBtnItem() ;
         item.setIcon(ContextCompat.getDrawable(this, R.drawable.firstimg)) ;
-        item.setText(Integer.toString(i)+"등" + "   "+ fname+ "   "+ fstep +"걸음") ;
+        item.setText(Integer.toString(i)+"등" + "   "+ friendname.get(1)+ "   "+ friendstep.get(1) +"걸음") ;
+        Log.d("fk", String.valueOf(friendname));
         list.add(item) ;
-//        i++ ;
+
+        // 아이템 생성.
+//        for (int k=0;k<friendlist.size();k++){
+//            Log.d("k", String.valueOf(k));
+//            item = new ListViewBtnItem() ;
+//            item.setIcon(ContextCompat.getDrawable(this, R.drawable.firstimg)) ;
+//            item.setText(Integer.toString(i)+"등" + "   "+ friendname.get(k)+ "   "+ friendstep.get(k) +"걸음") ;
+//            Log.d("fk", friendname.get(k));
+//            list.add(item) ;
+//            i++;
+//        }
+
+//        item = new ListViewBtnItem() ;
+//        item.setIcon(ContextCompat.getDrawable(this, R.drawable.firstimg)) ;
+//        item.setText(Integer.toString(i)+"등" + "   "+ friendname.get(1)+ "   "+ friendstep.get(1) +"걸음") ;
+//        Log.d("fk", friendname.get(0));
+//        list.add(item) ;
+//        i++;
 //
 //        item = new ListViewBtnItem() ;
 //        item.setIcon(ContextCompat.getDrawable(this, R.drawable.secondimg)) ;
