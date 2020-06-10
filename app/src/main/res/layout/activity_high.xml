@@ -45,7 +45,7 @@
             android:onClick="onClickClose"/>
 
         <fragment
-            class="com.example.fbtest.HighActivity$VideoFragment"
+            class="com.example.lets_walk_firebase.HighActivity$VideoFragment"
             android:id="@+id/video_fragment_container"
             android:background="#d3ebf2"
             android:layout_width="match_parent"
