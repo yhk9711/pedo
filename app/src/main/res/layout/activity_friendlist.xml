@@ -1,339 +1,351 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/activity_main"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
-    android:orientation="vertical"
     android:background="#d3ebf2"
-    tools:context="com.example.lwfb.MainActivity">
+    android:orientation="vertical"
+    tools:context=".FriendListActivity">
 
-    <TextView
-        android:id="@+id/nowmystepis"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/activity_main"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="#d3ebf2"
         android:gravity="center"
-        android:text="현재 내 순위는"
-        android:textColor="#639cd4"
-        android:textColorHint="#d3ebf2"
-        android:textSize="30dp"
-        android:textStyle="bold" />
-
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="center">
+        android:orientation="vertical"
+        tools:context="MainActivity">
 
         <TextView
-            android:id="@+id/nth"
+            android:id="@+id/nowmystepis"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:gravity="center"
-            android:text="  n"
+            android:text="현재 내 순위는"
             android:textColor="#639cd4"
             android:textColorHint="#d3ebf2"
             android:textSize="30dp"
             android:textStyle="bold" />
-        <TextView
-            android:id="@+id/isnth"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:gravity="center"
-            android:text="  등입니다."
-            android:textColor="#639cd4"
-            android:textColorHint="#d3ebf2"
-            android:textSize="30dp"
-            android:textStyle="bold" />
-    </LinearLayout>
 
-    <!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="60dp"-->
-<!--        android:gravity="center">-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/imageView2"-->
-<!--            android:layout_width="41dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:srcCompat="@drawable/firstimg" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/blank7"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:gravity="center"-->
-<!--            android:text="  "-->
-<!--            android:textColor="#639cd4"-->
-<!--            android:textColorHint="#d3ebf2"-->
-<!--            android:textSize="30dp"-->
-<!--            android:textStyle="bold" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/first"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:gravity="center"-->
-<!--            android:text="1위 :"-->
-<!--            android:textColor="#639cd4"-->
-<!--            android:textColorHint="#d3ebf2"-->
-<!--            android:textSize="25dp"-->
-<!--            android:textStyle="bold" />-->
-<!--        <TextView-->
-<!--            android:id="@+id/firstname"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:gravity="center"-->
-<!--            android:text="  홍길동"-->
-<!--            android:textColor="#639cd4"-->
-<!--            android:textColorHint="#d3ebf2"-->
-<!--            android:textSize="25dp"-->
-<!--            android:textStyle="bold" />-->
-<!--        <TextView-->
-<!--            android:id="@+id/blank6"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:gravity="center"-->
-<!--            android:text="  "-->
-<!--            android:textColor="#639cd4"-->
-<!--            android:textColorHint="#d3ebf2"-->
-<!--            android:textSize="30dp"-->
-<!--            android:textStyle="bold" />-->
-<!--        <Button-->
-<!--            android:id="@+id/remove"-->
-<!--            android:layout_width="77dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:background="@drawable/round_corner"-->
-<!--            android:backgroundTint="#52789e"-->
-<!--            android:gravity="center"-->
-<!--            android:stateListAnimator="@null"-->
-<!--            android:text="친구 끊기" />-->
-<!--    </LinearLayout>-->
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="60dp"-->
-<!--        android:gravity="center">-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/imageView3"-->
-<!--            android:layout_width="41dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:srcCompat="@drawable/secondimg" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/blank9"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:gravity="center"-->
-<!--            android:text="  "-->
-<!--            android:textColor="#639cd4"-->
-<!--            android:textColorHint="#d3ebf2"-->
-<!--            android:textSize="30dp"-->
-<!--            android:textStyle="bold" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/second"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:gravity="center"-->
-<!--            android:text="2위 :"-->
-<!--            android:textColor="#639cd4"-->
-<!--            android:textColorHint="#d3ebf2"-->
-<!--            android:textSize="25dp"-->
-<!--            android:textStyle="bold" />-->
-<!--        <TextView-->
-<!--            android:id="@+id/secondname"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:gravity="center"-->
-<!--            android:text="  아무개"-->
-<!--            android:textColor="#639cd4"-->
-<!--            android:textColorHint="#d3ebf2"-->
-<!--            android:textSize="25dp"-->
-<!--            android:textStyle="bold" />-->
-<!--        <TextView-->
-<!--            android:id="@+id/blank8"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:gravity="center"-->
-<!--            android:text="  "-->
-<!--            android:textColor="#639cd4"-->
-<!--            android:textColorHint="#d3ebf2"-->
-<!--            android:textSize="30dp"-->
-<!--            android:textStyle="bold" />-->
-<!--        <Button-->
-<!--            android:id="@+id/remove2"-->
-<!--            android:layout_width="77dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:background="@drawable/round_corner"-->
-<!--            android:backgroundTint="#52789e"-->
-<!--            android:gravity="center"-->
-<!--            android:stateListAnimator="@null"-->
-<!--            android:text="친구 끊기" />-->
-<!--    </LinearLayout>-->
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="60dp"-->
-<!--        android:gravity="center">-->
-
-<!--        <ImageView-->
-<!--            android:id="@+id/imageView4"-->
-<!--            android:layout_width="41dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            app:srcCompat="@drawable/thirdimg" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/blank10"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:gravity="center"-->
-<!--            android:text="  "-->
-<!--            android:textColor="#639cd4"-->
-<!--            android:textColorHint="#d3ebf2"-->
-<!--            android:textSize="30dp"-->
-<!--            android:textStyle="bold" />-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/third"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:gravity="center"-->
-<!--            android:text="3위 :"-->
-<!--            android:textColor="#639cd4"-->
-<!--            android:textColorHint="#d3ebf2"-->
-<!--            android:textSize="25dp"-->
-<!--            android:textStyle="bold" />-->
-<!--        <TextView-->
-<!--            android:id="@+id/thirdname"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:gravity="center"-->
-<!--            android:text="  안영희"-->
-<!--            android:textColor="#639cd4"-->
-<!--            android:textColorHint="#d3ebf2"-->
-<!--            android:textSize="25dp"-->
-<!--            android:textStyle="bold" />-->
-<!--        <TextView-->
-<!--            android:id="@+id/blank11"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:gravity="center"-->
-<!--            android:text="  "-->
-<!--            android:textColor="#639cd4"-->
-<!--            android:textColorHint="#d3ebf2"-->
-<!--            android:textSize="30dp"-->
-<!--            android:textStyle="bold" />-->
-<!--        <Button-->
-<!--            android:id="@+id/remove3"-->
-<!--            android:layout_width="77dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:background="@drawable/round_corner"-->
-<!--            android:backgroundTint="#52789e"-->
-<!--            android:gravity="center"-->
-<!--            android:stateListAnimator="@null"-->
-<!--            android:text="친구 끊기" />-->
-<!--    </LinearLayout>-->
-
-<!--    <LinearLayout-->
-<!--        android:layout_width="match_parent"-->
-<!--        android:layout_height="108dp"-->
-<!--        android:gravity="center">-->
-
-<!--        <TextView-->
-<!--            android:id="@+id/blank12"-->
-<!--            android:layout_width="wrap_content"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:layout_alignParentEnd="true"-->
-<!--            android:gravity="center"-->
-<!--            android:text="  "-->
-<!--            android:textColor="#639cd4"-->
-<!--            android:textColorHint="#d3ebf2"-->
-<!--            android:textSize="30dp"-->
-<!--            android:textStyle="bold" />-->
-<!--    </LinearLayout>-->
-
-    <ScrollView
-
-        android:id="@+id/chatting_room_scroll_view"
-        android:layout_width="match_parent"
-        android:layout_height="344dp"
-        android:layout_above="@+id/room_under_bar"
-        android:fillViewport="true">
-
-        <ListView
-            android:id="@+id/listview1"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent" />
-    </ScrollView>
+            android:layout_height="60dp"
+            android:gravity="center">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="52dp"
-        android:gravity="right">
+            <TextView
+                android:id="@+id/nth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:gravity="center"
+                android:text="  n"
+                android:textColor="#639cd4"
+                android:textColorHint="#d3ebf2"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/isnth"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:gravity="center"
+                android:text="  등입니다."
+                android:textColor="#639cd4"
+                android:textColorHint="#d3ebf2"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <!--    <LinearLayout-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="60dp"-->
+        <!--        android:gravity="center">-->
+
+        <!--        <ImageView-->
+        <!--            android:id="@+id/imageView2"-->
+        <!--            android:layout_width="41dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            app:srcCompat="@drawable/firstimg" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/blank7"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="  "-->
+        <!--            android:textColor="#639cd4"-->
+        <!--            android:textColorHint="#d3ebf2"-->
+        <!--            android:textSize="30dp"-->
+        <!--            android:textStyle="bold" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/first"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="1위 :"-->
+        <!--            android:textColor="#639cd4"-->
+        <!--            android:textColorHint="#d3ebf2"-->
+        <!--            android:textSize="25dp"-->
+        <!--            android:textStyle="bold" />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/firstname"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="  홍길동"-->
+        <!--            android:textColor="#639cd4"-->
+        <!--            android:textColorHint="#d3ebf2"-->
+        <!--            android:textSize="25dp"-->
+        <!--            android:textStyle="bold" />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/blank6"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="  "-->
+        <!--            android:textColor="#639cd4"-->
+        <!--            android:textColorHint="#d3ebf2"-->
+        <!--            android:textSize="30dp"-->
+        <!--            android:textStyle="bold" />-->
+        <!--        <Button-->
+        <!--            android:id="@+id/remove"-->
+        <!--            android:layout_width="77dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:background="@drawable/round_corner"-->
+        <!--            android:backgroundTint="#52789e"-->
+        <!--            android:gravity="center"-->
+        <!--            android:stateListAnimator="@null"-->
+        <!--            android:text="친구 끊기" />-->
+        <!--    </LinearLayout>-->
+        <!--    <LinearLayout-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="60dp"-->
+        <!--        android:gravity="center">-->
+
+        <!--        <ImageView-->
+        <!--            android:id="@+id/imageView3"-->
+        <!--            android:layout_width="41dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            app:srcCompat="@drawable/secondimg" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/blank9"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="  "-->
+        <!--            android:textColor="#639cd4"-->
+        <!--            android:textColorHint="#d3ebf2"-->
+        <!--            android:textSize="30dp"-->
+        <!--            android:textStyle="bold" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/second"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="2위 :"-->
+        <!--            android:textColor="#639cd4"-->
+        <!--            android:textColorHint="#d3ebf2"-->
+        <!--            android:textSize="25dp"-->
+        <!--            android:textStyle="bold" />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/secondname"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="  아무개"-->
+        <!--            android:textColor="#639cd4"-->
+        <!--            android:textColorHint="#d3ebf2"-->
+        <!--            android:textSize="25dp"-->
+        <!--            android:textStyle="bold" />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/blank8"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="  "-->
+        <!--            android:textColor="#639cd4"-->
+        <!--            android:textColorHint="#d3ebf2"-->
+        <!--            android:textSize="30dp"-->
+        <!--            android:textStyle="bold" />-->
+        <!--        <Button-->
+        <!--            android:id="@+id/remove2"-->
+        <!--            android:layout_width="77dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:background="@drawable/round_corner"-->
+        <!--            android:backgroundTint="#52789e"-->
+        <!--            android:gravity="center"-->
+        <!--            android:stateListAnimator="@null"-->
+        <!--            android:text="친구 끊기" />-->
+        <!--    </LinearLayout>-->
+        <!--    <LinearLayout-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="60dp"-->
+        <!--        android:gravity="center">-->
+
+        <!--        <ImageView-->
+        <!--            android:id="@+id/imageView4"-->
+        <!--            android:layout_width="41dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            app:srcCompat="@drawable/thirdimg" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/blank10"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="  "-->
+        <!--            android:textColor="#639cd4"-->
+        <!--            android:textColorHint="#d3ebf2"-->
+        <!--            android:textSize="30dp"-->
+        <!--            android:textStyle="bold" />-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/third"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="3위 :"-->
+        <!--            android:textColor="#639cd4"-->
+        <!--            android:textColorHint="#d3ebf2"-->
+        <!--            android:textSize="25dp"-->
+        <!--            android:textStyle="bold" />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/thirdname"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="  안영희"-->
+        <!--            android:textColor="#639cd4"-->
+        <!--            android:textColorHint="#d3ebf2"-->
+        <!--            android:textSize="25dp"-->
+        <!--            android:textStyle="bold" />-->
+        <!--        <TextView-->
+        <!--            android:id="@+id/blank11"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="  "-->
+        <!--            android:textColor="#639cd4"-->
+        <!--            android:textColorHint="#d3ebf2"-->
+        <!--            android:textSize="30dp"-->
+        <!--            android:textStyle="bold" />-->
+        <!--        <Button-->
+        <!--            android:id="@+id/remove3"-->
+        <!--            android:layout_width="77dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:background="@drawable/round_corner"-->
+        <!--            android:backgroundTint="#52789e"-->
+        <!--            android:gravity="center"-->
+        <!--            android:stateListAnimator="@null"-->
+        <!--            android:text="친구 끊기" />-->
+        <!--    </LinearLayout>-->
+
+        <!--    <LinearLayout-->
+        <!--        android:layout_width="match_parent"-->
+        <!--        android:layout_height="108dp"-->
+        <!--        android:gravity="center">-->
+
+        <!--        <TextView-->
+        <!--            android:id="@+id/blank12"-->
+        <!--            android:layout_width="wrap_content"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:layout_alignParentEnd="true"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="  "-->
+        <!--            android:textColor="#639cd4"-->
+        <!--            android:textColorHint="#d3ebf2"-->
+        <!--            android:textSize="30dp"-->
+        <!--            android:textStyle="bold" />-->
+        <!--    </LinearLayout>-->
+
+        <ScrollView
+
+            android:id="@+id/chatting_room_scroll_view"
+            android:layout_width="match_parent"
+            android:layout_height="344dp"
+            android:layout_above="@+id/room_under_bar"
+            android:fillViewport="true">
+
+            <ListView
+                android:id="@+id/listview1"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" />
+        </ScrollView>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="52dp"
+            android:gravity="right">
 
 
-        <TextView
-            android:id="@+id/blank20"
-            android:layout_width="27dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:gravity="center"
-            android:text="  "
-            android:textColor="#639cd4"
-            android:textColorHint="#d3ebf2"
-            android:textSize="30dp"
-            android:textStyle="bold" />
+            <TextView
+                android:id="@+id/blank20"
+                android:layout_width="27dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:gravity="center"
+                android:text="  "
+                android:textColor="#639cd4"
+                android:textColorHint="#d3ebf2"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:gravity="right">
+
+            <Button
+                android:id="@+id/find_friend"
+                android:layout_width="77dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/round_corner"
+                android:backgroundTint="#52789e"
+                android:gravity="center"
+                android:stateListAnimator="@null"
+                android:text="친구 찾기" />
+
+            <TextView
+                android:id="@+id/blank14"
+                android:layout_width="27dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentEnd="true"
+                android:gravity="center"
+                android:text="  "
+                android:textColor="#639cd4"
+                android:textColorHint="#d3ebf2"
+                android:textSize="30dp"
+                android:textStyle="bold" />
+        </LinearLayout>
+
+
     </LinearLayout>
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="60dp"
-        android:gravity="right">
 
-        <Button
-            android:id="@+id/find_friend"
-            android:layout_width="77dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:background="@drawable/round_corner"
-            android:backgroundTint="#52789e"
-            android:gravity="center"
-            android:stateListAnimator="@null"
-            android:text="친구 찾기" />
-
-        <TextView
-            android:id="@+id/blank14"
-            android:layout_width="27dp"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:gravity="center"
-            android:text="  "
-            android:textColor="#639cd4"
-            android:textColorHint="#d3ebf2"
-            android:textSize="30dp"
-            android:textStyle="bold" />
-    </LinearLayout>
-
-
-
-
-</LinearLayout>
+    <include layout="@layout/nav1" />
+</androidx.drawerlayout.widget.DrawerLayout>

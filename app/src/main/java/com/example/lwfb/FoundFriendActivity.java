@@ -1,7 +1,9 @@
 package com.example.lwfb;
 
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +14,7 @@ import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.drawerlayout.widget.DrawerLayout;
 
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -29,6 +32,10 @@ public class FoundFriendActivity extends AppCompatActivity {
     private TextView nameView;
     private TextView ageView;
     private TextView genderView;
+
+    private DrawerLayout drawerLayout;
+    private View drawerView;
+
     EditText Friend_ID;
     String dt_id;
     Button find;
@@ -52,6 +59,85 @@ public class FoundFriendActivity extends AppCompatActivity {
         Friend_ID = (EditText) findViewById(R.id.edit_id);
         databaseReference = FirebaseDatabase.getInstance().getReference("MEMBER");
         my_id=null;
+
+        drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
+        drawerView = (View) findViewById(R.id.drawerView);
+        drawerLayout.setDrawerListener(listener);
+        TextView names = (TextView) findViewById(R.id.nameofuser);
+        names.setText("" + PedoActivity.my_name + " 님");
+        //drawerLayout.openDrawer(drawerView);
+        Button logout = (Button) findViewById(R.id.button);
+        Button friendlist = (Button) findViewById(R.id.friendlist);
+        Button notice = (Button) findViewById(R.id.notice);
+        Button hometraining = (Button) findViewById(R.id.hometraining);
+        logout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //SharedPreferences에 저장된 값들을 로그아웃 버튼을 누르면 삭제하기 위해
+                //SharedPreferences를 불러옵니다. 메인에서 만든 이름으로
+                Intent intent = new Intent(FoundFriendActivity.this, MainActivity.class);
+                startActivity(intent);
+                SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
+                SharedPreferences.Editor editor = auto.edit();
+                //editor.clear()는 auto에 들어있는 모든 정보를 기기에서 지웁니다.
+                editor.clear();
+                editor.commit();
+                Toast.makeText(FoundFriendActivity.this, "로그아웃.", Toast.LENGTH_SHORT).show();
+                finish();
+
+            }
+        });
+        friendlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FoundFriendActivity.this, FriendListActivity.class);
+                /*String id_value2 = null;
+                Intent i2 = getIntent();
+                i2.getStringExtra("id");
+                Bundle bundle2 = getIntent().getExtras();
+                if (bundle2 != null) {
+                    id_value2 = bundle2.getString("id");
+                    //Log.d("id", id_value2);
+                }
+                intent.putExtra("id", id_value2);
+                intent.putExtra("name", user_name);*/
+                startActivity(intent);
+            }
+        });
+        notice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FoundFriendActivity.this, NoticeActivity.class);
+                /*String id_value2 = null;
+                Intent i2 = getIntent();
+                i2.getStringExtra("id");
+                Bundle bundle2 = getIntent().getExtras();
+                if (bundle2 != null) {
+                    id_value2 = bundle2.getString("id");
+                    //Log.d("id", id_value2);
+                }
+                intent.putExtra("id", id_value2);
+                intent.putExtra("name", user_name);*/
+                startActivity(intent);
+            }
+        });
+        hometraining.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FoundFriendActivity.this, HomeTrainActivity.class);
+                /*String id_value2 = null;
+                Intent i2 = getIntent();
+                i2.getStringExtra("id");
+                Bundle bundle2 = getIntent().getExtras();
+                if (bundle2 != null) {
+                    id_value2 = bundle2.getString("id");
+                    //Log.d("id", id_value2);
+                }
+                intent.putExtra("id", id_value2);
+                intent.putExtra("name", user_name);*/
+                startActivity(intent);
+            }
+        });
 
         String name_value = null;
         Intent i = getIntent();
@@ -80,7 +166,7 @@ public class FoundFriendActivity extends AppCompatActivity {
             Log.d("Fgender", gender_value);
             fillTextView(R.id.friendgender, gender_value);
         }
-        Log.d("my_id",PedoActivity.my_id);
+        Log.d("my_id", PedoActivity.my_id);
 
 
         final Button add_friend = (Button) findViewById(R.id.add_friend);
@@ -175,7 +261,7 @@ public class FoundFriendActivity extends AppCompatActivity {
                                 Log.d("age", age);
                                 Log.d("gender", gender);
                                 //Toast.makeText(getApplicationContext(), "로그인에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
-                                Intent intent = new Intent(getApplicationContext(), com.example.lwfb.FoundFriendActivity.class);
+                                Intent intent = new Intent(getApplicationContext(), FoundFriendActivity.class);
                                 intent.putExtra("id", dt_id);
 //                                intent.putExtra("my_id", my_id);
                                 intent.putExtra("name", name);
@@ -214,12 +300,32 @@ public class FoundFriendActivity extends AppCompatActivity {
 //        p.WriteStep(PedoActivity.my_id, 34);
         Log.d("fire.fr", String.valueOf(FirebasePost.friends));
         p.WriteFriends(PedoActivity.my_id, PedoActivity.friends);
-        Intent intent = new Intent(getApplicationContext(), com.example.lwfb.FindFriendActivity.class);
+        Intent intent = new Intent(getApplicationContext(), FindFriendActivity.class);
         startActivity(intent);
 
 
 
     }
+    DrawerLayout.DrawerListener listener = new DrawerLayout.DrawerListener() {
+
+        @Override
+        public void onDrawerSlide(@NonNull View drawerView, float slideOffset) {
+        }
+
+        @Override
+        public void onDrawerOpened(@NonNull View drawerView) {
+        }
+
+        @Override
+        public void onDrawerClosed(@NonNull View drawerView) {
+        }
+
+        @Override
+        public void onDrawerStateChanged(int newState) {
+        }
+        //drawerLayout.openDrawer(drawerView);
+    };
+
 
 //    @Override
 //    public void onClick(View v) {

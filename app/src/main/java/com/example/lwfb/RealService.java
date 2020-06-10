@@ -90,6 +90,7 @@ public class RealService extends Service implements SensorEventListener {
                 Map<String, List<String>> map2 = (Map) dataSnapshot.getValue();
                 List<String> friend = map2.get("friends");
                 PedoActivity.friends = friend;
+                PedoActivity.my_name = map.get("name");
             }
 
             @Override
