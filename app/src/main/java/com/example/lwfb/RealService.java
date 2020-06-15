@@ -77,7 +77,7 @@ public class RealService extends Service implements SensorEventListener {
 
         String id_value = serviceIntent.getStringExtra("id");
 
-        Log.d("서비스 start의 id_val", id_value);
+//        Log.d("서비스 start의 id_val", id_value);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("MEMBER").child(id_value);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {

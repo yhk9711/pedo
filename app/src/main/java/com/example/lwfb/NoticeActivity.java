@@ -143,5 +143,9 @@ public class NoticeActivity extends AppCompatActivity implements View.OnClickLis
         }
         //drawerLayout.openDrawer(drawerView);
     };
-
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(getApplicationContext(), PedoActivity.class);
+        startActivity(intent);
+    }
 }

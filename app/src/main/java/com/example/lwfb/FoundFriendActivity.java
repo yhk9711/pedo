@@ -306,6 +306,12 @@ public class FoundFriendActivity extends AppCompatActivity {
 
 
     }
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(getApplicationContext(), FindFriendActivity.class);
+        intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
+    }
     DrawerLayout.DrawerListener listener = new DrawerLayout.DrawerListener() {
 
         @Override

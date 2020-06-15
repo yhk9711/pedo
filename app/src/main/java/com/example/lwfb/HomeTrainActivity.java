@@ -135,6 +135,11 @@ public class HomeTrainActivity extends AppCompatActivity {
         }
         //drawerLayout.openDrawer(drawerView);
     };
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(getApplicationContext(), PedoActivity.class);
+        startActivity(intent);
+    }
 
 
 
