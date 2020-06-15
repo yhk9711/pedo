@@ -24,6 +24,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -42,10 +45,13 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
     private DrawerLayout drawerLayout;
     private View drawerView;
 
+    private TextView nth;
+
     String dt_id;
     String fid;
     ListViewBtnItem item;
     public static ArrayList<ListViewBtnItem> list2 = new ArrayList<ListViewBtnItem>();
+    public Map<String, Integer> sort_friends = new HashMap<String, Integer>();
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,6 +63,8 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
         drawerView = (View) findViewById(R.id.drawerView);
         drawerLayout.setDrawerListener(listener);
         TextView name = (TextView) findViewById(R.id.nameofuser);
+        nth = (TextView)findViewById(R.id.nth);
+
 
         Log.d("이름", PedoActivity.my_name);
 
@@ -163,49 +171,71 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
 
                             Log.d("friendname", String.valueOf(friendname));
                             Log.d("friendstep", String.valueOf(friendstep));
-
-
                         }
-
                     }
                 }
+
+                for(int i = 0; i < friendname.size(); i++){
+                    sort_friends.put(friendname.get(i), Integer.parseInt(friendstep.get(i)));
+                }
+
+                Iterator it = sortByValue(sort_friends).iterator();
+
+
                 if (0<friendname.size()){
                     item = new ListViewBtnItem();
                     item.setIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.firstimg));
-                    item.setText(1+ "등" + "   " + friendname.get(0) + "   " + friendstep.get(0) + "걸음");
+                    String temp = (String)it.next();
+//                    item.setText(1+ "등" + "   " + friendname.get(0) + "   " + friendstep.get(0) + "걸음");
+                    item.setText(1+ "등" + "   " + temp + "   " + sort_friends.get(temp) + "걸음");
                     Log.d("item", item.toString());
-
                     list2.add(item);
                     Log.d("list2", list2.toString());
+                    if(temp == fname){
+                        nth.setText("" + 1);
+                    }
                 }
                 if (1<friendname.size()){
                     item = new ListViewBtnItem();
+                    String temp = (String)it.next();
                     item.setIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.secondimg));
-                    item.setText(2+ "등" + "   " + friendname.get(1) + "   " + friendstep.get(1) + "걸음");
+//                    item.setText(2+ "등" + "   " + friendname.get(1) + "   " + friendstep.get(1) + "걸음");
+                    item.setText(2+ "등" + "   " + temp + "   " + sort_friends.get(temp) + "걸음");
                     Log.d("item", item.toString());
-
                     list2.add(item);
                     Log.d("list2", list2.toString());
+                    if(temp == fname){
+                        nth.setText("" + 2);
+                    }
                 }
 
                 if (2<friendname.size()){
                     item = new ListViewBtnItem();
+                    String temp = (String)it.next();
                     item.setIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.thirdimg));
-                    item.setText(3+ "등" + "   " + friendname.get(2) + "   " + friendstep.get(2) + "걸음");
+//                    item.setText(3+ "등" + "   " + friendname.get(2) + "   " + friendstep.get(2) + "걸음");
+                    item.setText(3+ "등" + "   " + temp + "   " + sort_friends.get(temp) + "걸음");
                     Log.d("item", item.toString());
-
                     list2.add(item);
                     Log.d("list2", list2.toString());
-
+                    if(temp == fname){
+                        nth.setText("" + 3);
+                    }
                 }
                 if(3<friendname.size() ) {
                     for (int k = 3; k < friendname.size(); k++) {
                         item = new ListViewBtnItem();
-                        item.setText((k + 1) + "등" + "   " + friendname.get(k) + "   " + friendstep.get(k) + "걸음");
-                        Log.d("item", item.toString());
-
-                        list2.add(item);
-                        Log.d("list2", list2.toString());
+                        if (it.hasNext()) {
+                            String temp = (String) it.next();
+//                            item.setText((k + 1) + "등" + "   " + friendname.get(k) + "   " + friendstep.get(k) + "걸음");
+                            item.setText((k + 1) + "등" + "   " + temp + "   " + sort_friends.get(temp) + "걸음");
+                            Log.d("item", item.toString());
+                            list2.add(item);
+                            Log.d("list2", list2.toString());
+                            if(temp == fname){
+                                nth.setText("" + (k + 1));
+                            }
+                        }
                     }
                 }
 
@@ -238,6 +268,23 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
         });
 
     }
+
+    public static List sortByValue(final Map map){
+        List<String> list = new ArrayList();
+        list.addAll(map.keySet());
+
+        Collections.sort(list, new Comparator(){
+            public int compare(Object o1, Object o2){
+                Object v1 = map.get(o1);
+                Object v2 = map.get(o2);
+
+                return ((Comparable) v2).compareTo(v1);
+            }
+        });
+        //Collections.reverse(list);
+        return list;
+    }
+
 
     public boolean loadItemsFromDB(ArrayList<ListViewBtnItem> list) {
         //ListViewBtnItem item;
