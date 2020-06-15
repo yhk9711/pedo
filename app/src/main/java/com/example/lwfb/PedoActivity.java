@@ -314,6 +314,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 //SharedPreferences를 불러옵니다. 메인에서 만든 이름으로
                 Intent intent = new Intent(PedoActivity.this, MainActivity.class);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
                 SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
                 SharedPreferences.Editor editor = auto.edit();
                 //editor.clear()는 auto에 들어있는 모든 정보를 기기에서 지웁니다.
@@ -339,6 +340,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 intent.putExtra("id", id_value2);
                 intent.putExtra("name", user_name);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
             }
         });
         friendlist.setOnClickListener(new OnClickListener() {
@@ -356,6 +358,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 intent123.putExtra("id", id_value2);
                 intent123.putExtra("name", user_name);
                 startActivity(intent123);
+                overridePendingTransition(0, 0);
             }
         });
         notice.setOnClickListener(new OnClickListener() {
@@ -373,6 +376,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 intent.putExtra("id", id_value2);
                 intent.putExtra("name", user_name);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
             }
         });
         hometraining.setOnClickListener(new OnClickListener() {
@@ -390,6 +394,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 intent.putExtra("id", id_value2);
                 intent.putExtra("name", user_name);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
             }
         });
 
@@ -405,6 +410,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
             intent.setAction(android.provider.Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
             intent.setData(Uri.parse("package:" + getApplicationContext().getPackageName()));
             startActivity(intent);
+
         }
         if (RealService.serviceIntent == null) {
             String id_value2 = null;

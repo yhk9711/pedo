@@ -79,6 +79,7 @@ class YouTubeAPIDemoActivity extends Activity implements OnItemClickListener {
         Intent intent = new Intent();
         intent.setComponent(new ComponentName(getPackageName(), clickedDemo.className));
         startActivity(intent);
+        overridePendingTransition(0, 0);
     }
 
     private final class Demo implements DemoListViewItem {

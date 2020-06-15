@@ -50,20 +50,48 @@ public class MyInfo extends AppCompatActivity {
         name.setText("" + PedoActivity.my_name + " 님");
         //drawerLayout.openDrawer(drawerView);
         Button logout = (Button) findViewById(R.id.button);
+        Button friendlist = (Button) findViewById(R.id.friendlist);
+        Button notice = (Button) findViewById(R.id.notice);
+        Button hometraining = (Button) findViewById(R.id.hometraining);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //SharedPreferences에 저장된 값들을 로그아웃 버튼을 누르면 삭제하기 위해
-                //SharedPreferences를 불러옵니다. 메인에서 만든 이름으로
+                //SharedPreferences에 저장된 값들을 로그아웃 버튼을 누르면 삭제하기 위해 SharedPreferences를 불러옴
                 Intent intent = new Intent(MyInfo.this, MainActivity.class);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
                 SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
                 SharedPreferences.Editor editor = auto.edit();
-                //editor.clear()는 auto에 들어있는 모든 정보를 기기에서 지웁니다.
+                //auto에 들어있는 모든 정보를 기기에서 지움
                 editor.clear();
                 editor.commit();
                 Toast.makeText(MyInfo.this, "로그아웃.", Toast.LENGTH_SHORT).show();
                 finish();
+
+            }
+        });
+        friendlist.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MyInfo.this, FriendListActivity.class);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+            }
+        });
+        notice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MyInfo.this, NoticeActivity.class);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+            }
+        });
+        hometraining.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MyInfo.this, HomeTrainActivity.class);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
             }
         });
 
@@ -85,7 +113,6 @@ public class MyInfo extends AppCompatActivity {
                         Bundle bundle = getIntent().getExtras();
                         if (bundle != null) {
                             id_value = bundle.getString("id");
-                            //Log.d("id", id_value);
                         }
 
                         FirebasePost user = new FirebasePost();
@@ -158,27 +185,7 @@ public class MyInfo extends AppCompatActivity {
 
     };
 
-    /*
-    public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.btn_changed:
-                PedoActivity.goal = Integer.parseInt(edit_goal.getText().toString());
-                setInsertMode();
-                Toast.makeText(getApplicationContext(),"목표 걸음 수가 변경되었습니다.",Toast.LENGTH_LONG).show();
-                String id_value = null;
-                Intent i = getIntent();
-                i.getStringExtra("id");
-                Bundle bundle = getIntent().getExtras();
-                if (bundle != null) {
-                    id_value = bundle.getString("id");
-                    //Log.d("id", id_value);
-                }
-                FirebasePost user = new FirebasePost();
-                user.WriteGoal(id_value, PedoActivity.goal);
-                break;
-        }
-    }
-    */
+
     DrawerLayout.DrawerListener listener = new DrawerLayout.DrawerListener() {
 
         @Override
@@ -203,6 +210,7 @@ public class MyInfo extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), PedoActivity.class);
         intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
+        overridePendingTransition(0, 0);
     }
 
 }

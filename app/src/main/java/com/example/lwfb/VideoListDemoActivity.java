@@ -1,19 +1,5 @@
-package com.example.lwfb;
+package com.example.lets_walk_firebase;
 
-import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
-import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
-
-import com.example.lwfb.R;
-import com.google.android.youtube.player.YouTubeApiServiceUtil;
-import com.google.android.youtube.player.YouTubeInitializationResult;
-import com.google.android.youtube.player.YouTubePlayer;
-import com.google.android.youtube.player.YouTubePlayer.OnFullscreenListener;
-import com.google.android.youtube.player.YouTubePlayer.OnInitializedListener;
-import com.google.android.youtube.player.YouTubePlayer.Provider;
-import com.google.android.youtube.player.YouTubePlayerFragment;
-import com.google.android.youtube.player.YouTubeThumbnailLoader;
-import com.google.android.youtube.player.YouTubeThumbnailLoader.ErrorReason;
-import com.google.android.youtube.player.YouTubeThumbnailView;
 
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
@@ -37,28 +23,35 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lwfb.DeveloperKey;
+import com.example.lwfb.R;
+import com.google.android.youtube.player.YouTubeApiServiceUtil;
+import com.google.android.youtube.player.YouTubeInitializationResult;
+import com.google.android.youtube.player.YouTubePlayer;
+import com.google.android.youtube.player.YouTubePlayer.OnFullscreenListener;
+import com.google.android.youtube.player.YouTubePlayer.OnInitializedListener;
+import com.google.android.youtube.player.YouTubePlayer.Provider;
+import com.google.android.youtube.player.YouTubePlayerFragment;
+import com.google.android.youtube.player.YouTubeThumbnailLoader;
+import com.google.android.youtube.player.YouTubeThumbnailLoader.ErrorReason;
+import com.google.android.youtube.player.YouTubeThumbnailView;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/**
- * A sample Activity showing how to manage multiple YouTubeThumbnailViews in an adapter for display
- * in a List. When the list items are clicked, the video is played by using a YouTubePlayerFragment.
- * <p>
- * The demo supports custom fullscreen and transitioning between portrait and landscape without
- * rebuffering.
- */
+import static android.view.ViewGroup.LayoutParams.MATCH_PARENT;
+import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
+
+
 @TargetApi(13)
 public final class VideoListDemoActivity extends Activity implements OnFullscreenListener {
 
-    /** The duration of the animation sliding up the video in portrait. */
-    private static final int ANIMATION_DURATION_MILLIS = 300;
-    /** The padding between the video list and the video in landscape orientation. */
-    private static final int LANDSCAPE_VIDEO_PADDING_DP = 5;
 
-    /** The request code when calling startActivityForResult to recover from an API service error. */
+    private static final int ANIMATION_DURATION_MILLIS = 300;
+    private static final int LANDSCAPE_VIDEO_PADDING_DP = 5;
     private static final int RECOVERY_DIALOG_REQUEST = 1;
 
     private VideoListFragment listFragment;
@@ -104,7 +97,7 @@ public final class VideoListDemoActivity extends Activity implements OnFullscree
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         if (requestCode == RECOVERY_DIALOG_REQUEST) {
-            // Recreate the activity if user performed a recovery action
+
             recreate();
         }
     }
@@ -123,12 +116,6 @@ public final class VideoListDemoActivity extends Activity implements OnFullscree
         layout();
     }
 
-    /**
-     * Sets up the layout programatically for the three different states. Portrait, landscape or
-     * fullscreen+landscape. This has to be done programmatically because we handle the orientation
-     * changes ourselves in order to get fluent fullscreen transitions, so the xml layout resources
-     * do not get reloaded.
-     */
     private void layout() {
         boolean isPortrait =
                 getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT;
@@ -185,12 +172,10 @@ public final class VideoListDemoActivity extends Activity implements OnFullscree
         }
     }
 
-    /**
-     * A fragment that shows a static list of videos.
-     */
     public static final class VideoListFragment extends ListFragment {
 
         private static final List<VideoEntry> VIDEO_LIST;
+
         static {
             List<VideoEntry> list = new ArrayList<VideoEntry>();
             list.add(new VideoEntry("Android ListView", "MMswNnLdHso"));
@@ -227,7 +212,6 @@ public final class VideoListDemoActivity extends Activity implements OnFullscree
                     (VideoFragment) getFragmentManager().findFragmentById(R.id.video_fragment_container);
             videoFragment.setVideoId(videoId);
 
-            // The videoBox is INVISIBLE if no video was previously selected, so we need to show it now.
             if (videoBox.getVisibility() != View.VISIBLE) {
                 if (getResources().getConfiguration().orientation == Configuration.ORIENTATION_PORTRAIT) {
                     // Initially translate off the screen so that it can be animated in from below.
@@ -236,7 +220,6 @@ public final class VideoListDemoActivity extends Activity implements OnFullscree
                 videoBox.setVisibility(View.VISIBLE);
             }
 
-            // If the fragment is off the screen, we animate it in.
             if (videoBox.getTranslationY() > 0) {
                 videoBox.animate().translationY(0).setDuration(ANIMATION_DURATION_MILLIS);
             }
@@ -255,11 +238,6 @@ public final class VideoListDemoActivity extends Activity implements OnFullscree
 
     }
 
-    /**
-     * Adapter for the video list. Manages a set of YouTubeThumbnailViews, including initializing each
-     * of them only once and keeping track of the loader of each one. When the ListFragment gets
-     * destroyed it releases all the loaders.
-     */
     private static final class PageAdapter extends BaseAdapter {
 
         private final List<VideoEntry> entries;
@@ -314,9 +292,8 @@ public final class VideoListDemoActivity extends Activity implements OnFullscree
             View view = convertView;
             VideoEntry entry = entries.get(position);
 
-            // There are three cases here
             if (view == null) {
-                // 1) The view has not yet been created - we need to initialize the YouTubeThumbnailView.
+
                 view = inflater.inflate(R.layout.video_list_item, parent, false);
                 YouTubeThumbnailView thumbnail = (YouTubeThumbnailView) view.findViewById(R.id.thumbnail);
                 thumbnail.setTag(entry.videoId);
@@ -325,12 +302,10 @@ public final class VideoListDemoActivity extends Activity implements OnFullscree
                 YouTubeThumbnailView thumbnail = (YouTubeThumbnailView) view.findViewById(R.id.thumbnail);
                 YouTubeThumbnailLoader loader = thumbnailViewToLoaderMap.get(thumbnail);
                 if (loader == null) {
-                    // 2) The view is already created, and is currently being initialized. We store the
-                    //    current videoId in the tag.
+
                     thumbnail.setTag(entry.videoId);
                 } else {
-                    // 3) The view is already created and already initialized. Simply set the right videoId
-                    //    on the loader.
+
                     thumbnail.setImageResource(R.drawable.loading_thumbnail);
                     loader.setVideo(entry.videoId);
                 }
@@ -439,8 +414,6 @@ public final class VideoListDemoActivity extends Activity implements OnFullscree
             this.videoId = videoId;
         }
     }
-
-    // Utility methods for layouting.
 
     private int dpToPx(int dp) {
         return (int) (dp * getResources().getDisplayMetrics().density + 0.5f);

@@ -15,12 +15,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 public class HomeTrainActivity extends AppCompatActivity {
     Button high;
+    Button medi;
+    Button low;
     private DrawerLayout drawerLayout;
     private View drawerView;
 
     protected void onCreate(Bundle savedInstanceState) {
-
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hometrain);
@@ -40,21 +40,42 @@ public class HomeTrainActivity extends AppCompatActivity {
         high.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), HighActivity.class);
+                Intent intent = new Intent(getApplicationContext(), com.example.lwfb.HighActivity.class);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
+            }
+        });
+
+        medi = (Button)findViewById(R.id.medi);
+        medi.setOnClickListener(new  View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), com.example.lwfb.MediActivity.class);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+            }
+        });
+
+        low = (Button)findViewById(R.id.low);
+        low.setOnClickListener(new  View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), com.example.lwfb.LowActivity.class);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
             }
         });
 
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //SharedPreferences에 저장된 값들을 로그아웃 버튼을 누르면 삭제하기 위해
-                //SharedPreferences를 불러옵니다. 메인에서 만든 이름으로
+                //SharedPreferences에 저장된 값들을 로그아웃 버튼을 누르면 삭제하기 위해 SharedPreferences를 불러옴
                 Intent intent = new Intent(HomeTrainActivity.this, MainActivity.class);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
                 SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
                 SharedPreferences.Editor editor = auto.edit();
-                //editor.clear()는 auto에 들어있는 모든 정보를 기기에서 지웁니다.
+                //auto에 들어있는 모든 정보를 기기에서 지움
                 editor.clear();
                 editor.commit();
                 Toast.makeText(HomeTrainActivity.this, "로그아웃.", Toast.LENGTH_SHORT).show();
@@ -66,52 +87,28 @@ public class HomeTrainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeTrainActivity.this, MyInfo.class);
-                /*String id_value2 = null;
-                Intent i2 = getIntent();
-                i2.getStringExtra("id");
-                Bundle bundle2 = getIntent().getExtras();
-                if (bundle2 != null) {
-                    id_value2 = bundle2.getString("id");
-                    //Log.d("id", id_value2);
-                }
-                intent.putExtra("id", id_value2);
-                intent.putExtra("name", user_name);*/
+
                 startActivity(intent);
+                overridePendingTransition(0, 0);
             }
         });
 
         friendlist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeTrainActivity.this, FriendListActivity.class);
-                /*String id_value2 = null;
-                Intent i2 = getIntent();
-                i2.getStringExtra("id");
-                Bundle bundle2 = getIntent().getExtras();
-                if (bundle2 != null) {
-                    id_value2 = bundle2.getString("id");
-                    //Log.d("id", id_value2);
-                }
-                intent.putExtra("id", id_value2);
-                intent.putExtra("name", user_name);*/
+                Intent intent = new Intent(HomeTrainActivity.this, com.example.lwfb.FriendListActivity.class);
+
                 startActivity(intent);
+                overridePendingTransition(0, 0);
             }
         });
         notice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeTrainActivity.this, NoticeActivity.class);
-                /*String id_value2 = null;
-                Intent i2 = getIntent();
-                i2.getStringExtra("id");
-                Bundle bundle2 = getIntent().getExtras();
-                if (bundle2 != null) {
-                    id_value2 = bundle2.getString("id");
-                    //Log.d("id", id_value2);
-                }
-                intent.putExtra("id", id_value2);
-                intent.putExtra("name", user_name);*/
+
                 startActivity(intent);
+                overridePendingTransition(0, 0);
             }
         });
     }
@@ -135,13 +132,13 @@ public class HomeTrainActivity extends AppCompatActivity {
         }
         //drawerLayout.openDrawer(drawerView);
     };
+
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent(getApplicationContext(), PedoActivity.class);
         intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
+        overridePendingTransition(0, 0);
     }
-
-
 
 }

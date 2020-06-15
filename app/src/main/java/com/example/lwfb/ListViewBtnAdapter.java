@@ -19,7 +19,7 @@ public class ListViewBtnAdapter extends ArrayAdapter implements View.OnClickList
 
     // 생성자로부터 전달된 resource id 값을 저장.
     int resourceId ;
-    // 생성자로부터 전달된 ListBtnClickListener  저장.
+    // 생성자로부터 전달된 ListBtnClickListener 저장.
     private ListBtnClickListener listBtnClickListener ;
 
 

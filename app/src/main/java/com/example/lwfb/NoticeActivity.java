@@ -42,8 +42,9 @@ public class NoticeActivity extends AppCompatActivity implements View.OnClickLis
             public void onClick(View view) {
                 //SharedPreferences에 저장된 값들을 로그아웃 버튼을 누르면 삭제하기 위해
                 //SharedPreferences를 불러옵니다. 메인에서 만든 이름으로
-                Intent intent = new Intent(NoticeActivity.this, MainActivity.class);
+                Intent intent = new Intent(NoticeActivity.this, com.example.lwfb.MainActivity.class);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
                 SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
                 SharedPreferences.Editor editor = auto.edit();
                 //editor.clear()는 auto에 들어있는 모든 정보를 기기에서 지웁니다.
@@ -57,7 +58,7 @@ public class NoticeActivity extends AppCompatActivity implements View.OnClickLis
         myInfo.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(NoticeActivity.this, MyInfo.class);
+                Intent intent = new Intent(NoticeActivity.this, com.example.lwfb.MyInfo.class);
                 /*String id_value2 = null;
                 Intent i2 = getIntent();
                 i2.getStringExtra("id");
@@ -69,13 +70,14 @@ public class NoticeActivity extends AppCompatActivity implements View.OnClickLis
                 intent.putExtra("id", id_value2);
                 intent.putExtra("name", user_name);*/
                 startActivity(intent);
+                overridePendingTransition(0, 0);
             }
         });
 
         friendlist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(NoticeActivity.this, FriendListActivity.class);
+                Intent intent = new Intent(NoticeActivity.this, com.example.lwfb.FriendListActivity.class);
                 /*String id_value2 = null;
                 Intent i2 = getIntent();
                 i2.getStringExtra("id");
@@ -87,12 +89,13 @@ public class NoticeActivity extends AppCompatActivity implements View.OnClickLis
                 intent.putExtra("id", id_value2);
                 intent.putExtra("name", user_name);*/
                 startActivity(intent);
+                overridePendingTransition(0, 0);
             }
         });
         hometraining.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(NoticeActivity.this, HomeTrainActivity.class);
+                Intent intent = new Intent(NoticeActivity.this, com.example.lwfb.HomeTrainActivity.class);
                 /*String id_value2 = null;
                 Intent i2 = getIntent();
                 i2.getStringExtra("id");
@@ -104,6 +107,7 @@ public class NoticeActivity extends AppCompatActivity implements View.OnClickLis
                 intent.putExtra("id", id_value2);
                 intent.putExtra("name", user_name);*/
                 startActivity(intent);
+                overridePendingTransition(0, 0);
             }
         });
 
@@ -148,5 +152,8 @@ public class NoticeActivity extends AppCompatActivity implements View.OnClickLis
         Intent intent = new Intent(getApplicationContext(), PedoActivity.class);
         intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
+        overridePendingTransition(0, 0);
+        overridePendingTransition(0, 0);
+        overridePendingTransition(0, 0);
     }
 }

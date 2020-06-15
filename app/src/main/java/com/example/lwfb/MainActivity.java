@@ -73,7 +73,6 @@ public class MainActivity extends AppCompatActivity {
                             pass = map.get("pw");
                             step_num = String.valueOf(map.get("step"));
 
-
                             Log.d("password", pass);
                             Log.d("step", step_num);
                         }
@@ -87,10 +86,10 @@ public class MainActivity extends AppCompatActivity {
                             intent.putExtra("goal_step", goal_step);
                             intent.putExtra("name", map.get("name"));
                             startActivity(intent);
+                            overridePendingTransition(0, 0);
                             finish();
                         }
                     }
-                    //Toast.makeText(getApplicationContext(),"존재하지 않는 아이디이거나 비밀번호를 잘 못 입력하셨습니다.",Toast.LENGTH_LONG).show();
                 }
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
@@ -125,13 +124,12 @@ public class MainActivity extends AppCompatActivity {
                                 if(pass.equals(checkpw.getText().toString()))
                                 {
                                     SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
-                                    //아이디가 '부르곰'이고 비밀번호가 '네이버'일 경우 SharedPreferences.Editor를 통해
-                                    //auto의 loginId와 loginPwd에 값을 저장해 줍니다.
+                                    //아이디가 일치하고 비밀번호가 일치할 경우 SharedPreferences.Editor를 통해 auto의 loginId와 loginPwd에 값을 저장.
                                     SharedPreferences.Editor autoLogin = auto.edit();
                                     autoLogin.putString("inputId", checkId.getText().toString());
                                     autoLogin.putString("inputPwd", checkpw.getText().toString());
 
-                                    //꼭 commit()을 해줘야 값이 저장됩니다 ㅎㅎ
+                                    //commit()으로 값 저장
                                     autoLogin.commit();
                                     Toast.makeText(getApplicationContext(), "로그인에 성공하셨습니다.", Toast.LENGTH_LONG).show();
                                     Intent intent = new Intent(getApplicationContext(), PedoActivity.class);
@@ -139,16 +137,10 @@ public class MainActivity extends AppCompatActivity {
                                     intent.putExtra("step", step_num);
                                     intent.putExtra("goal_step", goal_step);
                                     intent.putExtra("name", map.get("name"));
-//                                    Intent intent2 = new Intent(getApplicationContext(), com.example.lwfb.RealService.class);
-//                                    intent.putExtra("id", dt_id);
-//                                    intent.putExtra("step", step_num);
-                                    startActivity(intent);
-                                    //Intent theIntent = new Intent(this, PedoActivity.class);
 
-                                    //startActivity(theIntent);
-                                    //Map<String, Object> taskmap = new HashMap<String, Object>;
-                                    //taskmap.put("")
-                                    //finish();
+                                    startActivity(intent);
+                                    overridePendingTransition(0, 0);
+
                                     return;
                                 }
 
@@ -167,8 +159,9 @@ public class MainActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                Intent intent = new Intent(getApplicationContext(), com.example.lwfb.RegisterActivity.class);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
             }
         });
 
