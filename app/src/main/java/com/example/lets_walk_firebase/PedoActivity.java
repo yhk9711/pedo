@@ -47,6 +47,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
     private DatabaseReference databaseReference;
 
+
     public static int cnt = 0;
     public static int kcal = cnt / 30;
     public static double dis = cnt / 1.5;
@@ -90,6 +91,21 @@ public class PedoActivity extends Activity implements SensorEventListener {
         friends.add(my_id);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("CALORIE").child("0");
+        /*databaseReference = FirebaseDatabase.getInstance().getReference("MEMBER").child(my_id);
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Map<String, String> map = (Map) dataSnapshot.getValue();
+                goal_step = map.get("goal_step");
+                goal = Integer.parseInt(goal_step);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });*/
+
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         accelerormeterSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -107,6 +123,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
         if (bundle != null) {
             step_value = bundle.getString("step");
             Log.d("step_value", step_value);
+
         }
 
         //String goal_step = null;
@@ -116,6 +133,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
         if (bundle1 != null) {
             goal_step = bundle1.getString("goal_step");
             Log.d("goal_step", goal_step);
+
         }
 
 
@@ -138,7 +156,9 @@ public class PedoActivity extends Activity implements SensorEventListener {
         my_id = main_id;
 
         cnt = Integer.parseInt(step_value);
-        goal = Integer.parseInt(goal_step);
+        Log.e("Pedo의 onCreate에서 step", step_value);
+        Log.e("Pedo의 onCreate에서 cnt", String.valueOf(cnt));
+        //goal = Integer.parseInt(goal_step);
         kcal = cnt / 30;
 
 
@@ -289,7 +309,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
         Button notice = (Button) findViewById(R.id.notice);
         Button hometraining = (Button) findViewById(R.id.hometraining);
         TextView name = (TextView) findViewById(R.id.nameofuser);
-        name.setText("" + user_name + " 님");
+        name.setText("" + my_name + " 님");
 
 
         logout.setOnClickListener(new OnClickListener() {
@@ -312,14 +332,14 @@ public class PedoActivity extends Activity implements SensorEventListener {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PedoActivity.this, MyInfo.class);
-                String id_value2 = null;
+                /*String id_value2 = null;
                 Intent i2 = getIntent();
                 i2.getStringExtra("id");
                 Bundle bundle2 = getIntent().getExtras();
                 if (bundle2 != null) {
                     id_value2 = bundle2.getString("id");
-                }
-                intent.putExtra("id", id_value2);
+                }*/
+                intent.putExtra("id", my_id);
                 intent.putExtra("name", user_name);
                 startActivity(intent);
             }
@@ -378,28 +398,13 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
     @Override
     protected void onDestroy() {
+        step_value = String.valueOf(cnt);
         super.onDestroy();
         Log.d("여기는", "페도의 onDestroy");
 
-        /*String id_value2 = null;
-        Intent i4 = getIntent();
-        i4.getStringExtra("id");
-        Bundle bundle2 = getIntent().getExtras();
-        if (bundle2 != null) {
-            id_value2 = bundle2.getString("id");
-            Log.d("id", id_value2);
-        }
-        String step_value = null;
-        Intent i = getIntent();
-        i.getStringExtra("step");
-        Bundle bundle = getIntent().getExtras();
-        if (bundle != null) {
-            step_value = bundle.getString("step");
-            Log.d("step_value", step_value);
-        }*/
         serviceIntent = new Intent(this, RealService.class);
-        serviceIntent.putExtra("id", main_id);
-        serviceIntent.putExtra("step", step_value);
+        serviceIntent.putExtra("id", my_id);
+        serviceIntent.putExtra("step", cnt);
         startService(serviceIntent);
 
     }
@@ -433,6 +438,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
         if (serviceIntent != null) {
             stopService(serviceIntent);
         }
+        step_value = String.valueOf(cnt);
 
         if (accelerormeterSensor != null) {
             sensorManager.registerListener(this, accelerormeterSensor,
@@ -622,6 +628,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
             Log.e("감지", "받아짐");
             String pass = intent.getStringExtra("DATAPASSED");
             cnt = Integer.parseInt(pass);
+            step_value = String.valueOf(cnt);
             kcal = cnt / 30;
             databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
@@ -780,8 +787,8 @@ public class PedoActivity extends Activity implements SensorEventListener {
             }*/
             serviceIntent = new Intent(this, RealService.class);
 
-            serviceIntent.putExtra("id", main_id);
-            serviceIntent.putExtra("step", step_value);
+            serviceIntent.putExtra("id", my_id);
+            serviceIntent.putExtra("step", cnt);
             startService(serviceIntent);
         }
     }
@@ -928,6 +935,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
                     fView.setText("" + goal);
                     ++cnt;
+                    step_value = String.valueOf(cnt);
                     kView.setText("" + cnt / 30);
                     String km = String.format("%.1f", (cnt / 1.5));
                     dView.setText("" + km);

@@ -84,6 +84,7 @@ public class RealService extends Service implements SensorEventListener {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Map<String, String> map = (Map) dataSnapshot.getValue();
                 String value = String.valueOf(map.get("step"));
+                Log.e("service에서 받아온 step", value);
                 PedoActivity.cnt = Integer.parseInt(value);
                 //PedoActivity.kcal = PedoActivity.cnt / 30;
                 Map<String, List<String>> map2 = (Map) dataSnapshot.getValue();
@@ -139,6 +140,7 @@ public class RealService extends Service implements SensorEventListener {
 
 
                     PedoActivity.cnt++;
+                    PedoActivity.step_value = String.valueOf(PedoActivity.cnt);
                     PedoActivity.kcal = PedoActivity.cnt/30;
                     FirebasePost user = new FirebasePost();
 

@@ -114,7 +114,6 @@ public class MyInfo extends AppCompatActivity {
                         FirebasePost user = new FirebasePost();
                         user.WriteGoal(id_value, PedoActivity.goal);
 
-
                         break;
 
 

@@ -181,7 +181,6 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
 
                 Iterator it = sortByValue(sort_friends).iterator();
 
-
                 if (0<friendname.size()){
                     item = new ListViewBtnItem();
                     item.setIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.firstimg));
@@ -191,7 +190,10 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
                     Log.d("item", item.toString());
                     list2.add(item);
                     Log.d("list2", list2.toString());
-                    if(temp == fname){
+                    Log.d("내이름", PedoActivity.my_name);
+                    if(temp.equals(PedoActivity.my_name)){
+                        Log.d("temp", temp);
+                        Log.d("내이름", PedoActivity.my_name);
                         nth.setText("" + 1);
                     }
                 }
@@ -204,7 +206,7 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
                     Log.d("item", item.toString());
                     list2.add(item);
                     Log.d("list2", list2.toString());
-                    if(temp == fname){
+                    if(temp.equals(PedoActivity.my_name)){
                         nth.setText("" + 2);
                     }
                 }
@@ -218,7 +220,7 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
                     Log.d("item", item.toString());
                     list2.add(item);
                     Log.d("list2", list2.toString());
-                    if(temp == fname){
+                    if(temp.equals(PedoActivity.my_name)){
                         nth.setText("" + 3);
                     }
                 }
@@ -232,13 +234,12 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
                             Log.d("item", item.toString());
                             list2.add(item);
                             Log.d("list2", list2.toString());
-                            if(temp == fname){
+                            if(temp.equals(PedoActivity.my_name)){
                                 nth.setText("" + (k + 1));
                             }
                         }
                     }
                 }
-
             }
 
             @Override

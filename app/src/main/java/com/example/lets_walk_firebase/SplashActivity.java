@@ -21,6 +21,7 @@ public class SplashActivity extends AppCompatActivity {
             public void run(){
                 startActivity(new Intent(getApplication(), MainActivity.class));
                 /* 스플래시 액티비티를 스택에서 제거. */
+                overridePendingTransition(0, 0);
                 SplashActivity.this.finish();
             }
         }, SPLASH_DISPLAY_TIME);
