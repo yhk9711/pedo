@@ -20,6 +20,7 @@ public class SplashActivity extends AppCompatActivity {
             @Override
             public void run(){
                 startActivity(new Intent(getApplication(), MainActivity.class));
+                overridePendingTransition(0, 0);
                 /* 스플래시 액티비티를 스택에서 제거. */
                 SplashActivity.this.finish();
             }

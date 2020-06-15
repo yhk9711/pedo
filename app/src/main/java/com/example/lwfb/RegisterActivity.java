@@ -216,6 +216,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         mPostReference.updateChildren(childUpdates);
     }
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
+        overridePendingTransition(0, 0);
+    }
 
 
     public void getFirebaseDatabase(){

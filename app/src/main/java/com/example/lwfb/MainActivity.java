@@ -167,4 +167,21 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+    //뒤로가기 2번 클릭 시 종료
+    long time = 0; //뒤로가기 버튼이 클릭된 시간
+
+    @Override
+    public void onBackPressed() {
+        //2초 이내에 뒤로가기 버튼을 재 클릭 시 앱 종료
+        if (System.currentTimeMillis() - time >= 2000) {
+            time = System.currentTimeMillis();
+            Toast.makeText(this, "'뒤로' 버튼을 한번 더 누르시면 앱이 종료됩니다.", Toast.LENGTH_SHORT).show();
+        } else if (System.currentTimeMillis() - time < 2000) {
+
+            finishAffinity();
+            //finish();
+            System.runFinalization();
+            System.exit(0);
+        }
+    }
 }
