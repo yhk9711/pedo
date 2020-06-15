@@ -1,4 +1,5 @@
 package com.example.lets_walk_firebase;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
@@ -22,6 +23,8 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.lets_walk_firebase.R;
+import com.example.lets_walk_firebase.DeveloperKey;
 import com.google.android.youtube.player.YouTubeApiServiceUtil;
 import com.google.android.youtube.player.YouTubeInitializationResult;
 import com.google.android.youtube.player.YouTubePlayer;
@@ -50,7 +53,7 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
  * rebuffering.
  */
 @TargetApi(13)
-public final class HighActivity extends Activity implements OnFullscreenListener {
+public final class LowActivity extends Activity implements OnFullscreenListener {
 
     /** The duration of the animation sliding up the video in portrait. */
     private static final int ANIMATION_DURATION_MILLIS = 300;
@@ -72,7 +75,7 @@ public final class HighActivity extends Activity implements OnFullscreenListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_high);
+        setContentView(R.layout.activity_low);
 
         listFragment = (VideoListFragment) getFragmentManager().findFragmentById(R.id.list_fragment);
         listFragment.getView().setBackgroundColor(Color.rgb(211, 235, 242));
@@ -193,11 +196,11 @@ public final class HighActivity extends Activity implements OnFullscreenListener
         private static final List<VideoEntry> VIDEO_LIST;
         static {
             List<VideoEntry> list = new ArrayList<VideoEntry>();
-            list.add(new VideoEntry(" ", "MMswNnLdHso"));
-            list.add(new VideoEntry(" ", "lKwZ2DU4P-A"));
-            list.add(new VideoEntry(" ", "h9E_JHENdNI"));
-            list.add(new VideoEntry(" ", "ZZ0rheDg7AQ"));
-            list.add(new VideoEntry(" ", "D8z8nN_u7CM"));
+            list.add(new VideoEntry(" ", "qaBIL8NMCMo"));
+            list.add(new VideoEntry(" ", "t70t-sklypk"));
+            list.add(new VideoEntry(" ", "d4Fx4mLBjMA"));
+            list.add(new VideoEntry(" ", "bo6G-AWcFpM"));
+            list.add(new VideoEntry(" ", "yTTSfKtdJy0"));
             VIDEO_LIST = Collections.unmodifiableList(list);
         }
 
@@ -417,7 +420,7 @@ public final class HighActivity extends Activity implements OnFullscreenListener
         public void onInitializationSuccess(Provider provider, YouTubePlayer player, boolean restored) {
             this.player = player;
             player.addFullscreenControlFlag(YouTubePlayer.FULLSCREEN_FLAG_CUSTOM_LAYOUT);
-            player.setOnFullscreenListener((HighActivity) getActivity());
+            player.setOnFullscreenListener((LowActivity) getActivity());
             if (!restored && videoId != null) {
                 player.cueVideo(videoId);
             }

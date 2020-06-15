@@ -71,7 +71,6 @@ public class RealService extends Service implements SensorEventListener {
     public int onStartCommand(Intent intent, int flags, int startId) {
         serviceIntent = intent;
 
-
         /*String step_value = serviceIntent.getStringExtra("step");
         PedoActivity.cnt = Integer.parseInt(step_value);*/
 

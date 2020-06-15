@@ -15,12 +15,12 @@ import androidx.drawerlayout.widget.DrawerLayout;
 
 public class HomeTrainActivity extends AppCompatActivity {
     Button high;
+    Button medi;
+    Button low;
     private DrawerLayout drawerLayout;
     private View drawerView;
 
     protected void onCreate(Bundle savedInstanceState) {
-
-
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_hometrain);
@@ -45,6 +45,24 @@ public class HomeTrainActivity extends AppCompatActivity {
             }
         });
 
+        medi = (Button)findViewById(R.id.medi);
+        medi.setOnClickListener(new  View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), MediActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        low = (Button)findViewById(R.id.low);
+        low.setOnClickListener(new  View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getApplicationContext(), LowActivity.class);
+                startActivity(intent);
+            }
+        });
+
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -65,6 +83,7 @@ public class HomeTrainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeTrainActivity.this, MyInfo.class);
+
                 startActivity(intent);
             }
         });
@@ -73,6 +92,7 @@ public class HomeTrainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeTrainActivity.this, FriendListActivity.class);
+
                 startActivity(intent);
             }
         });
@@ -80,6 +100,7 @@ public class HomeTrainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeTrainActivity.this, NoticeActivity.class);
+
                 startActivity(intent);
             }
         });
@@ -105,6 +126,11 @@ public class HomeTrainActivity extends AppCompatActivity {
         //drawerLayout.openDrawer(drawerView);
     };
 
-
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(getApplicationContext(), PedoActivity.class);
+        intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
+    }
 
 }

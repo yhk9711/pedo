@@ -77,10 +77,10 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
     public static Intent serviceIntent;
 
-    String dt_id;
-    String kcal_num;
     String user_name = null;
-
+    public static String step_value;
+    public static String goal_step;
+    public static String main_id;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -100,7 +100,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
         foodView = (TextView) findViewById(R.id.kcalfoodname);
 
 
-        String step_value = null;
+        //String step_value = null;
         Intent i = getIntent();
         i.getStringExtra("step");
         Bundle bundle = getIntent().getExtras();
@@ -109,7 +109,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
             Log.d("step_value", step_value);
         }
 
-        String goal_step = null;
+        //String goal_step = null;
         Intent i2 = getIntent();
         i2.getStringExtra("goal_step");
         Bundle bundle1 = getIntent().getExtras();
@@ -127,7 +127,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
             user_name = my_name;
         }
 
-        String main_id = null;
+        //String main_id = null;
         Intent i44 = getIntent();
         i44.getStringExtra("id");
         Bundle bundle33 = getIntent().getExtras();
@@ -136,7 +136,6 @@ public class PedoActivity extends Activity implements SensorEventListener {
             Log.d("id", main_id);
         }
         my_id = main_id;
-
 
         cnt = Integer.parseInt(step_value);
         goal = Integer.parseInt(goal_step);
@@ -319,7 +318,6 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 Bundle bundle2 = getIntent().getExtras();
                 if (bundle2 != null) {
                     id_value2 = bundle2.getString("id");
-                    //Log.d("id", id_value2);
                 }
                 intent.putExtra("id", id_value2);
                 intent.putExtra("name", user_name);
@@ -353,7 +351,6 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 Bundle bundle2 = getIntent().getExtras();
                 if (bundle2 != null) {
                     id_value2 = bundle2.getString("id");
-
                 }
                 intent.putExtra("id", id_value2);
                 intent.putExtra("name", user_name);
@@ -370,15 +367,12 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 Bundle bundle2 = getIntent().getExtras();
                 if (bundle2 != null) {
                     id_value2 = bundle2.getString("id");
-
                 }
                 intent.putExtra("id", id_value2);
                 intent.putExtra("name", user_name);
                 startActivity(intent);
             }
         });
-
-
 
     }
 
@@ -387,8 +381,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
         super.onDestroy();
         Log.d("여기는", "페도의 onDestroy");
 
-
-        String id_value2 = null;
+        /*String id_value2 = null;
         Intent i4 = getIntent();
         i4.getStringExtra("id");
         Bundle bundle2 = getIntent().getExtras();
@@ -403,9 +396,9 @@ public class PedoActivity extends Activity implements SensorEventListener {
         if (bundle != null) {
             step_value = bundle.getString("step");
             Log.d("step_value", step_value);
-        }
+        }*/
         serviceIntent = new Intent(this, RealService.class);
-        serviceIntent.putExtra("id", id_value2);
+        serviceIntent.putExtra("id", main_id);
         serviceIntent.putExtra("step", step_value);
         startService(serviceIntent);
 
@@ -769,7 +762,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
             unregisterReceiver(broadcastReceiver);
             Log.e("감지", "페도의 onstop입니다");
 
-            String id_value2 = null;
+           /* String id_value2 = null;
             Intent i4 = getIntent();
             i4.getStringExtra("id");
             Bundle bundle2 = getIntent().getExtras();
@@ -784,10 +777,10 @@ public class PedoActivity extends Activity implements SensorEventListener {
             if (bundle != null) {
                 step_value = bundle.getString("step");
                 Log.d("step_value", step_value);
-            }
+            }*/
             serviceIntent = new Intent(this, RealService.class);
 
-            serviceIntent.putExtra("id", id_value2);
+            serviceIntent.putExtra("id", main_id);
             serviceIntent.putExtra("step", step_value);
             startService(serviceIntent);
         }
@@ -995,6 +988,16 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 intent2.putExtra("id", my_id);
 
             }
+        }
+    }
+    private long time= 0;
+    @Override
+    public void onBackPressed(){
+        if(System.currentTimeMillis()-time>=2000){
+            time=System.currentTimeMillis();
+            Toast.makeText(getApplicationContext(),"뒤로 버튼을 한번 더 누르면 종료합니다.",Toast.LENGTH_SHORT).show();
+        }else if(System.currentTimeMillis()-time<2000){
+            finish();
         }
     }
 

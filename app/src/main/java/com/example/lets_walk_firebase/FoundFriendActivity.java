@@ -279,5 +279,11 @@ public class FoundFriendActivity extends AppCompatActivity {
         }
         //drawerLayout.openDrawer(drawerView);
     };
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(getApplicationContext(), FindFriendActivity.class);
+        intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
+    }
 
 }

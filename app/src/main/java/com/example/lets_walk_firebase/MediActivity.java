@@ -1,4 +1,5 @@
 package com.example.lets_walk_firebase;
+
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.annotation.TargetApi;
@@ -50,7 +51,7 @@ import static android.view.ViewGroup.LayoutParams.WRAP_CONTENT;
  * rebuffering.
  */
 @TargetApi(13)
-public final class HighActivity extends Activity implements OnFullscreenListener {
+public final class MediActivity extends Activity implements OnFullscreenListener {
 
     /** The duration of the animation sliding up the video in portrait. */
     private static final int ANIMATION_DURATION_MILLIS = 300;
@@ -72,7 +73,7 @@ public final class HighActivity extends Activity implements OnFullscreenListener
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_high);
+        setContentView(R.layout.activity_medi);
 
         listFragment = (VideoListFragment) getFragmentManager().findFragmentById(R.id.list_fragment);
         listFragment.getView().setBackgroundColor(Color.rgb(211, 235, 242));
@@ -193,11 +194,11 @@ public final class HighActivity extends Activity implements OnFullscreenListener
         private static final List<VideoEntry> VIDEO_LIST;
         static {
             List<VideoEntry> list = new ArrayList<VideoEntry>();
-            list.add(new VideoEntry(" ", "MMswNnLdHso"));
-            list.add(new VideoEntry(" ", "lKwZ2DU4P-A"));
-            list.add(new VideoEntry(" ", "h9E_JHENdNI"));
-            list.add(new VideoEntry(" ", "ZZ0rheDg7AQ"));
-            list.add(new VideoEntry(" ", "D8z8nN_u7CM"));
+            list.add(new VideoEntry(" ", "ShLzhi1JiY0"));
+            list.add(new VideoEntry(" ", "1Z3icKanxKE"));
+            list.add(new VideoEntry(" ", "JBpXSRtZSBA"));
+            list.add(new VideoEntry(" ", "5oLomAysas4"));
+            list.add(new VideoEntry(" ", "y6-upNq1uZI"));
             VIDEO_LIST = Collections.unmodifiableList(list);
         }
 
@@ -417,7 +418,7 @@ public final class HighActivity extends Activity implements OnFullscreenListener
         public void onInitializationSuccess(Provider provider, YouTubePlayer player, boolean restored) {
             this.player = player;
             player.addFullscreenControlFlag(YouTubePlayer.FULLSCREEN_FLAG_CUSTOM_LAYOUT);
-            player.setOnFullscreenListener((HighActivity) getActivity());
+            player.setOnFullscreenListener((MediActivity) getActivity());
             if (!restored && videoId != null) {
                 player.cueVideo(videoId);
             }
