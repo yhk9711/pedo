@@ -28,6 +28,7 @@
         android:backgroundTint="#52789e"
         android:gravity="center"
         android:stateListAnimator="@null"
+        android:textSize="11dp"
         android:text="친구 끊기" />
 
 

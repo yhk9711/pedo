@@ -234,7 +234,7 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
 
         // Adapter 생성
         adapter = new ListViewBtnAdapter(this, R.layout.listview, list2, this);
-
+        list2 = new ArrayList<ListViewBtnItem>();
         // 리스트뷰 참조 및 Adapter달기
         listview = (ListView) findViewById(R.id.listview1);
         listview.setAdapter(adapter);
