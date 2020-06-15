@@ -40,44 +40,11 @@
                 android:textSize="25dp" />
         </LinearLayout>
 
-        <!--        <TextView-->
-        <!--            android:id="@+id/nowstepnum"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="71dp"-->
-        <!--            android:gravity="center"-->
-        <!--            android:text="현재 걸음수"-->
-        <!--            android:textStyle="bold"-->
-        <!--            android:textColor="#639cd4"-->
-        <!--            android:textSize="25dp" />-->
+
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/piechart"
             android:layout_width="260dp"
             android:layout_height="260dp" />
-        <!--        <LinearLayout-->
-        <!--            android:id="@+id/View"-->
-        <!--            android:layout_width="335dp"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:background="@drawable/round_corner"-->
-        <!--            android:gravity="center">-->
-
-        <!--            <TextView-->
-        <!--                android:id="@+id/cntView"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:gravity="center"-->
-        <!--                android:text="숫자"-->
-        <!--                android:textColor="#639cd4"-->
-        <!--                android:textSize="80dp" />-->
-
-        <!--            <TextView-->
-        <!--                android:id="@+id/steptext"-->
-        <!--                android:layout_width="wrap_content"-->
-        <!--                android:layout_height="wrap_content"-->
-        <!--                android:gravity="center"-->
-        <!--                android:text="    걸음"-->
-        <!--                android:textColor="#639cd4"-->
-        <!--                android:textSize="25dp" />-->
-        <!--        </LinearLayout>-->
 
         <LinearLayout
             android:layout_width="wrap_content"

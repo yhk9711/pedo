@@ -48,13 +48,12 @@ public class HomeTrainActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //SharedPreferences에 저장된 값들을 로그아웃 버튼을 누르면 삭제하기 위해
-                //SharedPreferences를 불러옵니다. 메인에서 만든 이름으로
+                //SharedPreferences에 저장된 값들을 로그아웃 버튼을 누르면 삭제하기 위해 SharedPreferences를 불러옴
                 Intent intent = new Intent(HomeTrainActivity.this, MainActivity.class);
                 startActivity(intent);
                 SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
                 SharedPreferences.Editor editor = auto.edit();
-                //editor.clear()는 auto에 들어있는 모든 정보를 기기에서 지웁니다.
+                //auto에 들어있는 모든 정보를 기기에서 지움
                 editor.clear();
                 editor.commit();
                 Toast.makeText(HomeTrainActivity.this, "로그아웃.", Toast.LENGTH_SHORT).show();
@@ -66,16 +65,6 @@ public class HomeTrainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeTrainActivity.this, MyInfo.class);
-                /*String id_value2 = null;
-                Intent i2 = getIntent();
-                i2.getStringExtra("id");
-                Bundle bundle2 = getIntent().getExtras();
-                if (bundle2 != null) {
-                    id_value2 = bundle2.getString("id");
-                    //Log.d("id", id_value2);
-                }
-                intent.putExtra("id", id_value2);
-                intent.putExtra("name", user_name);*/
                 startActivity(intent);
             }
         });
@@ -84,16 +73,6 @@ public class HomeTrainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeTrainActivity.this, FriendListActivity.class);
-                /*String id_value2 = null;
-                Intent i2 = getIntent();
-                i2.getStringExtra("id");
-                Bundle bundle2 = getIntent().getExtras();
-                if (bundle2 != null) {
-                    id_value2 = bundle2.getString("id");
-                    //Log.d("id", id_value2);
-                }
-                intent.putExtra("id", id_value2);
-                intent.putExtra("name", user_name);*/
                 startActivity(intent);
             }
         });
@@ -101,16 +80,6 @@ public class HomeTrainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeTrainActivity.this, NoticeActivity.class);
-                /*String id_value2 = null;
-                Intent i2 = getIntent();
-                i2.getStringExtra("id");
-                Bundle bundle2 = getIntent().getExtras();
-                if (bundle2 != null) {
-                    id_value2 = bundle2.getString("id");
-                    //Log.d("id", id_value2);
-                }
-                intent.putExtra("id", id_value2);
-                intent.putExtra("name", user_name);*/
                 startActivity(intent);
             }
         });

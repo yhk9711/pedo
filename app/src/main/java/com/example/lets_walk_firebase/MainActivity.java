@@ -89,7 +89,6 @@ public class MainActivity extends AppCompatActivity {
                             finish();
                         }
                     }
-                    //Toast.makeText(getApplicationContext(),"존재하지 않는 아이디이거나 비밀번호를 잘 못 입력하셨습니다.",Toast.LENGTH_LONG).show();
                 }
                 @Override
                 public void onCancelled(DatabaseError databaseError) {
@@ -124,8 +123,7 @@ public class MainActivity extends AppCompatActivity {
                                 if(pass.equals(checkpw.getText().toString()))
                                 {
                                     SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
-                                    //아이디가 일치하고 비밀번호가 일치할 경우 SharedPreferences.Editor를 통해
-                                    //auto의 loginId와 loginPwd에 값을 저장해 줍니다.
+                                    //아이디가 일치하고 비밀번호가 일치할 경우 SharedPreferences.Editor를 통해 auto의 loginId와 loginPwd에 값을 저장.
                                     SharedPreferences.Editor autoLogin = auto.edit();
                                     autoLogin.putString("inputId", checkId.getText().toString());
                                     autoLogin.putString("inputPwd", checkpw.getText().toString());

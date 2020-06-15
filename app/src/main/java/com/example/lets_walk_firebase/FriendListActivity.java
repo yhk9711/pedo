@@ -47,7 +47,7 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
     ListViewBtnItem item;
     public static ArrayList<ListViewBtnItem> list2 = new ArrayList<ListViewBtnItem>();
 
-    //    Button find_friend = (Button) findViewById(R.id.find_friend);
+
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -70,13 +70,12 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //SharedPreferences에 저장된 값들을 로그아웃 버튼을 누르면 삭제하기 위해
-                //SharedPreferences를 불러옵니다. 메인에서 만든 이름으로
+                //SharedPreferences에 저장된 값들을 로그아웃 버튼을 누르면 삭제하기 위해 SharedPreferences를 불러옴
                 Intent intent = new Intent(FriendListActivity.this, MainActivity.class);
                 startActivity(intent);
                 SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
                 SharedPreferences.Editor editor = auto.edit();
-                //editor.clear()는 auto에 들어있는 모든 정보를 기기에서 지웁니다.
+                // auto에 들어있는 모든 정보를 기기에서 지움
                 editor.clear();
                 editor.commit();
                 Toast.makeText(FriendListActivity.this, "로그아웃.", Toast.LENGTH_SHORT).show();
@@ -194,7 +193,7 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
                     item.setIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.thirdimg));
                     item.setText(3+ "등" + "   " + friendname.get(2) + "   " + friendstep.get(2) + "걸음");
                     Log.d("item", item.toString());
-                    //Log.d("fk", String.valueOf(friendname));
+
                     list2.add(item);
                     Log.d("list2", list2.toString());
 
@@ -220,7 +219,6 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
 
         ListView listview;
         ListViewBtnAdapter adapter;
-        //ArrayList<ListViewBtnItem> items = new ArrayList<ListViewBtnItem>();
 
         // items 로드.
         loadItemsFromDB(list2);
@@ -239,16 +237,6 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
             }
         });
 
-       /* my_id = null;
-//        Intent i4 = getIntent();
-//        i4.getStringExtra("my_id");
-//        Bundle bundle4 = getIntent().getExtras();
-//        if (bundle4 != null) {
-//            my_id = bundle4.getString("my_id");
-//            Log.d("my_id",my_id);
-//        }
-        Intent intent = new Intent(getApplicationContext(), FindFriendActivity.class);
-        intent.putExtra("my_id", my_id);*/
     }
 
     public boolean loadItemsFromDB(ArrayList<ListViewBtnItem> list) {
@@ -257,32 +245,6 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
         if (list == null) {
             list = new ArrayList<ListViewBtnItem>();
         }
-
-
-
-
-        /*readData(new FirebaseCallback() {
-
-            @Override
-            public void onCallback(List<ListViewBtnItem> list2, List<String> L1, List<String> L2) {
-
-                Log.d("L1", L1.toString());
-                Log.d("L2", String.valueOf(L2));
-                //list2 = list;
-                //list2 = list;
-
-                item = new ListViewBtnItem();
-                item.setIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.firstimg));
-                item.setText("1등" + "   " + L1.get(0) + "   " + L2.get(0) + "걸음");
-                //Log.d("fk", String.valueOf(friendname));
-                list2.add(item);
-                Log.d("list", list2.toString());
-
-
-
-            }
-        });*/
-
 
         // 순서를 위한 i 값을 1로 초기화.
         i = 1;
@@ -293,58 +255,7 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
         return true;
     }
 
-    /*private void readData(final FirebaseCallback firebaseCallback){
-        databaseReference = FirebaseDatabase.getInstance().getReference("MEMBER");
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
 
-            @Override
-            public void onDataChange(DataSnapshot dataSnapshot) {
-                Iterator<DataSnapshot> child = dataSnapshot.getChildren().iterator();
-                while (child.hasNext()) {
-                    DataSnapshot dt = child.next();
-                    dt_id = dt.getKey();
-                    Map<String, String> map = (Map) dt.getValue();
-                    Log.d("friendlist size", String.valueOf(friendlist.size()));
-                    for (int j = 0; j < friendlist.size(); j++) {
-                        Log.d("j", String.valueOf(j));
-                        fid = friendlist.get(j);
-                        Log.d("fid", fid);
-                        Log.d("dt_id", dt_id);
-                        if (dt.getKey().equals(fid)) { //DB의 id와 friendlist의 id가 같다면 해당 id에 대한 정보를 DB에서 가져옴
-                            fname = map.get("name");
-                            fstep = String.valueOf(map.get("step"));
-                            friendname.add(fname);
-                            friendstep.add(fstep);
-//                            Log.d("fname", fname);
-//                            Log.d("fstep", fstep);
-                            Log.d("friendname", String.valueOf(friendname));
-                            Log.d("friendstep", String.valueOf(friendstep));
-
-                            //Log.d("list2", String.valueOf(list2));
-
-                        }
-
-                    }
-
-                }
-
-                firebaseCallback.onCallback(list2, friendname, friendstep);
-
-            }
-
-
-            @Override
-            public void onCancelled(DatabaseError databaseError) {
-
-            }
-        });
-
-    }
-    private interface FirebaseCallback {
-        void onCallback(List<ListViewBtnItem> list, List<String> L1, List<String> L2);
-
-    }
-*/
 
     @Override
     public void onListBtnClick(int position) {

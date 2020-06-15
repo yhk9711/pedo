@@ -35,20 +35,6 @@
             android:id="@+id/barchart"
             android:layout_width="match_parent"
             android:layout_height="340dp" />
-        <!--        <ImageView-->
-        <!--            android:id="@+id/imageView"-->
-        <!--            android:layout_width="346dp"-->
-        <!--            android:layout_height="309dp"-->
-        <!--            app:srcCompat="@drawable/stepgraph" />-->
-
-        <!--        <TextView-->
-        <!--            android:id="@+id/nowstepnum"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="71dp"-->
-        <!--            android:gravity="center"-->
-        <!--            android:text="걸음 수 그래프"-->
-        <!--            android:textColor="#1B5019"-->
-        <!--            android:textSize="25dp" />-->
 
 
         <LinearLayout
@@ -145,12 +131,7 @@
                 android:text="수정" />
         </LinearLayout>
 
-        <!--        <Button-->
-        <!--            android:id="@+id/logout"-->
-        <!--            android:layout_width="match_parent"-->
-        <!--            android:layout_height="wrap_content"-->
-        <!--            android:text="Button"-->
-        <!--            android:background="#1B5019"/>-->
+
     </LinearLayout>
     <include layout="@layout/nav1"/>
 </androidx.drawerlayout.widget.DrawerLayout>

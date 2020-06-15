@@ -99,7 +99,6 @@ public class RealService extends Service implements SensorEventListener {
             }
         });
 
-        // Log.e("MyService", "Service startId = " + startId);
         super.onStart(intent, startId);
         Log.e("감지", "서비스의 onstart입니다");
 
@@ -118,20 +117,9 @@ public class RealService extends Service implements SensorEventListener {
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 
     }
-/*
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        Notifi_M = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-        myServiceHandler handler = new myServiceHandler();
-        Log.d("여기는", "서비스의 onStartCommand");
-        return START_STICKY;
-    }
-*/
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        //Log.d("여기는", "서비스의 sensor_changed");
-
 
         String id_value = serviceIntent.getStringExtra("id");
 
@@ -162,14 +150,12 @@ public class RealService extends Service implements SensorEventListener {
                     String pass = Integer.toString(PedoActivity.cnt);
                     intent1.putExtra("DATAPASSED", pass);
                     sendBroadcast(intent1);
-                    //Log.e("감지", "이벤트 발생");
                 }
                 lastX = event.values[DATA_X];
                 lastY = event.values[DATA_Y];
                 lastZ = event.values[DATA_Z];
             }
         }
-        // }
     }
 
     class myServiceHandler extends Handler{
@@ -184,7 +170,7 @@ public class RealService extends Service implements SensorEventListener {
                 Notifi.flags = Notification.FLAG_ONLY_ALERT_ONCE;
                 Notifi.flags = Notification.FLAG_AUTO_CANCEL;
                 Notifi_M.notify(777, Notifi);
-                //Toast.makeText(RealService.this, "", Toast.LENGTH_LONG).show();
+
 
             }
         }
@@ -204,7 +190,6 @@ public class RealService extends Service implements SensorEventListener {
     public void onDestroy() {
         super.onDestroy();
 
-        //serviceIntent = null;
 
         thread.stopForever();
         thread = null;

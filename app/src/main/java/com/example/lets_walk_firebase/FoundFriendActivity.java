@@ -29,9 +29,6 @@ import java.util.Map;
 
 public class FoundFriendActivity extends AppCompatActivity {
 
-    private TextView nameView;
-    private TextView ageView;
-    private TextView genderView;
 
     private DrawerLayout drawerLayout;
     private View drawerView;
@@ -49,8 +46,6 @@ public class FoundFriendActivity extends AppCompatActivity {
 
     String id_value;
 
-//    List<String> friends = new ArrayList<String>();
-    //String my_id;
 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -65,7 +60,6 @@ public class FoundFriendActivity extends AppCompatActivity {
         drawerLayout.setDrawerListener(listener);
         TextView names = (TextView) findViewById(R.id.nameofuser);
         names.setText("" + PedoActivity.my_name + " 님");
-        //drawerLayout.openDrawer(drawerView);
         Button logout = (Button) findViewById(R.id.button);
         Button friendlist = (Button) findViewById(R.id.friendlist);
         Button notice = (Button) findViewById(R.id.notice);
@@ -73,13 +67,12 @@ public class FoundFriendActivity extends AppCompatActivity {
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //SharedPreferences에 저장된 값들을 로그아웃 버튼을 누르면 삭제하기 위해
-                //SharedPreferences를 불러옵니다. 메인에서 만든 이름으로
+                //SharedPreferences에 저장된 값들을 로그아웃 버튼을 누르면 삭제하기 위해 SharedPreferences를 불러옴
                 Intent intent = new Intent(FoundFriendActivity.this, MainActivity.class);
                 startActivity(intent);
                 SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
                 SharedPreferences.Editor editor = auto.edit();
-                //editor.clear()는 auto에 들어있는 모든 정보를 기기에서 지웁니다.
+                //auto에 들어있는 모든 정보를 기기에서 지움
                 editor.clear();
                 editor.commit();
                 Toast.makeText(FoundFriendActivity.this, "로그아웃.", Toast.LENGTH_SHORT).show();
@@ -91,16 +84,6 @@ public class FoundFriendActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(FoundFriendActivity.this, FriendListActivity.class);
-                /*String id_value2 = null;
-                Intent i2 = getIntent();
-                i2.getStringExtra("id");
-                Bundle bundle2 = getIntent().getExtras();
-                if (bundle2 != null) {
-                    id_value2 = bundle2.getString("id");
-                    //Log.d("id", id_value2);
-                }
-                intent.putExtra("id", id_value2);
-                intent.putExtra("name", user_name);*/
                 startActivity(intent);
             }
         });
@@ -108,16 +91,6 @@ public class FoundFriendActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(FoundFriendActivity.this, NoticeActivity.class);
-                /*String id_value2 = null;
-                Intent i2 = getIntent();
-                i2.getStringExtra("id");
-                Bundle bundle2 = getIntent().getExtras();
-                if (bundle2 != null) {
-                    id_value2 = bundle2.getString("id");
-                    //Log.d("id", id_value2);
-                }
-                intent.putExtra("id", id_value2);
-                intent.putExtra("name", user_name);*/
                 startActivity(intent);
             }
         });
@@ -125,16 +98,6 @@ public class FoundFriendActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(FoundFriendActivity.this, HomeTrainActivity.class);
-                /*String id_value2 = null;
-                Intent i2 = getIntent();
-                i2.getStringExtra("id");
-                Bundle bundle2 = getIntent().getExtras();
-                if (bundle2 != null) {
-                    id_value2 = bundle2.getString("id");
-                    //Log.d("id", id_value2);
-                }
-                intent.putExtra("id", id_value2);
-                intent.putExtra("name", user_name);*/
                 startActivity(intent);
             }
         });
@@ -194,8 +157,7 @@ public class FoundFriendActivity extends AppCompatActivity {
                         Log.d("s", s);
                         Log.d("id_value",id_value);
                         Toast.makeText(getApplicationContext(), "이미 친구 관계입니다", Toast.LENGTH_SHORT).show();
-//                        Intent intent = new Intent(FoundFriendActivity.this, FindFriendActivity.class);
-//                        startActivity(intent);
+
                         a = 1;
                         break;
                     } else;
@@ -230,9 +192,6 @@ public class FoundFriendActivity extends AppCompatActivity {
                         }
                     });
 
-
-//                    Intent intent = new Intent(FoundFriendActivity.this, FindFriendActivity.class);
-//                    startActivity(intent);
                 }
 
             }
@@ -249,7 +208,7 @@ public class FoundFriendActivity extends AppCompatActivity {
                         while(child.hasNext()) {
                             DataSnapshot dt = child.next();
                             dt_id = dt.getKey();
-//                            my_id= dt_id;
+
                             Map<String, String> map = (Map) dt.getValue();
 
                             while (dt.getKey().equals(Friend_ID.getText().toString())) {
@@ -260,10 +219,9 @@ public class FoundFriendActivity extends AppCompatActivity {
                                 Log.d("name", name);
                                 Log.d("age", age);
                                 Log.d("gender", gender);
-                                //Toast.makeText(getApplicationContext(), "로그인에 성공하셨습니다.", Toast.LENGTH_SHORT).show();
+
                                 Intent intent = new Intent(getApplicationContext(), FoundFriendActivity.class);
                                 intent.putExtra("id", dt_id);
-//                                intent.putExtra("my_id", my_id);
                                 intent.putExtra("name", name);
                                 intent.putExtra("age", age);
                                 intent.putExtra("gender", gender);
@@ -293,19 +251,15 @@ public class FoundFriendActivity extends AppCompatActivity {
 
     }
     private void dtid(String id){
-        //FirebasePost.friends.add(id);
-        //Log.d("id",id);
+
         FirebasePost p = new FirebasePost();
 
-//        p.WriteStep(PedoActivity.my_id, 34);
         Log.d("fire.fr", String.valueOf(FirebasePost.friends));
         p.WriteFriends(PedoActivity.my_id, PedoActivity.friends);
         Intent intent = new Intent(getApplicationContext(), FindFriendActivity.class);
         startActivity(intent);
-
-
-
     }
+
     DrawerLayout.DrawerListener listener = new DrawerLayout.DrawerListener() {
 
         @Override
@@ -326,17 +280,4 @@ public class FoundFriendActivity extends AppCompatActivity {
         //drawerLayout.openDrawer(drawerView);
     };
 
-
-//    @Override
-//    public void onClick(View v) {
-//        switch (v.getId()) {
-//            case R.id.add_friend:
-//                Toast.makeText(getApplicationContext(), "친구 추가가 완료 되었습니다.", Toast.LENGTH_SHORT).show();
-//                Intent intent = new Intent(FoundFriendActivity.this, FindFriendActivity.class);
-//                startActivity(intent);
-//                FirebasePost.friends.add(dt_id);
-//                break;
-//        }
-//
-//    }
 }

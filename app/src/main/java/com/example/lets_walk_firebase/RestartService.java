@@ -11,8 +11,7 @@ import android.os.Build;
 import android.os.IBinder;
 
 import androidx.core.app.NotificationCompat;
-//import android.support.annotation.Nullable;
-//import android.support.v4.app.NotificationCompat;
+
 
 public class RestartService extends Service {
     public RestartService() {
@@ -46,7 +45,6 @@ public class RestartService extends Service {
         Notification notification = builder.build();
         startForeground(9, notification);
 
-        /////////////////////////////////////////////////////////////////////
         Intent in = new Intent(this, RealService.class);
         startService(in);
 
