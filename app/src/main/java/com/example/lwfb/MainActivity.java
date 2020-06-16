@@ -36,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
     String dt_id;
     String step_num;
     String goal_step;
+    public static String nowmyid;
 
     @Override
 
@@ -85,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
                             intent.putExtra("step", step_num);
                             intent.putExtra("goal_step", goal_step);
                             intent.putExtra("name", map.get("name"));
+                            nowmyid = dt_id;
                             startActivity(intent);
                             overridePendingTransition(0, 0);
                             finish();
@@ -133,6 +135,7 @@ public class MainActivity extends AppCompatActivity {
                                     autoLogin.commit();
                                     Toast.makeText(getApplicationContext(), "로그인에 성공하셨습니다.", Toast.LENGTH_LONG).show();
                                     Intent intent = new Intent(getApplicationContext(), PedoActivity.class);
+                                    nowmyid = dt_id;
                                     intent.putExtra("id", dt_id);
                                     intent.putExtra("step", step_num);
                                     intent.putExtra("goal_step", goal_step);

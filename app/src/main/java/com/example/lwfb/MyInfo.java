@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -116,7 +117,11 @@ public class MyInfo extends AppCompatActivity {
                         }
 
                         FirebasePost user = new FirebasePost();
+                        PedoActivity.goal_step = Integer.toString(PedoActivity.goal);
                         user.WriteGoal(id_value, PedoActivity.goal);
+                        Log.d("로그 아이디", id_value);
+                        Log.d("페도골 ", String.valueOf(PedoActivity.goal));
+                        Log.d("페도골스텝 ",PedoActivity.goal_step);
 
 
                         break;

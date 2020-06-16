@@ -85,15 +85,9 @@ public class PedoActivity extends Activity implements SensorEventListener {
     String dt_id;
     String kcal_num;
     String user_name = null;
-    static public String step_value;
-    static public String goal_step;
-    static public String main_id;
-    //private DatabaseReference mDatabase;
-
-
-    //final FirebaseDatabase database = FirebaseDatabase.getInstance();
-    //DatabaseReference ref = database.getReference("MEMBER");
-
+    public static String step_value;
+    public static String goal_step;
+    public static String main_id;
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -144,7 +138,6 @@ public class PedoActivity extends Activity implements SensorEventListener {
             Log.d("id", main_id);
         }
         my_id = main_id;
-
 
         cnt = Integer.parseInt(step_value);
         goal = Integer.parseInt(goal_step);
@@ -272,6 +265,8 @@ public class PedoActivity extends Activity implements SensorEventListener {
                     Log.d("get_value", value);
                     foodView.setText("" + value);
                 }
+                step_value = Integer.toString(cnt);
+                goal_step = Integer.toString(goal);
             }
 
 
@@ -435,6 +430,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
     protected void onDestroy() {
         super.onDestroy();
         Log.d("여기는", "페도의 onDestroy");
+        step_value = Integer.toString(cnt);
         /*if (serviceIntent != null) {
             stopService(serviceIntent);
             serviceIntent = null;
@@ -489,7 +485,8 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
     @Override
     public void onStart() {
-
+        step_value = Integer.toString(cnt);
+        goal_step = Integer.toString(goal);
         super.onStart();
         if (serviceIntent != null) {
             stopService(serviceIntent);
@@ -499,7 +496,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
             sensorManager.registerListener(this, accelerormeterSensor,
                     SensorManager.SENSOR_DELAY_GAME);
             IntentFilter intentFilter = new IntentFilter();
-            intentFilter.addAction("com.example.lets_walk_firebase");
+            intentFilter.addAction("com.example.lwfb");
             registerReceiver(broadcastReceiver, intentFilter);
             Log.e("페도의 ", "onstart입니다");
 
@@ -684,6 +681,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
     }
 
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
+
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.e("감지", "받아짐");
@@ -829,6 +827,8 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
     @Override
     public void onStop() {
+        step_value = Integer.toString(cnt);
+        goal_step = Integer.toString(goal);
         super.onStop();
         if (sensorManager != null) {
             sensorManager.unregisterListener(this);
@@ -861,6 +861,8 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
     @Override
     public void onSensorChanged(SensorEvent event) {
+        step_value = Integer.toString(cnt);
+        goal_step = Integer.toString(goal);
 
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             long currentTime = System.currentTimeMillis();
@@ -1075,6 +1077,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
                     //Log.d("id", id_value);
                 }*/
                 FirebasePost user = new FirebasePost();
+                Log.d("my_id내 아이디",my_id);
                 user.WriteStep(my_id, cnt);
 
                 Intent intent2 = new Intent(getApplicationContext(), RealService.class);
@@ -1107,6 +1110,8 @@ public class PedoActivity extends Activity implements SensorEventListener {
     private long time= 0;
     @Override
     public void onBackPressed(){
+        step_value = Integer.toString(cnt);
+        goal_step = Integer.toString(goal);
         if(System.currentTimeMillis()-time>=2000){
             time=System.currentTimeMillis();
             Toast.makeText(getApplicationContext(),"뒤로 버튼을 한번 더 누르면 종료합니다.",Toast.LENGTH_SHORT).show();

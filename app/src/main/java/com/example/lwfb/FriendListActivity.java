@@ -24,6 +24,9 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
@@ -42,10 +45,13 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
     private DrawerLayout drawerLayout;
     private View drawerView;
 
+    private TextView nth;
+
     String dt_id;
     String fid;
-    com.example.lwfb.ListViewBtnItem item;
-    public static ArrayList<com.example.lwfb.ListViewBtnItem> list2 = new ArrayList<com.example.lwfb.ListViewBtnItem>();
+    ListViewBtnItem item;
+    public static ArrayList<ListViewBtnItem> list2 = new ArrayList<ListViewBtnItem>();
+    public Map<String, Integer> sort_friends = new HashMap<String, Integer>();
 
 
     protected void onCreate(Bundle savedInstanceState) {
@@ -57,8 +63,10 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
         drawerView = (View) findViewById(R.id.drawerView);
         drawerLayout.setDrawerListener(listener);
         TextView name = (TextView) findViewById(R.id.nameofuser);
+        nth = (TextView)findViewById(R.id.nth);
 
-        Log.d("이름", PedoActivity.my_name);
+
+//        Log.d("이름", PedoActivity.my_name);
 
         name.setText("" + PedoActivity.my_name + " 님");
 
@@ -73,7 +81,6 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
                 //SharedPreferences에 저장된 값들을 로그아웃 버튼을 누르면 삭제하기 위해 SharedPreferences를 불러옴
                 Intent intent = new Intent(FriendListActivity.this, MainActivity.class);
                 startActivity(intent);
-                overridePendingTransition(0, 0);
                 SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
                 SharedPreferences.Editor editor = auto.edit();
                 // auto에 들어있는 모든 정보를 기기에서 지움
@@ -90,7 +97,6 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
                 Intent intent = new Intent(FriendListActivity.this, MyInfo.class);
 
                 startActivity(intent);
-                overridePendingTransition(0, 0);
             }
         });
         notice.setOnClickListener(new View.OnClickListener() {
@@ -99,7 +105,6 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
                 Intent intent = new Intent(FriendListActivity.this, NoticeActivity.class);
 
                 startActivity(intent);
-                overridePendingTransition(0, 0);
             }
         });
         hometraining.setOnClickListener(new View.OnClickListener() {
@@ -108,7 +113,6 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
                 Intent intent = new Intent(FriendListActivity.this, HomeTrainActivity.class);
 
                 startActivity(intent);
-                overridePendingTransition(0, 0);
             }
         });
 
@@ -121,7 +125,6 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
                 // 액티비티 전환 코드
                 Intent intent = new Intent(getApplicationContext(), FindFriendActivity.class);
                 startActivity(intent);
-                overridePendingTransition(0, 0);
             }
         });
 
@@ -168,49 +171,74 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
 
                             Log.d("friendname", String.valueOf(friendname));
                             Log.d("friendstep", String.valueOf(friendstep));
-
-
                         }
-
                     }
                 }
-                if (0<friendname.size()){
-                    item = new com.example.lwfb.ListViewBtnItem();
-                    item.setIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.firstimg));
-                    item.setText(1+ "등" + "   " + friendname.get(0) + "   " + friendstep.get(0) + "걸음");
-                    Log.d("item", item.toString());
 
+
+                for(int i = 0; i < friendname.size(); i++){
+                    sort_friends.put(friendname.get(i), Integer.parseInt(friendstep.get(i)));
+                }
+
+                Iterator it = sortByValue(sort_friends).iterator();
+
+
+                if (0<friendname.size()){
+                    item = new ListViewBtnItem();
+                    item.setIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.firstimg));
+                    String temp = (String)it.next();
+//                    item.setText(1+ "등" + "   " + friendname.get(0) + "   " + friendstep.get(0) + "걸음");
+                    item.setText(1+ "등" + "   " + temp + "   " + sort_friends.get(temp) + "걸음");
+                    Log.d("item", item.toString());
                     list2.add(item);
                     Log.d("list2", list2.toString());
+                    Log.d("temp값",temp);
+                    Log.d("이름!!!", PedoActivity.my_name);
+                    if(temp.equals(PedoActivity.my_name)){
+                        nth.setText("" + 1);
+                    }
                 }
                 if (1<friendname.size()){
-                    item = new com.example.lwfb.ListViewBtnItem();
+                    item = new ListViewBtnItem();
+                    String temp = (String)it.next();
                     item.setIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.secondimg));
-                    item.setText(2+ "등" + "   " + friendname.get(1) + "   " + friendstep.get(1) + "걸음");
+//                    item.setText(2+ "등" + "   " + friendname.get(1) + "   " + friendstep.get(1) + "걸음");
+                    item.setText(2+ "등" + "   " + temp + "   " + sort_friends.get(temp) + "걸음");
                     Log.d("item", item.toString());
-
                     list2.add(item);
                     Log.d("list2", list2.toString());
+                    if(temp.equals(PedoActivity.my_name)){
+                        nth.setText("" + 2);
+                    }
                 }
 
                 if (2<friendname.size()){
-                    item = new com.example.lwfb.ListViewBtnItem();
+                    item = new ListViewBtnItem();
+                    String temp = (String)it.next();
                     item.setIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.thirdimg));
-                    item.setText(3+ "등" + "   " + friendname.get(2) + "   " + friendstep.get(2) + "걸음");
+//                    item.setText(3+ "등" + "   " + friendname.get(2) + "   " + friendstep.get(2) + "걸음");
+                    item.setText(3+ "등" + "   " + temp + "   " + sort_friends.get(temp) + "걸음");
                     Log.d("item", item.toString());
-
                     list2.add(item);
                     Log.d("list2", list2.toString());
-
+                    if(temp.equals(PedoActivity.my_name) ){
+                        nth.setText("" + 3);
+                    }
                 }
                 if(3<friendname.size() ) {
                     for (int k = 3; k < friendname.size(); k++) {
-                        item = new com.example.lwfb.ListViewBtnItem();
-                        item.setText((k + 1) + "등" + "   " + friendname.get(k) + "   " + friendstep.get(k) + "걸음");
-                        Log.d("item", item.toString());
-
-                        list2.add(item);
-                        Log.d("list2", list2.toString());
+                        item = new ListViewBtnItem();
+                        if (it.hasNext()) {
+                            String temp = (String) it.next();
+//                            item.setText((k + 1) + "등" + "   " + friendname.get(k) + "   " + friendstep.get(k) + "걸음");
+                            item.setText((k + 1) + "등" + "   " + temp + "   " + sort_friends.get(temp) + "걸음");
+                            Log.d("item", item.toString());
+                            list2.add(item);
+                            Log.d("list2", list2.toString());
+                            if(temp.equals(PedoActivity.my_name)){
+                                nth.setText("" + (k + 1));
+                            }
+                        }
                     }
                 }
 
@@ -231,7 +259,7 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
 
         // Adapter 생성
         adapter = new ListViewBtnAdapter(this, R.layout.listview, list2, this);
-        list2 = new ArrayList<com.example.lwfb.ListViewBtnItem>();
+        list2 = new ArrayList<ListViewBtnItem>();
 
         // 리스트뷰 참조 및 Adapter달기
         listview = (ListView) findViewById(R.id.listview1);
@@ -244,11 +272,28 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
 
     }
 
-    public boolean loadItemsFromDB(ArrayList<com.example.lwfb.ListViewBtnItem> list) {
+    public static List sortByValue(final Map map){
+        List<String> list = new ArrayList();
+        list.addAll(map.keySet());
+
+        Collections.sort(list, new Comparator(){
+            public int compare(Object o1, Object o2){
+                Object v1 = map.get(o1);
+                Object v2 = map.get(o2);
+
+                return ((Comparable) v2).compareTo(v1);
+            }
+        });
+        //Collections.reverse(list);
+        return list;
+    }
+
+
+    public boolean loadItemsFromDB(ArrayList<ListViewBtnItem> list) {
         //ListViewBtnItem item;
         int i;
         if (list == null) {
-            list = new ArrayList<com.example.lwfb.ListViewBtnItem>();
+            list = new ArrayList<ListViewBtnItem>();
         }
 
         // 순서를 위한 i 값을 1로 초기화.
@@ -291,6 +336,5 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
         super.onBackPressed();
         Intent intent = new Intent(getApplicationContext(), PedoActivity.class);
         startActivity(intent);
-        overridePendingTransition(0, 0);
     }
 }
