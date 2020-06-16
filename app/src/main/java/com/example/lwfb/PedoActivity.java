@@ -47,6 +47,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
     private DatabaseReference databaseReference;
 
+
     public static int cnt = 0;
     public static int kcal = cnt / 30;
     public static double dis = cnt / 1.5;
@@ -56,10 +57,8 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
 
     private TextView fView;
-    private TextView tView;
     private TextView kView;
     private TextView dView;
-    private TextView gView;
     private TextView foodView;
 
     private long lastTime;
@@ -79,15 +78,11 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
     public static Intent serviceIntent;
 
-
-    RealService realService;
-
-    String dt_id;
-    String kcal_num;
     String user_name = null;
     public static String step_value;
     public static String goal_step;
     public static String main_id;
+
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
@@ -96,30 +91,49 @@ public class PedoActivity extends Activity implements SensorEventListener {
         friends.add(my_id);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("CALORIE").child("0");
+        /*databaseReference = FirebaseDatabase.getInstance().getReference("MEMBER").child(my_id);
+        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+                Map<String, String> map = (Map) dataSnapshot.getValue();
+                goal_step = map.get("goal_step");
+                goal = Integer.parseInt(goal_step);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });*/
+
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
         accelerormeterSensor = sensorManager.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
 
         fView = (TextView) findViewById(R.id.goalstepnum);
-        //tView = (TextView) findViewById(R.id.cntView);
         kView = (TextView) findViewById(R.id.kcalnum);
         dView = (TextView) findViewById(R.id.distancenum);
-        //gView = (TextView) findViewById(R.id.numtogoal2);
         foodView = (TextView) findViewById(R.id.kcalfoodname);
 
+
+        //String step_value = null;
         Intent i = getIntent();
         i.getStringExtra("step");
         Bundle bundle = getIntent().getExtras();
         if (bundle != null) {
             step_value = bundle.getString("step");
             Log.d("step_value", step_value);
+
         }
+
+        //String goal_step = null;
         Intent i2 = getIntent();
         i2.getStringExtra("goal_step");
         Bundle bundle1 = getIntent().getExtras();
         if (bundle1 != null) {
             goal_step = bundle1.getString("goal_step");
             Log.d("goal_step", goal_step);
+
         }
 
 
@@ -130,6 +144,8 @@ public class PedoActivity extends Activity implements SensorEventListener {
             my_name = bundle22.getString("name");
             user_name = my_name;
         }
+
+        //String main_id = null;
         Intent i44 = getIntent();
         i44.getStringExtra("id");
         Bundle bundle33 = getIntent().getExtras();
@@ -140,7 +156,9 @@ public class PedoActivity extends Activity implements SensorEventListener {
         my_id = main_id;
 
         cnt = Integer.parseInt(step_value);
-        goal = Integer.parseInt(goal_step);
+        Log.e("Pedo의 onCreate에서 step", step_value);
+        Log.e("Pedo의 onCreate에서 cnt", String.valueOf(cnt));
+        //goal = Integer.parseInt(goal_step);
         kcal = cnt / 30;
 
 
@@ -148,11 +166,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
-                    /*Iterator<DataSnapshot> child = dataSnapshot.getChildren().iterator();
-                    while(child.hasNext()){
-                        DataSnapshot dt = child.next();
-                        String key = dt.getKey();
-                        Log.d("get_key", key);*/
+
                 if (kcal < 30) {
                     Map<String, String> map = (Map) dataSnapshot.getValue();
                     String value = map.get("0");
@@ -265,8 +279,6 @@ public class PedoActivity extends Activity implements SensorEventListener {
                     Log.d("get_value", value);
                     foodView.setText("" + value);
                 }
-                step_value = Integer.toString(cnt);
-                goal_step = Integer.toString(goal);
             }
 
 
@@ -278,11 +290,9 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
 
         fView.setText("" + goal);
-        //tView.setText("" + (cnt));
         kView.setText("" + cnt / 30);
         String km = String.format("%.1f", (cnt / 1.5));
         dView.setText("" + km);
-        //gView.setText("" + (goal - cnt));
 
         drawerLayout = (DrawerLayout)
 
@@ -292,7 +302,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
                 findViewById(R.id.drawerView);
         drawerLayout.setDrawerListener(listener);
-        //drawerLayout.openDrawer(drawerView);
+
         Button logout = (Button) findViewById(R.id.button);
         Button myInfo = (Button) findViewById(R.id.myinfo);
         Button friendlist = (Button) findViewById(R.id.friendlist);
@@ -305,14 +315,12 @@ public class PedoActivity extends Activity implements SensorEventListener {
         logout.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                //SharedPreferences에 저장된 값들을 로그아웃 버튼을 누르면 삭제하기 위해
-                //SharedPreferences를 불러옵니다. 메인에서 만든 이름으로
+                //SharedPreferences에 저장된 값들을 로그아웃 버튼을 누르면 삭제하기 위해 SharedPreferences를 불러옴
                 Intent intent = new Intent(PedoActivity.this, MainActivity.class);
                 startActivity(intent);
-                overridePendingTransition(0, 0);
                 SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
                 SharedPreferences.Editor editor = auto.edit();
-                //editor.clear()는 auto에 들어있는 모든 정보를 기기에서 지웁니다.
+                //auto에 들어있는 모든 정보를 기기에서 지움
                 editor.clear();
                 editor.commit();
                 Toast.makeText(PedoActivity.this, "로그아웃.", Toast.LENGTH_SHORT).show();
@@ -324,18 +332,16 @@ public class PedoActivity extends Activity implements SensorEventListener {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(PedoActivity.this, MyInfo.class);
-                String id_value2 = null;
+                /*String id_value2 = null;
                 Intent i2 = getIntent();
                 i2.getStringExtra("id");
                 Bundle bundle2 = getIntent().getExtras();
                 if (bundle2 != null) {
                     id_value2 = bundle2.getString("id");
-                    //Log.d("id", id_value2);
-                }
-                intent.putExtra("id", id_value2);
+                }*/
+                intent.putExtra("id", my_id);
                 intent.putExtra("name", user_name);
                 startActivity(intent);
-                overridePendingTransition(0, 0);
             }
         });
         friendlist.setOnClickListener(new OnClickListener() {
@@ -348,12 +354,11 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 Bundle bundle2 = getIntent().getExtras();
                 if (bundle2 != null) {
                     id_value2 = bundle2.getString("id");
-                    //Log.d("id", id_value2);
+
                 }
                 intent123.putExtra("id", id_value2);
                 intent123.putExtra("name", user_name);
                 startActivity(intent123);
-                overridePendingTransition(0, 0);
             }
         });
         notice.setOnClickListener(new OnClickListener() {
@@ -366,12 +371,10 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 Bundle bundle2 = getIntent().getExtras();
                 if (bundle2 != null) {
                     id_value2 = bundle2.getString("id");
-                    //Log.d("id", id_value2);
                 }
                 intent.putExtra("id", id_value2);
                 intent.putExtra("name", user_name);
                 startActivity(intent);
-                overridePendingTransition(0, 0);
             }
         });
         hometraining.setOnClickListener(new OnClickListener() {
@@ -384,81 +387,26 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 Bundle bundle2 = getIntent().getExtras();
                 if (bundle2 != null) {
                     id_value2 = bundle2.getString("id");
-                    //Log.d("id", id_value2);
                 }
                 intent.putExtra("id", id_value2);
                 intent.putExtra("name", user_name);
                 startActivity(intent);
-                overridePendingTransition(0, 0);
             }
         });
 
-
-
-        /*PowerManager pm = (PowerManager) getApplicationContext().getSystemService(POWER_SERVICE);
-        boolean isWhiteListing = false;
-        if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.M) {
-            isWhiteListing = pm.isIgnoringBatteryOptimizations(getApplicationContext().getPackageName());
-        }
-        if (!isWhiteListing) {
-            Intent intent = new Intent();
-            intent.setAction(android.provider.Settings.ACTION_REQUEST_IGNORE_BATTERY_OPTIMIZATIONS);
-            intent.setData(Uri.parse("package:" + getApplicationContext().getPackageName()));
-            startActivity(intent);
-
-        }
-        if (RealService.serviceIntent == null) {
-            String id_value2 = null;
-            Intent i4 = getIntent();
-            i4.getStringExtra("id");
-            Bundle bundle2 = getIntent().getExtras();
-            if (bundle2 != null) {
-                id_value2 = bundle2.getString("id");
-                Log.d("id", id_value2);
-            }
-            serviceIntent = new Intent(this, RealService.class);
-            serviceIntent.putExtra("id", id_value2);
-            startService(serviceIntent);
-        } else {
-            serviceIntent = RealService.serviceIntent;//getInstance().getApplication();
-            Toast.makeText(getApplicationContext(), "already", Toast.LENGTH_LONG).show();
-        }
-*/
     }
 
     @Override
     protected void onDestroy() {
+        step_value = String.valueOf(cnt);
         super.onDestroy();
         Log.d("여기는", "페도의 onDestroy");
-        step_value = Integer.toString(cnt);
-        /*if (serviceIntent != null) {
-            stopService(serviceIntent);
-            serviceIntent = null;
-        }*/
 
-
-//        String id_value2 = null;
-//        Intent i4 = getIntent();
-//        i4.getStringExtra("id");
-//        Bundle bundle2 = getIntent().getExtras();
-//        if (bundle2 != null) {
-//            id_value2 = bundle2.getString("id");
-//            Log.d("id", id_value2);
-//        }
-//        String step_value = null;
-//        Intent i = getIntent();
-//        i.getStringExtra("step");
-//        Bundle bundle = getIntent().getExtras();
-//        if (bundle != null) {
-//            step_value = bundle.getString("step");
-//            Log.d("step_value", step_value);
-//        }
         serviceIntent = new Intent(this, RealService.class);
-        serviceIntent.putExtra("id", main_id);
-        serviceIntent.putExtra("step", step_value);
+        serviceIntent.putExtra("id", my_id);
+        serviceIntent.putExtra("step", cnt);
         startService(serviceIntent);
 
-        //startService(serviceIntent);
     }
 
 
@@ -485,12 +433,12 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
     @Override
     public void onStart() {
-        step_value = Integer.toString(cnt);
-        goal_step = Integer.toString(goal);
+
         super.onStart();
         if (serviceIntent != null) {
             stopService(serviceIntent);
         }
+        step_value = String.valueOf(cnt);
 
         if (accelerormeterSensor != null) {
             sensorManager.registerListener(this, accelerormeterSensor,
@@ -504,11 +452,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
             databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    /*Iterator<DataSnapshot> child = dataSnapshot.getChildren().iterator();
-                    while(child.hasNext()){
-                        DataSnapshot dt = child.next();
-                        String key = dt.getKey();
-                        Log.d("get_key", key);*/
+
                     if (kcal < 30) {
                         Map<String, String> map = (Map) dataSnapshot.getValue();
                         String value = map.get("0");
@@ -629,11 +573,9 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 }
             });
             fView.setText("" + goal);
-            //tView.setText("" + (cnt));
             kView.setText("" + cnt / 30);
             String km = String.format("%.1f", (cnt / 1.5));
             dView.setText("" + km);
-            // gView.setText("" + (goal - cnt));
             PieChart pieChart = findViewById(R.id.piechart);
 
             ArrayList Step = new ArrayList();
@@ -681,21 +623,17 @@ public class PedoActivity extends Activity implements SensorEventListener {
     }
 
     BroadcastReceiver broadcastReceiver = new BroadcastReceiver() {
-
         @Override
         public void onReceive(Context context, Intent intent) {
             Log.e("감지", "받아짐");
             String pass = intent.getStringExtra("DATAPASSED");
             cnt = Integer.parseInt(pass);
+            step_value = String.valueOf(cnt);
             kcal = cnt / 30;
             databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
-                    /*Iterator<DataSnapshot> child = dataSnapshot.getChildren().iterator();
-                    while(child.hasNext()){
-                        DataSnapshot dt = child.next();
-                        String key = dt.getKey();
-                        Log.d("get_key", key);*/
+
                     if (kcal < 30) {
                         Map<String, String> map = (Map) dataSnapshot.getValue();
                         String value = map.get("0");
@@ -817,52 +755,46 @@ public class PedoActivity extends Activity implements SensorEventListener {
             });
 
             fView.setText("" + goal);
-            //tView.setText("" + (cnt));
             kView.setText("" + cnt / 30);
             String km = String.format("%.1f", (cnt / 1.5));
             dView.setText("" + km);
-            //gView.setText("" + (goal - cnt));
         }
     };
 
     @Override
     public void onStop() {
-        step_value = Integer.toString(cnt);
-        goal_step = Integer.toString(goal);
         super.onStop();
         if (sensorManager != null) {
             sensorManager.unregisterListener(this);
             unregisterReceiver(broadcastReceiver);
             Log.e("감지", "페도의 onstop입니다");
 
-//            String id_value2 = null;
-//            Intent i4 = getIntent();
-//            i4.getStringExtra("id");
-//            Bundle bundle2 = getIntent().getExtras();
-//            if (bundle2 != null) {
-//                id_value2 = bundle2.getString("id");
-//                Log.d("id", id_value2);
-//            }
-//            String step_value = null;
-//            Intent i = getIntent();
-//            i.getStringExtra("step");
-//            Bundle bundle = getIntent().getExtras();
-//            if (bundle != null) {
-//                step_value = bundle.getString("step");
-//                Log.d("step_value", step_value);
-//            }
+           /* String id_value2 = null;
+            Intent i4 = getIntent();
+            i4.getStringExtra("id");
+            Bundle bundle2 = getIntent().getExtras();
+            if (bundle2 != null) {
+                id_value2 = bundle2.getString("id");
+                Log.d("id", id_value2);
+            }
+            String step_value = null;
+            Intent i = getIntent();
+            i.getStringExtra("step");
+            Bundle bundle = getIntent().getExtras();
+            if (bundle != null) {
+                step_value = bundle.getString("step");
+                Log.d("step_value", step_value);
+            }*/
             serviceIntent = new Intent(this, RealService.class);
 
-            serviceIntent.putExtra("id", main_id);
-            serviceIntent.putExtra("step", step_value);
+            serviceIntent.putExtra("id", my_id);
+            serviceIntent.putExtra("step", cnt);
             startService(serviceIntent);
         }
     }
 
     @Override
     public void onSensorChanged(SensorEvent event) {
-        step_value = Integer.toString(cnt);
-        goal_step = Integer.toString(goal);
 
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             long currentTime = System.currentTimeMillis();
@@ -880,11 +812,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
                     databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                         @Override
                         public void onDataChange(DataSnapshot dataSnapshot) {
-                    /*Iterator<DataSnapshot> child = dataSnapshot.getChildren().iterator();
-                    while(child.hasNext()){
-                        DataSnapshot dt = child.next();
-                        String key = dt.getKey();
-                        Log.d("get_key", key);*/
+
                             if (kcal < 30) {
                                 Map<String, String> map = (Map) dataSnapshot.getValue();
                                 String value = map.get("0");
@@ -1006,12 +934,11 @@ public class PedoActivity extends Activity implements SensorEventListener {
                     });
 
                     fView.setText("" + goal);
-                    // tView.setText("" + (++cnt));
                     ++cnt;
+                    step_value = String.valueOf(cnt);
                     kView.setText("" + cnt / 30);
                     String km = String.format("%.1f", (cnt / 1.5));
                     dView.setText("" + km);
-                    // gView.setText("" + (goal - cnt));
 
                     PieChart pieChart = findViewById(R.id.piechart);
 
@@ -1061,48 +988,12 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 lastY = event.values[DATA_Y];
                 lastZ = event.values[DATA_Z];
 
-                //DatabaseReference usersRef = ref.child("")
 
-                //mDatabase = FirebaseDatabase.getInstance().getReference();
-                //Map<String, Object> ChildUpdates = new HashMap<>();
-                // ChildUpdates.put("/");
-
-
-               /* String id_value = null;
-                Intent i = getIntent();
-                i.getStringExtra("id");
-                Bundle bundle = getIntent().getExtras();
-                if (bundle != null) {
-                    id_value = bundle.getString("id");
-                    //Log.d("id", id_value);
-                }*/
                 FirebasePost user = new FirebasePost();
-                Log.d("my_id내 아이디",my_id);
                 user.WriteStep(my_id, cnt);
 
                 Intent intent2 = new Intent(getApplicationContext(), RealService.class);
                 intent2.putExtra("id", my_id);
-//
-//                Intent intent3 = new Intent(PedoActivity.this, com.example.lwfb.FriendListActivity.class);
-//                intent3.putExtra("my_id",id_value);
-                //my_id=id_value;
-
-                //Intent intent = new Intent(PedoActivity.this, com.example.lets_walk_firebase.RealService.class);
-                //intent.putExtra("cnt", String.valueOf(cnt));
-                //startService(intent);
-
-
-                //Intent intent = new Intent(getApplicationContext(), MyService.class);
-                //startService(intent);
-                //HashMap<String, Object> childUpdates = null;
-                //childUpdates = new HashMap<>();
-                //childUpdates.put("/MEMBER/" + id_value, );
-                //childUpdates.put("step", cnt);
-                //childUpdates.put("/MEMBER/" + id_value, )
-
-                //Map<String, Object> userUpdates = new HashMap<>();
-                //userUpdates.put("id_value/step", cnt);
-
 
             }
         }
@@ -1110,8 +1001,6 @@ public class PedoActivity extends Activity implements SensorEventListener {
     private long time= 0;
     @Override
     public void onBackPressed(){
-        step_value = Integer.toString(cnt);
-        goal_step = Integer.toString(goal);
         if(System.currentTimeMillis()-time>=2000){
             time=System.currentTimeMillis();
             Toast.makeText(getApplicationContext(),"뒤로 버튼을 한번 더 누르면 종료합니다.",Toast.LENGTH_SHORT).show();
@@ -1119,6 +1008,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
             finish();
         }
     }
+
     @Override
     public void onAccuracyChanged(Sensor sensor, int accuracy) {
 

@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -60,7 +59,6 @@ public class MyInfo extends AppCompatActivity {
                 //SharedPreferences에 저장된 값들을 로그아웃 버튼을 누르면 삭제하기 위해 SharedPreferences를 불러옴
                 Intent intent = new Intent(MyInfo.this, MainActivity.class);
                 startActivity(intent);
-                overridePendingTransition(0, 0);
                 SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
                 SharedPreferences.Editor editor = auto.edit();
                 //auto에 들어있는 모든 정보를 기기에서 지움
@@ -76,7 +74,6 @@ public class MyInfo extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MyInfo.this, FriendListActivity.class);
                 startActivity(intent);
-                overridePendingTransition(0, 0);
             }
         });
         notice.setOnClickListener(new View.OnClickListener() {
@@ -84,7 +81,6 @@ public class MyInfo extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MyInfo.this, NoticeActivity.class);
                 startActivity(intent);
-                overridePendingTransition(0, 0);
             }
         });
         hometraining.setOnClickListener(new View.OnClickListener() {
@@ -92,7 +88,6 @@ public class MyInfo extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(MyInfo.this, HomeTrainActivity.class);
                 startActivity(intent);
-                overridePendingTransition(0, 0);
             }
         });
 
@@ -117,12 +112,7 @@ public class MyInfo extends AppCompatActivity {
                         }
 
                         FirebasePost user = new FirebasePost();
-                        PedoActivity.goal_step = Integer.toString(PedoActivity.goal);
                         user.WriteGoal(id_value, PedoActivity.goal);
-                        Log.d("로그 아이디", id_value);
-                        Log.d("페도골 ", String.valueOf(PedoActivity.goal));
-                        Log.d("페도골스텝 ",PedoActivity.goal_step);
-
 
                         break;
 
@@ -215,7 +205,6 @@ public class MyInfo extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), PedoActivity.class);
         intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
-        overridePendingTransition(0, 0);
     }
 
 }
