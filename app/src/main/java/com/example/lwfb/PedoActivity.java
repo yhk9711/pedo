@@ -47,10 +47,10 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
     private DatabaseReference databaseReference;
 
-
+    String sheight;
+    public static int height;
     public static int cnt = 0;
     public static int kcal = cnt / 30;
-    public static double dis = cnt / 1.5;
     public static int goal = 10000;
     public static String my_id;
     public static String my_name;
@@ -91,20 +91,6 @@ public class PedoActivity extends Activity implements SensorEventListener {
         friends.add(my_id);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("CALORIE").child("0");
-        /*databaseReference = FirebaseDatabase.getInstance().getReference("MEMBER").child(my_id);
-        databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
-            @Override
-            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
-                Map<String, String> map = (Map) dataSnapshot.getValue();
-                goal_step = map.get("goal_step");
-                goal = Integer.parseInt(goal_step);
-            }
-
-            @Override
-            public void onCancelled(@NonNull DatabaseError databaseError) {
-
-            }
-        });*/
 
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -125,7 +111,13 @@ public class PedoActivity extends Activity implements SensorEventListener {
             Log.d("step_value", step_value);
 
         }
-
+        Intent i4 = getIntent();
+        i4.getStringExtra("height");
+        Bundle bundle4 = getIntent().getExtras();
+        if (bundle != null) {
+            sheight = bundle.getString("height");
+        }
+        height = Integer.parseInt(sheight);
         //String goal_step = null;
         Intent i2 = getIntent();
         i2.getStringExtra("goal_step");
@@ -291,7 +283,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
         fView.setText("" + goal);
         kView.setText("" + cnt / 30);
-        String km = String.format("%.1f", (cnt / 1.5));
+        String km = String.format("%.1f", (height *0.37 *0.01 *cnt));
         dView.setText("" + km);
 
         drawerLayout = (DrawerLayout)
@@ -574,7 +566,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
             });
             fView.setText("" + goal);
             kView.setText("" + cnt / 30);
-            String km = String.format("%.1f", (cnt / 1.5));
+            String km = String.format("%.1f", (height *0.37*0.01 *cnt));
             dView.setText("" + km);
             PieChart pieChart = findViewById(R.id.piechart);
 
@@ -756,7 +748,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
             fView.setText("" + goal);
             kView.setText("" + cnt / 30);
-            String km = String.format("%.1f", (cnt / 1.5));
+            String km = String.format("%.1f", (height *0.37*0.01 *cnt));
             dView.setText("" + km);
         }
     };
@@ -769,22 +761,6 @@ public class PedoActivity extends Activity implements SensorEventListener {
             unregisterReceiver(broadcastReceiver);
             Log.e("감지", "페도의 onstop입니다");
 
-           /* String id_value2 = null;
-            Intent i4 = getIntent();
-            i4.getStringExtra("id");
-            Bundle bundle2 = getIntent().getExtras();
-            if (bundle2 != null) {
-                id_value2 = bundle2.getString("id");
-                Log.d("id", id_value2);
-            }
-            String step_value = null;
-            Intent i = getIntent();
-            i.getStringExtra("step");
-            Bundle bundle = getIntent().getExtras();
-            if (bundle != null) {
-                step_value = bundle.getString("step");
-                Log.d("step_value", step_value);
-            }*/
             serviceIntent = new Intent(this, RealService.class);
 
             serviceIntent.putExtra("id", my_id);
@@ -937,7 +913,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
                     ++cnt;
                     step_value = String.valueOf(cnt);
                     kView.setText("" + cnt / 30);
-                    String km = String.format("%.1f", (cnt / 1.5));
+                    String km = String.format("%.1f", (height *0.01*0.37 *cnt));
                     dView.setText("" + km);
 
                     PieChart pieChart = findViewById(R.id.piechart);
