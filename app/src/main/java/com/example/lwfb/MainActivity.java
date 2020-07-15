@@ -37,6 +37,8 @@ public class MainActivity extends AppCompatActivity {
     String step_num;
     String goal_step;
     public static String nowmyid;
+    public static int height;
+    String sheight;
 
     @Override
 
@@ -121,7 +123,7 @@ public class MainActivity extends AppCompatActivity {
                                 pass = map.get("pw");
                                 step_num = String.valueOf(map.get("step"));
                                 goal_step= String.valueOf(map.get("goal_step"));
-
+                                sheight =String.valueOf(map.get("height"));
                                 Log.d("password", pass);
                                 if(pass.equals(checkpw.getText().toString()))
                                 {
@@ -139,6 +141,7 @@ public class MainActivity extends AppCompatActivity {
                                     intent.putExtra("id", dt_id);
                                     intent.putExtra("step", step_num);
                                     intent.putExtra("goal_step", goal_step);
+                                    intent.putExtra("height", sheight);
                                     intent.putExtra("name", map.get("name"));
 
                                     startActivity(intent);

@@ -37,10 +37,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     EditText edit_PW;
     EditText edit_Name;
     EditText edit_Age;
+    EditText edit_height;
     TextView text_ID;
     TextView text_PW;
     TextView text_Name;
     TextView text_Age;
+
     TextView text_Gender;
     CheckBox check_Man;
     CheckBox check_Woman;
@@ -57,6 +59,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     String gender = "";
     String sort = "id";
+    int height = 0;
 
     ArrayAdapter<String> arrayAdapter;
 
@@ -84,6 +87,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         edit_Name = (EditText) findViewById(R.id.edit_name);
 
         edit_Age = (EditText) findViewById(R.id.edit_age);
+
+        edit_height = (EditText) findViewById(R.id.edit_height);
 
         text_ID = (TextView) findViewById(R.id.text_id);
 
@@ -123,6 +128,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         edit_Age.setText("");
 
+        edit_height.setText("");
+
         check_Man.setChecked(false);
 
         check_Woman.setChecked(false);
@@ -156,7 +163,9 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
             edit_Age.setText(tempData[3].trim());
 
-            if(tempData[4].trim().equals("Man")){
+            edit_height.setText(tempData[4].trim());
+
+            if(tempData[5].trim().equals("Man")){
 
                 check_Man.setChecked(true);
 
@@ -207,7 +216,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         if(add){
 
-            FirebasePost post = new FirebasePost(ID, PW, name, age, gender, step, goal_step, friends);
+            FirebasePost post = new FirebasePost(ID, PW, name, age, gender, step, goal_step, height, friends);
             postValues = post.toMap();
 
         }
@@ -215,13 +224,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         childUpdates.put("/MEMBER/" + ID, postValues);
 
         mPostReference.updateChildren(childUpdates);
-    }
-    public void onBackPressed() {
-        super.onBackPressed();
-        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
-        intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
-        startActivity(intent);
-        overridePendingTransition(0, 0);
     }
 
 
@@ -245,14 +247,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                     FirebasePost get = postSnapshot.getValue(FirebasePost.class);
 
-                    String[] info = {get.id, get.pw, get.name, String.valueOf(get.age), get.gender, String.valueOf(get.step), String.valueOf(get.goal_step)};
+                    String[] info = {get.id, get.pw, get.name, String.valueOf(get.age), get.gender, String.valueOf(get.step), String.valueOf(get.goal_step), String.valueOf(get.height)};
 
 
                     arrayIndex.add(key);
 
                     Log.d("getFirebaseDatabase", "key: " + key);
 
-                    Log.d("getFirebaseDatabase", "info: " + info[0] + info[1] + info[2] + info[3] + info[4] + info[5] + info[6]);
+                    Log.d("getFirebaseDatabase", "info: " + info[0] + info[1] + info[2] + info[3] + info[4] + info[5] + info[6] + info[7]);
 
                 }
 
@@ -297,6 +299,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                 age = Long.parseLong(edit_Age.getText().toString());
 
+                height = Integer.parseInt(edit_height.getText().toString());
+
                 if(!IsExistID()){
 
                     postFirebaseDatabase(true);
@@ -312,9 +316,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 edit_ID.requestFocus();
                 edit_ID.setCursorVisible(true);
 
-                Intent intent = new Intent(getApplicationContext(), com.example.lwfb.MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
                 startActivity(intent);
-                overridePendingTransition(0, 0);
                 break;
 
             case R.id.check_man:
@@ -331,6 +334,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
 
         }
+    }
+
+    public void onBackPressed() {
+        super.onBackPressed();
+        Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+        intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
+        startActivity(intent);
+        overridePendingTransition(0, 0);
     }
 
 }
