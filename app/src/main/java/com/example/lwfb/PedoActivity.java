@@ -47,8 +47,8 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
     private DatabaseReference databaseReference;
 
-    String sheight;
-    public static int height;
+    public static String sheight ="123";
+    public static int height = 1;
     public static int cnt = 0;
     public static int kcal = cnt / 30;
     public static int goal = 10000;
@@ -117,7 +117,12 @@ public class PedoActivity extends Activity implements SensorEventListener {
         if (bundle != null) {
             sheight = bundle.getString("height");
         }
+        Log.d("frontsheight", String.valueOf(sheight));
+        Log.d("frontheight", String.valueOf(height));
         height = Integer.parseInt(sheight);
+        Log.d("sheight", String.valueOf(sheight));
+        Log.d("height", String.valueOf(height));
+
         //String goal_step = null;
         Intent i2 = getIntent();
         i2.getStringExtra("goal_step");
