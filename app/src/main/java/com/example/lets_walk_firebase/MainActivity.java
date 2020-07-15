@@ -36,6 +36,9 @@ public class MainActivity extends AppCompatActivity {
     String dt_id;
     String step_num;
     String goal_step;
+    public static String nowmyid;
+    public static int height;
+    String sheight;
 
     @Override
 
@@ -80,12 +83,16 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, loginId +"님 자동로그인 입니다.", Toast.LENGTH_SHORT).show();
                             Log.d("자동로그인 성공함",pass);
                             goal_step= String.valueOf(map.get("goal_step"));
+                            sheight =String.valueOf(map.get("height"));
                             Intent intent = new Intent(MainActivity.this, PedoActivity.class);
                             intent.putExtra("id", dt_id);
                             intent.putExtra("step", step_num);
                             intent.putExtra("goal_step", goal_step);
                             intent.putExtra("name", map.get("name"));
+                            intent.putExtra("height", sheight);
+                            nowmyid = dt_id;
                             startActivity(intent);
+                            overridePendingTransition(0, 0);
                             finish();
                         }
                     }
@@ -118,7 +125,7 @@ public class MainActivity extends AppCompatActivity {
                                 pass = map.get("pw");
                                 step_num = String.valueOf(map.get("step"));
                                 goal_step= String.valueOf(map.get("goal_step"));
-
+                                sheight =String.valueOf(map.get("height"));
                                 Log.d("password", pass);
                                 if(pass.equals(checkpw.getText().toString()))
                                 {
@@ -132,12 +139,15 @@ public class MainActivity extends AppCompatActivity {
                                     autoLogin.commit();
                                     Toast.makeText(getApplicationContext(), "로그인에 성공하셨습니다.", Toast.LENGTH_LONG).show();
                                     Intent intent = new Intent(getApplicationContext(), PedoActivity.class);
+                                    nowmyid = dt_id;
                                     intent.putExtra("id", dt_id);
                                     intent.putExtra("step", step_num);
                                     intent.putExtra("goal_step", goal_step);
+                                    intent.putExtra("height", sheight);
                                     intent.putExtra("name", map.get("name"));
 
                                     startActivity(intent);
+                                    overridePendingTransition(0, 0);
 
                                     return;
                                 }
@@ -157,12 +167,14 @@ public class MainActivity extends AppCompatActivity {
         register.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), RegisterActivity.class);
+                Intent intent = new Intent(getApplicationContext(), com.example.lets_walk_firebase.RegisterActivity.class);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
             }
         });
-    }
 
+
+    }
     //뒤로가기 2번 클릭 시 종료
     long time = 0; //뒤로가기 버튼이 클릭된 시간
 
@@ -180,5 +192,4 @@ public class MainActivity extends AppCompatActivity {
             System.exit(0);
         }
     }
-
 }

@@ -48,7 +48,7 @@ public class RealService extends Service implements SensorEventListener {
 
     NotificationManager Notifi_M;
     Notification Notifi;
-    ServiceThread thread;
+    com.example.lets_walk_firebase.ServiceThread thread;
 
     private DatabaseReference databaseReference;
 
@@ -56,6 +56,8 @@ public class RealService extends Service implements SensorEventListener {
     // 서비스를 생성할 때 호출
     public void onCreate() {
         super.onCreate();
+        PedoActivity.step_value =Integer.toString(PedoActivity.cnt);
+        PedoActivity.goal_step = Integer.toString(PedoActivity.goal);
 
         /*String step_value = serviceIntent.getStringExtra("step");
         PedoActivity.cnt = Integer.parseInt(step_value);*/
@@ -69,6 +71,8 @@ public class RealService extends Service implements SensorEventListener {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        PedoActivity.step_value =Integer.toString(PedoActivity.cnt);
+        PedoActivity.goal_step = Integer.toString(PedoActivity.goal);
         serviceIntent = intent;
 
         /*String step_value = serviceIntent.getStringExtra("step");
@@ -76,7 +80,7 @@ public class RealService extends Service implements SensorEventListener {
 
         String id_value = serviceIntent.getStringExtra("id");
 
-        Log.d("서비스 start의 id_val", id_value);
+//        Log.d("서비스 start의 id_val", id_value);
 
         databaseReference = FirebaseDatabase.getInstance().getReference("MEMBER").child(id_value);
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
@@ -84,13 +88,14 @@ public class RealService extends Service implements SensorEventListener {
             public void onDataChange(DataSnapshot dataSnapshot) {
                 Map<String, String> map = (Map) dataSnapshot.getValue();
                 String value = String.valueOf(map.get("step"));
-                Log.e("service에서 받아온 step", value);
                 PedoActivity.cnt = Integer.parseInt(value);
                 //PedoActivity.kcal = PedoActivity.cnt / 30;
                 Map<String, List<String>> map2 = (Map) dataSnapshot.getValue();
                 List<String> friend = map2.get("friends");
                 PedoActivity.friends = friend;
                 PedoActivity.my_name = map.get("name");
+                PedoActivity.step_value =Integer.toString(PedoActivity.cnt);
+                PedoActivity.goal_step = Integer.toString(PedoActivity.goal);
             }
 
             @Override
@@ -108,7 +113,7 @@ public class RealService extends Service implements SensorEventListener {
 
         Notifi_M = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
         myServiceHandler handler = new myServiceHandler();
-        thread = new ServiceThread(handler);
+        thread = new com.example.lets_walk_firebase.ServiceThread(handler);
         thread.start();
         return START_REDELIVER_INTENT;
     }
@@ -123,7 +128,8 @@ public class RealService extends Service implements SensorEventListener {
 
         String id_value = serviceIntent.getStringExtra("id");
 
-
+        PedoActivity.step_value =Integer.toString(PedoActivity.cnt);
+        PedoActivity.goal_step = Integer.toString(PedoActivity.goal);
         if (event.sensor.getType() == Sensor.TYPE_ACCELEROMETER) {
             long currentTime = System.currentTimeMillis();
             long gabOfTime = (currentTime - lastTime);
@@ -140,13 +146,12 @@ public class RealService extends Service implements SensorEventListener {
 
 
                     PedoActivity.cnt++;
-                    PedoActivity.step_value = String.valueOf(PedoActivity.cnt);
                     PedoActivity.kcal = PedoActivity.cnt/30;
                     FirebasePost user = new FirebasePost();
 
                     user.WriteStep(id_value, PedoActivity.cnt);
                     Intent intent1 = new Intent();
-                    intent1.setAction("com.example.lets_walk_firebase");
+                    intent1.setAction("com.example.lwfb");
 
                     String pass = Integer.toString(PedoActivity.cnt);
                     intent1.putExtra("DATAPASSED", pass);
@@ -191,7 +196,8 @@ public class RealService extends Service implements SensorEventListener {
     public void onDestroy() {
         super.onDestroy();
 
-
+        PedoActivity.step_value =Integer.toString(PedoActivity.cnt);
+        PedoActivity.goal_step = Integer.toString(PedoActivity.goal);
         thread.stopForever();
         thread = null;
         if (sensorManager != null) {
@@ -202,7 +208,7 @@ public class RealService extends Service implements SensorEventListener {
 
     protected void onHandleIntent(Intent intent) {
         Intent intent1 = new Intent();
-        intent1.setAction("com.example.lets_walk_firebase");
+        intent1.setAction("com.example.lwfb");
         intent1.putExtra("DATAPASSED", PedoActivity.cnt);
         sendBroadcast(intent1);
     }

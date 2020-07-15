@@ -25,4 +25,3 @@ public class ServiceThread extends Thread{
         }
     }
 }
-
