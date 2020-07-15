@@ -21,6 +21,7 @@ public class FirebasePost {
     public String gender;
     public int step;
     public int goal_step;
+    public int height;
     public static List<String> friends;
 
     private DatabaseReference mDatabase;
@@ -35,7 +36,7 @@ public class FirebasePost {
 
 
 
-    public FirebasePost(String id, String pw, String name, Long age, String gender, int step, int goal_step, List<String>friends) {
+    public FirebasePost(String id, String pw, String name, Long age, String gender, int step, int goal_step, int height, List<String>friends) {
 
         this.id = id;
         this.pw = pw;
@@ -43,6 +44,7 @@ public class FirebasePost {
         this.age = age;
         this.gender = gender;
         this.step = step;
+        this.height = height;
         this.goal_step = goal_step;
         this.friends = friends;
 
@@ -63,6 +65,7 @@ public class FirebasePost {
         result.put("gender", gender);
         result.put("step", step);
         result.put("goal_step", goal_step);
+        result.put("height", height);
         result.put("friends", friends);
 
         return result;
