@@ -88,6 +88,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         edit_Age = (EditText) findViewById(R.id.edit_age);
 
+        edit_height = (EditText) findViewById(R.id.edit_height);
+
         text_ID = (TextView) findViewById(R.id.text_id);
 
         text_PW = (TextView) findViewById(R.id.text_pw);
