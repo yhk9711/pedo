@@ -49,6 +49,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
 
     public static int cnt = 0;
+    public static int height;
     public static int kcal = cnt / 30;
     public static double dis = cnt / 1.5;
     public static int goal = 10000;

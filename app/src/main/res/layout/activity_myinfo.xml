@@ -132,6 +132,51 @@
         </LinearLayout>
 
 
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="71dp"
+            android:gravity="center">
+
+            <TextView
+                android:id="@+id/text_height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="키: "
+                android:textStyle="bold"
+                android:textColor="#639cd4"
+                android:textSize="20dp" />
+
+            <EditText
+                android:id="@+id/edit_height"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:ems="7"
+                android:maxLength="5"
+                android:inputType="number"
+                android:backgroundTint="#1B5019"
+                android:textColor="#000000"
+                />
+            <TextView
+                android:id="@+id/blank_2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="  "
+                android:textColor="#639cd4"
+                android:textSize="20dp" />
+            <Button
+                android:id="@+id/btn_changed_height"
+                android:layout_width="62dp"
+                android:layout_height="30dp"
+                android:layout_alignParentEnd="true"
+                android:background="#639cd4"
+                android:gravity="center"
+                android:text="수정" />
+        </LinearLayout>
+
+
     </LinearLayout>
     <include layout="@layout/nav1"/>
 </androidx.drawerlayout.widget.DrawerLayout>

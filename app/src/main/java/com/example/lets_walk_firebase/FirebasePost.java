@@ -86,6 +86,10 @@ public class FirebasePost {
         mDatabase.child("MEMBER").child(userId).child("friends").setValue(friend);
     }
 
+    public void WriteHeight(String userId, int Height){
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("MEMBER").child(userId).child("height").setValue(Height);
+    }
 
 
 }
