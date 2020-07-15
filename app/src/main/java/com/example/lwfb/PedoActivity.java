@@ -119,6 +119,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
         }
         Log.d("frontsheight", String.valueOf(sheight));
         Log.d("frontheight", String.valueOf(height));
+
         height = Integer.parseInt(sheight);
         Log.d("sheight", String.valueOf(sheight));
         Log.d("height", String.valueOf(height));
@@ -132,6 +133,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
             Log.d("goal_step", goal_step);
 
         }
+        goal = Integer.parseInt(goal_step);
 
 
         Intent i3 = getIntent();

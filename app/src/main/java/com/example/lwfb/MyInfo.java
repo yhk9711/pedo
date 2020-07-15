@@ -28,7 +28,9 @@ public class MyInfo extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private View drawerView;
     private EditText edit_goal;
+    private EditText edit_height;
     Button btn_changed;
+    Button btn_changed_height;
     ArrayAdapter<String> arrayAdapter;
 
     static ArrayList<String> arrayIndex = new ArrayList<String>();
@@ -42,6 +44,9 @@ public class MyInfo extends AppCompatActivity {
         btn_changed = (Button) findViewById(R.id.btn_changed);
         edit_goal = (EditText) findViewById(R.id.edit_goal);
         btn_changed.setEnabled(true);
+        btn_changed_height = (Button) findViewById(R.id.btn_changed_height);
+        edit_height = (EditText) findViewById(R.id.edit_height);
+        btn_changed_height.setEnabled(true);
         arrayAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1);
         drawerLayout = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawerView = (View) findViewById(R.id.drawerView);
@@ -120,6 +125,38 @@ public class MyInfo extends AppCompatActivity {
                 }
             }
         });
+
+        btn_changed_height.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                switch (view.getId()) {
+
+                    case R.id.btn_changed_height:
+
+                        PedoActivity.height = Integer.parseInt(edit_height.getText().toString());
+                        setInsertMode();
+                        Toast.makeText(getApplicationContext(), "키가 변경되었습니다.", Toast.LENGTH_LONG).show();
+
+                        String id_value = null;
+                        Intent i = getIntent();
+                        i.getStringExtra("id");
+                        Bundle bundle = getIntent().getExtras();
+                        if (bundle != null) {
+                            id_value = bundle.getString("id");
+                        }
+
+                        FirebasePost user = new FirebasePost();
+                        user.WriteHeight(id_value, PedoActivity.height);
+                        PedoActivity.sheight=Integer.toString(PedoActivity.height);
+
+                        break;
+
+
+                }
+            }
+        });
+
         BarChart chart = findViewById(R.id.barchart);
 
         ArrayList NoOfEmp = new ArrayList();
@@ -161,8 +198,10 @@ public class MyInfo extends AppCompatActivity {
 
     public void setInsertMode() {
         edit_goal.setText("");
+        edit_height.setText("");
 
     }
+
 
     private AdapterView.OnItemClickListener onClickListener = new AdapterView.OnItemClickListener() {
 
@@ -175,6 +214,9 @@ public class MyInfo extends AppCompatActivity {
             edit_goal.setText(tempData[0].trim());
 
             btn_changed.setEnabled(true);
+
+            edit_height.setText(tempData[1].trim());
+            btn_changed_height.setEnabled(true);
 
         }
 

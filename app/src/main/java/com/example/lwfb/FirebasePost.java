@@ -1,5 +1,6 @@
 package com.example.lwfb;
 
+
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.Exclude;
 import com.google.firebase.database.FirebaseDatabase;
@@ -86,6 +87,10 @@ public class FirebasePost {
         mDatabase.child("MEMBER").child(userId).child("friends").setValue(friend);
     }
 
+    public void WriteHeight(String userId, int Height){
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("MEMBER").child(userId).child("height").setValue(Height);
+    }
 
 
 }

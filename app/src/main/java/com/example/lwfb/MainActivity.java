@@ -83,10 +83,13 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, loginId +"님 자동로그인 입니다.", Toast.LENGTH_SHORT).show();
                             Log.d("자동로그인 성공함",pass);
                             goal_step= String.valueOf(map.get("goal_step"));
+                            sheight= String.valueOf(map.get("height"));
+
                             Intent intent = new Intent(MainActivity.this, PedoActivity.class);
                             intent.putExtra("id", dt_id);
                             intent.putExtra("step", step_num);
                             intent.putExtra("goal_step", goal_step);
+                            intent.putExtra("height",sheight);
                             intent.putExtra("name", map.get("name"));
                             nowmyid = dt_id;
                             startActivity(intent);
