@@ -1,6 +1,8 @@
 package com.example.lets_walk_firebase;
 
 import android.app.Activity;
+import android.app.AlarmManager;
+import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -33,12 +35,14 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
 public class PedoActivity extends Activity implements SensorEventListener {
 
     public static List<String> friends = new ArrayList<String>();
+    private static int ONE_MINUTE = 5626;
 
 
 
@@ -391,6 +395,28 @@ public class PedoActivity extends Activity implements SensorEventListener {
             }
         });
 
+        new AlarmHATT(getApplicationContext()).Alarm();
+
+    }
+    public class AlarmHATT {
+        private Context context;
+        public AlarmHATT(Context context) {
+            this.context=context;
+        }
+        public void Alarm() {
+            AlarmManager am = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+            Intent intent = new Intent(PedoActivity.this, AlarmReceiver.class);
+
+            PendingIntent sender = PendingIntent.getBroadcast(PedoActivity.this, 0, intent, 0);
+
+            Calendar calendar = Calendar.getInstance();
+            //알람시간 calendar에 set해주기
+
+            calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE), 16, 38, 0);
+
+            //알람 예약
+            am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);
+        }
     }
 
     @Override
