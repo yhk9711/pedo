@@ -2,6 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.lwfb">
 
+    <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.VIBRATE"/>
+    <uses-permission android:name="android.permission.WAKE_LOCK"/>
+
     <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
@@ -10,12 +14,21 @@
     <uses-permission android:name="android.permission.REQUEST_IGNORE_BATTERY_OPTIMIZATIONS"/>
     <uses-permission android:name="android.permission.INTERNET"/>
 
+    <uses-permission android:name="Android.permission.WRITE_SETTINGS" ></uses-permission>
+    <uses-permission android:name="Android.permission.CHANGE_CONFIGURATION" ></uses-permission>
+    <uses-permission android:name="Android.permission.MODIFY_AUDIO_SETTINGS" ></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="Let's Walk"
+        android:label="렛츠워크"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCP6JWaN7sE67Eo8KlfCX8PVXvExZ-OlfY" />
 
         <activity android:name=".SplashActivity">
             <!-- 시작 액티비티를 스플래시로 변경. -->
@@ -62,6 +75,7 @@
             android:name=".FoundFriendActivity"
             android:screenOrientation="unspecified"
             android:windowSoftInputMode="stateHidden"></activity>
+
         <activity
             android:name=".HighActivity"
             android:configChanges="orientation|screenSize|locale"
@@ -79,29 +93,45 @@
             android:screenOrientation="unspecified"
             android:windowSoftInputMode="adjustResize"></activity>
         <activity
+            android:name=".MapsActivity"
+            android:configChanges="orientation|screenSize|locale"
+            android:screenOrientation="unspecified"
+            android:windowSoftInputMode="adjustResize"></activity>
+
+
+        <activity
             android:name="com.example.lwfb.YouTubeAPIDemoActivity">
+
             <meta-data android:name="@string/isLaunchableActivity" android:value="false"/>
         </activity>
+
+
 
         <service
             android:name=".RealService"
             android:enabled="true"
             android:exported="true" />
 
-<!--        <service-->
-<!--            android:name=".RestartService"-->
-<!--            android:enabled="true"-->
-<!--            android:exported="true" />-->
+        <receiver android:name="AlarmReceiver">
+            <intent-filter>
+                <action android:name="com.enspert.app.alarms.ALARM_ALERT" />
+            </intent-filter>
+        </receiver>
 
-<!--        <receiver android:name=".AlarmRecever"/>-->
-<!--        <receiver-->
-<!--            android:name=".BootReceiver"-->
-<!--            android:enabled="true"-->
-<!--            android:exported="false" >-->
-<!--            <intent-filter>-->
-<!--                <action android:name="android.intent.action.BOOT_COMPLETED" />-->
-<!--            </intent-filter>-->
-<!--        </receiver>-->
+        <!--        <service-->
+        <!--            android:name=".RestartService"-->
+        <!--            android:enabled="true"-->
+        <!--            android:exported="true" />-->
+
+        <!--        <receiver android:name=".AlarmRecever"/>-->
+        <!--        <receiver-->
+        <!--            android:name=".BootReceiver"-->
+        <!--            android:enabled="true"-->
+        <!--            android:exported="false" >-->
+        <!--            <intent-filter>-->
+        <!--                <action android:name="android.intent.action.BOOT_COMPLETED" />-->
+        <!--            </intent-filter>-->
+        <!--        </receiver>-->
     </application>
 
 </manifest>

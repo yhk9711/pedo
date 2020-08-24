@@ -58,6 +58,7 @@ public class MyInfo extends AppCompatActivity {
         Button friendlist = (Button) findViewById(R.id.friendlist);
         Button notice = (Button) findViewById(R.id.notice);
         Button hometraining = (Button) findViewById(R.id.hometraining);
+        Button maps = (Button) findViewById(R.id.maps);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -92,6 +93,13 @@ public class MyInfo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(MyInfo.this, HomeTrainActivity.class);
+                startActivity(intent);
+            }
+        });
+        maps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MyInfo.this, MapsActivity.class);
                 startActivity(intent);
             }
         });

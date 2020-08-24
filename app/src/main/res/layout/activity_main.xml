@@ -119,5 +119,11 @@
         android:stateListAnimator="@null"
         android:text="회원가입" />
 
+    <Button
+        android:id="@+id/map"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="map" />
+
 
 </LinearLayout>

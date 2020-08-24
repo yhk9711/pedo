@@ -75,6 +75,7 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
         Button notice = (Button) findViewById(R.id.notice);
         Button myInfo = (Button) findViewById(R.id.myinfo);
         Button hometraining = (Button) findViewById(R.id.hometraining);
+        Button maps = (Button) findViewById(R.id.maps);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,6 +112,14 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(FriendListActivity.this, HomeTrainActivity.class);
+
+                startActivity(intent);
+            }
+        });
+        maps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FriendListActivity.this, MapsActivity.class);
 
                 startActivity(intent);
             }

@@ -36,7 +36,7 @@ public class NoticeActivity extends AppCompatActivity implements View.OnClickLis
         Button myInfo = (Button) findViewById(R.id.myinfo);
         Button friendlist = (Button) findViewById(R.id.friendlist);
         Button hometraining = (Button) findViewById(R.id.hometraining);
-
+        Button maps = (Button) findViewById(R.id.maps);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -96,6 +96,24 @@ public class NoticeActivity extends AppCompatActivity implements View.OnClickLis
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(NoticeActivity.this, com.example.lwfb.HomeTrainActivity.class);
+                /*String id_value2 = null;
+                Intent i2 = getIntent();
+                i2.getStringExtra("id");
+                Bundle bundle2 = getIntent().getExtras();
+                if (bundle2 != null) {
+                    id_value2 = bundle2.getString("id");
+                    //Log.d("id", id_value2);
+                }
+                intent.putExtra("id", id_value2);
+                intent.putExtra("name", user_name);*/
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+            }
+        });
+        maps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(NoticeActivity.this, com.example.lwfb.MapsActivity.class);
                 /*String id_value2 = null;
                 Intent i2 = getIntent();
                 i2.getStringExtra("id");

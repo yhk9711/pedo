@@ -35,6 +35,7 @@ public class HomeTrainActivity extends AppCompatActivity {
         Button friendlist = (Button) findViewById(R.id.friendlist);
         Button notice = (Button) findViewById(R.id.notice);
         Button myInfo = (Button) findViewById(R.id.myinfo);
+        Button maps = (Button) findViewById(R.id.maps);
 
         high = (Button)findViewById(R.id.high);
         high.setOnClickListener(new View.OnClickListener() {
@@ -106,6 +107,15 @@ public class HomeTrainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(HomeTrainActivity.this, NoticeActivity.class);
+
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+            }
+        });
+        maps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeTrainActivity.this, MapsActivity.class);
 
                 startActivity(intent);
                 overridePendingTransition(0, 0);
