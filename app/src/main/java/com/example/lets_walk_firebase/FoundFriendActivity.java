@@ -64,12 +64,14 @@ public class FoundFriendActivity extends AppCompatActivity {
         Button friendlist = (Button) findViewById(R.id.friendlist);
         Button notice = (Button) findViewById(R.id.notice);
         Button hometraining = (Button) findViewById(R.id.hometraining);
+        Button maps = (Button) findViewById(R.id.maps);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 //SharedPreferences에 저장된 값들을 로그아웃 버튼을 누르면 삭제하기 위해 SharedPreferences를 불러옴
                 Intent intent = new Intent(FoundFriendActivity.this, MainActivity.class);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
                 SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
                 SharedPreferences.Editor editor = auto.edit();
                 //auto에 들어있는 모든 정보를 기기에서 지움
@@ -85,6 +87,7 @@ public class FoundFriendActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(FoundFriendActivity.this, FriendListActivity.class);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
             }
         });
         notice.setOnClickListener(new View.OnClickListener() {
@@ -92,6 +95,7 @@ public class FoundFriendActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(FoundFriendActivity.this, NoticeActivity.class);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
             }
         });
         hometraining.setOnClickListener(new View.OnClickListener() {
@@ -99,9 +103,17 @@ public class FoundFriendActivity extends AppCompatActivity {
             public void onClick(View view) {
                 Intent intent = new Intent(FoundFriendActivity.this, HomeTrainActivity.class);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
             }
         });
-
+        maps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FoundFriendActivity.this, GPSActivity.class);
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+            }
+        });
         String name_value = null;
         Intent i = getIntent();
         i.getStringExtra("name");
@@ -227,6 +239,7 @@ public class FoundFriendActivity extends AppCompatActivity {
                                 intent.putExtra("gender", gender);
                                 intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
                                 startActivity(intent);
+                                overridePendingTransition(0, 0);
                                 return;
                             }
                         }
@@ -258,6 +271,7 @@ public class FoundFriendActivity extends AppCompatActivity {
         p.WriteFriends(PedoActivity.my_id, PedoActivity.friends);
         Intent intent = new Intent(getApplicationContext(), FindFriendActivity.class);
         startActivity(intent);
+        overridePendingTransition(0, 0);
     }
 
     DrawerLayout.DrawerListener listener = new DrawerLayout.DrawerListener() {
@@ -284,6 +298,7 @@ public class FoundFriendActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), FindFriendActivity.class);
         intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
+        overridePendingTransition(0, 0);
     }
 
 }

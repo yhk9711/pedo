@@ -58,6 +58,7 @@ public class MyInfo extends AppCompatActivity {
         Button friendlist = (Button) findViewById(R.id.friendlist);
         Button notice = (Button) findViewById(R.id.notice);
         Button hometraining = (Button) findViewById(R.id.hometraining);
+        Button maps = (Button) findViewById(R.id.maps);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -95,6 +96,13 @@ public class MyInfo extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+        maps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MyInfo.this, GPSActivity.class);
+                startActivity(intent);
+            }
+        });
 
         btn_changed.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -105,7 +113,6 @@ public class MyInfo extends AppCompatActivity {
                     case R.id.btn_changed:
 
                         PedoActivity.goal = Integer.parseInt(edit_goal.getText().toString());
-                        PedoActivity.goal_step = edit_goal.getText().toString();
                         setInsertMode();
                         Toast.makeText(getApplicationContext(), "목표 걸음 수가 변경되었습니다.", Toast.LENGTH_LONG).show();
 
@@ -136,7 +143,6 @@ public class MyInfo extends AppCompatActivity {
                     case R.id.btn_changed_height:
 
                         PedoActivity.height = Integer.parseInt(edit_height.getText().toString());
-                        PedoActivity.sheight = edit_height.getText().toString();
                         setInsertMode();
                         Toast.makeText(getApplicationContext(), "키가 변경되었습니다.", Toast.LENGTH_LONG).show();
 
@@ -150,6 +156,7 @@ public class MyInfo extends AppCompatActivity {
 
                         FirebasePost user = new FirebasePost();
                         user.WriteHeight(id_value, PedoActivity.height);
+                        PedoActivity.sheight=Integer.toString(PedoActivity.height);
 
                         break;
 

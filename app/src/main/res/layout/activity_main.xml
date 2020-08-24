@@ -120,5 +120,27 @@
         android:stateListAnimator="@null"
         android:text="회원가입" />
 
+    <Button
+
+        android:id="@+id/gps"
+
+        android:layout_width="wrap_content"
+
+        android:layout_height="30dp"
+
+        android:backgroundTint="#52789e"
+
+        android:textColorHint="#505152"
+
+        android:textColor="#ffffff"
+
+        android:background="@drawable/round_corner"
+
+        android:stateListAnimator="@null"
+
+        android:text="gps" />
+
+
+
 
 </LinearLayout>

@@ -31,6 +31,7 @@ public class MainActivity extends AppCompatActivity {
     EditText checkpw;
     Button login;
     Button register;
+    Button gps;
     String pass;
     String loginId, loginPwd;
     String dt_id;
@@ -171,6 +172,24 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
                 overridePendingTransition(0, 0);
             }
+        });
+
+        gps = (Button)findViewById(R.id.gps);
+
+        gps.setOnClickListener(new View.OnClickListener() {
+
+            @Override
+
+            public void onClick(View v) {
+
+                Intent intent = new Intent(getApplicationContext(), com.example.lets_walk_firebase.GPSActivity.class);
+
+                startActivity(intent);
+
+                overridePendingTransition(0, 0);
+
+            }
+
         });
 
 

@@ -35,13 +35,15 @@ public class HomeTrainActivity extends AppCompatActivity {
         Button friendlist = (Button) findViewById(R.id.friendlist);
         Button notice = (Button) findViewById(R.id.notice);
         Button myInfo = (Button) findViewById(R.id.myinfo);
+        Button maps = (Button) findViewById(R.id.maps);
 
         high = (Button)findViewById(R.id.high);
         high.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), HighActivity.class);
+                Intent intent = new Intent(getApplicationContext(), com.example.lets_walk_firebase.HighActivity.class);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
             }
         });
 
@@ -49,8 +51,9 @@ public class HomeTrainActivity extends AppCompatActivity {
         medi.setOnClickListener(new  View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), MediActivity.class);
+                Intent intent = new Intent(getApplicationContext(), com.example.lets_walk_firebase.MediActivity.class);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
             }
         });
 
@@ -58,8 +61,9 @@ public class HomeTrainActivity extends AppCompatActivity {
         low.setOnClickListener(new  View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), LowActivity.class);
+                Intent intent = new Intent(getApplicationContext(), com.example.lets_walk_firebase.LowActivity.class);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
             }
         });
 
@@ -69,6 +73,7 @@ public class HomeTrainActivity extends AppCompatActivity {
                 //SharedPreferences에 저장된 값들을 로그아웃 버튼을 누르면 삭제하기 위해 SharedPreferences를 불러옴
                 Intent intent = new Intent(HomeTrainActivity.this, MainActivity.class);
                 startActivity(intent);
+                overridePendingTransition(0, 0);
                 SharedPreferences auto = getSharedPreferences("auto", Activity.MODE_PRIVATE);
                 SharedPreferences.Editor editor = auto.edit();
                 //auto에 들어있는 모든 정보를 기기에서 지움
@@ -85,15 +90,17 @@ public class HomeTrainActivity extends AppCompatActivity {
                 Intent intent = new Intent(HomeTrainActivity.this, MyInfo.class);
 
                 startActivity(intent);
+                overridePendingTransition(0, 0);
             }
         });
 
         friendlist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeTrainActivity.this, FriendListActivity.class);
+                Intent intent = new Intent(HomeTrainActivity.this, com.example.lets_walk_firebase.FriendListActivity.class);
 
                 startActivity(intent);
+                overridePendingTransition(0, 0);
             }
         });
         notice.setOnClickListener(new View.OnClickListener() {
@@ -102,6 +109,16 @@ public class HomeTrainActivity extends AppCompatActivity {
                 Intent intent = new Intent(HomeTrainActivity.this, NoticeActivity.class);
 
                 startActivity(intent);
+                overridePendingTransition(0, 0);
+            }
+        });
+        maps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(HomeTrainActivity.this, GPSActivity.class);
+
+                startActivity(intent);
+                overridePendingTransition(0, 0);
             }
         });
     }
@@ -131,6 +148,7 @@ public class HomeTrainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), PedoActivity.class);
         intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
+        overridePendingTransition(0, 0);
     }
 
 }

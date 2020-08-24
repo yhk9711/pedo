@@ -66,7 +66,7 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
         nth = (TextView)findViewById(R.id.nth);
 
 
-        Log.d("이름", PedoActivity.my_name);
+//        Log.d("이름", PedoActivity.my_name);
 
         name.setText("" + PedoActivity.my_name + " 님");
 
@@ -75,6 +75,7 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
         Button notice = (Button) findViewById(R.id.notice);
         Button myInfo = (Button) findViewById(R.id.myinfo);
         Button hometraining = (Button) findViewById(R.id.hometraining);
+        Button maps = (Button) findViewById(R.id.maps);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -111,6 +112,14 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(FriendListActivity.this, HomeTrainActivity.class);
+
+                startActivity(intent);
+            }
+        });
+        maps.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FriendListActivity.this, GPSActivity.class);
 
                 startActivity(intent);
             }
@@ -175,11 +184,13 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
                     }
                 }
 
+
                 for(int i = 0; i < friendname.size(); i++){
                     sort_friends.put(friendname.get(i), Integer.parseInt(friendstep.get(i)));
                 }
 
                 Iterator it = sortByValue(sort_friends).iterator();
+
 
                 if (0<friendname.size()){
                     item = new ListViewBtnItem();
@@ -190,10 +201,9 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
                     Log.d("item", item.toString());
                     list2.add(item);
                     Log.d("list2", list2.toString());
-                    Log.d("내이름", PedoActivity.my_name);
+                    Log.d("temp값",temp);
+                    Log.d("이름!!!", PedoActivity.my_name);
                     if(temp.equals(PedoActivity.my_name)){
-                        Log.d("temp", temp);
-                        Log.d("내이름", PedoActivity.my_name);
                         nth.setText("" + 1);
                     }
                 }
@@ -220,7 +230,7 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
                     Log.d("item", item.toString());
                     list2.add(item);
                     Log.d("list2", list2.toString());
-                    if(temp.equals(PedoActivity.my_name)){
+                    if(temp.equals(PedoActivity.my_name) ){
                         nth.setText("" + 3);
                     }
                 }
@@ -240,6 +250,7 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
                         }
                     }
                 }
+
             }
 
             @Override

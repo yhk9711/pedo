@@ -86,15 +86,18 @@ public class RealService extends Service implements SensorEventListener {
             AlarmManager am = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
             Intent intent = new Intent(RealService.this, AlarmReceiver.class);
 
-            PendingIntent sender = PendingIntent.getBroadcast(RealService.this, 0, intent, 0);
+            PendingIntent sender = PendingIntent.getBroadcast(RealService.this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
 
             Calendar calendar = Calendar.getInstance();
             //알람시간 calendar에 set해주기
 
-            calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE), 16, 38, 0);
+            calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE), 18, 11, 0);
 
             //알람 예약
-            am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);
+            am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), sender);
+            /*if(am != null && sender != null){
+                am.cancel(sender);
+            }*/
         }
     }
 

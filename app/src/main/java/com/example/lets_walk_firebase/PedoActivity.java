@@ -1,5 +1,6 @@
 package com.example.lets_walk_firebase;
 
+
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -309,6 +310,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
         Button friendlist = (Button) findViewById(R.id.friendlist);
         Button notice = (Button) findViewById(R.id.notice);
         Button hometraining = (Button) findViewById(R.id.hometraining);
+        Button maps = (Button) findViewById(R.id.maps);
         TextView name = (TextView) findViewById(R.id.nameofuser);
         name.setText("" + my_name + " 님");
 
@@ -394,6 +396,22 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 startActivity(intent);
             }
         });
+        maps.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(PedoActivity.this, GPSActivity.class);
+                String id_value2 = null;
+                Intent i2 = getIntent();
+                i2.getStringExtra("id");
+                Bundle bundle2 = getIntent().getExtras();
+                if (bundle2 != null) {
+                    id_value2 = bundle2.getString("id");
+                }
+                intent.putExtra("id", id_value2);
+                intent.putExtra("name", user_name);
+                startActivity(intent);
+            }
+        });
 
         new AlarmHATT(getApplicationContext()).Alarm();
 
@@ -412,10 +430,11 @@ public class PedoActivity extends Activity implements SensorEventListener {
             Calendar calendar = Calendar.getInstance();
             //알람시간 calendar에 set해주기
 
-            calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE), 16, 38, 0);
+            calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE), 18, 16, 0);
 
             //알람 예약
             am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);
+            am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 24 * 60 * 60 * 1000, sender);
         }
     }
 
