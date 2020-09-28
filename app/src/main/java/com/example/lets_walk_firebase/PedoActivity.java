@@ -454,8 +454,8 @@ public class PedoActivity extends Activity implements SensorEventListener {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
 
-        calendar.set(Calendar.HOUR_OF_DAY, 14);
-        calendar.set(Calendar.MINUTE, 28);
+        calendar.set(Calendar.HOUR_OF_DAY, 15);
+        calendar.set(Calendar.MINUTE, 17);
         calendar.set(Calendar.SECOND, 0);
 
         long aTime = System.currentTimeMillis();
@@ -471,9 +471,11 @@ public class PedoActivity extends Activity implements SensorEventListener {
         am.setInexactRepeating(am.RTC_WAKEUP, bTime, am.INTERVAL_DAY, sender);
 
         SimpleDateFormat format = new SimpleDateFormat("MM/dd kk:mm:ss");
-        String setRestTime = format.format(new Date(calendar.getTimeInMillis()));
+        String setRestTime = format.format(new Date(bTime));
+        String setRestTime2 = format.format(new Date(aTime));
 
-        Log.d("resetAlarm", "ResetHour: " + setRestTime);
+        Log.e("resetAlarm", "ResetHour: " + setRestTime);
+        Log.e("resetAlarm2", "ResetHour: " + setRestTime2);
 
     }
 
