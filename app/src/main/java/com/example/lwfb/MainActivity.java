@@ -172,15 +172,7 @@ public class MainActivity extends AppCompatActivity {
                 overridePendingTransition(0, 0);
             }
         });
-        map = (Button)findViewById(R.id.map);
-        map.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(getApplicationContext(), com.example.lwfb.MapsActivity.class);
-                startActivity(intent);
-                overridePendingTransition(0, 0);
-            }
-        });
+
 
 
 

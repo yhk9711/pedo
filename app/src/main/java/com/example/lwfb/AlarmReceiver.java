@@ -12,6 +12,4 @@ public class AlarmReceiver extends BroadcastReceiver {
         user.WriteStep(PedoActivity.my_id, PedoActivity.cnt);
         //Toast.makeText(context.getApplicationContext(),"alarm!", Toast.LENGTH_LONG).show();
     }
-
 }
-
