@@ -1,6 +1,5 @@
 package com.example.lwfb;
 
-
 import android.app.Activity;
 import android.app.AlarmManager;
 import android.app.PendingIntent;
@@ -35,8 +34,10 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -413,30 +414,69 @@ public class PedoActivity extends Activity implements SensorEventListener {
             }
         });
 
-        new AlarmHATT(getApplicationContext()).Alarm();
+        resetAlarm(getApplicationContext());
+        //  new AlarmHATT(getApplicationContext()).Alarm();
 
     }
-    public class AlarmHATT {
+    /*public class AlarmHATT {
         private Context context;
         public AlarmHATT(Context context) {
             this.context=context;
         }
         public void Alarm() {
             AlarmManager am = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-            Intent intent = new Intent(PedoActivity.this, AlarmReceiver.class);
+            Intent intent = new Intent(PedoActivity.this, com.example.fbtest.AlarmReceiver.class);
 
             PendingIntent sender = PendingIntent.getBroadcast(PedoActivity.this, 0, intent, 0);
 
             Calendar calendar = Calendar.getInstance();
+            //   calendar.setTimeInMillis(System.currentTimeMillis());
+            //   calendar.set(Calendar.HOUR_OF_DAY,18);
+            //   calendar.set(Calendar.MINUTE,43);
             //알람시간 calendar에 set해주기
 
-            calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE), 19, 42, 0);
+            calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE), 19, 10, 0);
 
+            //알람 예약
             am.set(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), sender);
-            assert am != null;
-            am.cancel(sender);
-            //am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 24 * 60 * 60 * 1000, sender);
+            am.setRepeating(AlarmManager.RTC_WAKEUP, calendar.getTimeInMillis(), 24 * 60 * 60 * 1000, sender);
+            Log.d("페도!!!!!!!!!", "걸음수 바뀜ㅁㅁㅁㅁㅁ");
         }
+    }
+*/
+    public static void resetAlarm(Context context){
+        AlarmManager am = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(context, com.example.lwfb.AlarmReceiver.class);
+        PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, 0);
+
+
+        //자정 시간
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+
+        calendar.set(Calendar.HOUR_OF_DAY, 15);
+        calendar.set(Calendar.MINUTE, 17);
+        calendar.set(Calendar.SECOND, 0);
+
+        long aTime = System.currentTimeMillis();
+        long bTime = calendar.getTimeInMillis();
+
+        long interval = 1000*60*60*24;
+
+        while(aTime > bTime) {
+            bTime += interval;
+        }
+
+        //다음날 0시에 맞추기 위해 24시간을 뜻하는 상수인 AlarmManager.INTERVAL_DAY를 더해줌
+        am.setInexactRepeating(am.RTC_WAKEUP, bTime, am.INTERVAL_DAY, sender);
+
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd kk:mm:ss");
+        String setRestTime = format.format(new Date(bTime));
+        String setRestTime2 = format.format(new Date(aTime));
+
+        Log.e("resetAlarm", "ResetHour: " + setRestTime);
+        Log.e("resetAlarm2", "ResetHour: " + setRestTime2);
+
     }
 
     @Override
@@ -482,14 +522,16 @@ public class PedoActivity extends Activity implements SensorEventListener {
             stopService(serviceIntent);
         }
         step_value = String.valueOf(cnt);
+        //resetAlarm(getApplicationContext());
 
         if (accelerormeterSensor != null) {
             sensorManager.registerListener(this, accelerormeterSensor,
                     SensorManager.SENSOR_DELAY_GAME);
             IntentFilter intentFilter = new IntentFilter();
-            intentFilter.addAction("com.example.lwfb");
+            intentFilter.addAction("com.example.fbtest");
             registerReceiver(broadcastReceiver, intentFilter);
             Log.e("페도의 ", "onstart입니다");
+            //new AlarmHATT(getApplicationContext()).Alarm();
 
             kcal = cnt / 30;
             databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
