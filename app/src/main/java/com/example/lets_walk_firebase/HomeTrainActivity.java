@@ -115,7 +115,7 @@ public class HomeTrainActivity extends AppCompatActivity {
         maps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(HomeTrainActivity.this, GPSActivity.class);
+                Intent intent = new Intent(HomeTrainActivity.this, MapsActivity.class);
 
                 startActivity(intent);
                 overridePendingTransition(0, 0);

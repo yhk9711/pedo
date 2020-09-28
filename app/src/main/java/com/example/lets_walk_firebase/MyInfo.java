@@ -99,7 +99,7 @@ public class MyInfo extends AppCompatActivity {
         maps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MyInfo.this, GPSActivity.class);
+                Intent intent = new Intent(MyInfo.this, MapsActivity.class);
                 startActivity(intent);
             }
         });

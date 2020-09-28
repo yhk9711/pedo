@@ -119,7 +119,7 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
         maps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(FriendListActivity.this, GPSActivity.class);
+                Intent intent = new Intent(FriendListActivity.this, MapsActivity.class);
 
                 startActivity(intent);
             }

@@ -1,7 +1,6 @@
 package com.example.lets_walk_firebase;
 
 
-import android.app.AlarmManager;
 import android.app.Application;
 import android.app.Notification;
 import android.app.NotificationManager;
@@ -26,7 +25,6 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 
@@ -65,7 +63,8 @@ public class RealService extends Service implements SensorEventListener {
         PedoActivity.step_value =Integer.toString(PedoActivity.cnt);
         PedoActivity.goal_step = Integer.toString(PedoActivity.goal);
 
-        new AlarmHATT(getApplicationContext()).Alarm();
+        // new AlarmHATT(getApplicationContext()).Alarm();
+        //resetAlarm(getApplicationContext());
 
         /*String step_value = serviceIntent.getStringExtra("step");
         PedoActivity.cnt = Integer.parseInt(step_value);*/
@@ -77,36 +76,59 @@ public class RealService extends Service implements SensorEventListener {
 
     }
 
-    public class AlarmHATT {
-        private Context context;
-        public AlarmHATT(Context context) {
-            this.context=context;
-        }
-        public void Alarm() {
-            AlarmManager am = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-            Intent intent = new Intent(RealService.this, AlarmReceiver.class);
+    /*public static void resetAlarm(Context context){
+        AlarmManager am = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
+        Intent intent = new Intent(context, com.example.lets_walk_firebase.AlarmReceiver.class);
+        PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, 0);
 
-            PendingIntent sender = PendingIntent.getBroadcast(RealService.this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+        //자정 시간
+        Calendar calendar = Calendar.getInstance();
+        calendar.setTimeInMillis(System.currentTimeMillis());
+        calendar.set(Calendar.HOUR_OF_DAY, 13);
+        calendar.set(Calendar.MINUTE, 50);
+        calendar.set(Calendar.SECOND, 0);
 
-            Calendar calendar = Calendar.getInstance();
-            //알람시간 calendar에 set해주기
+        //다음날 0시에 맞추기 위해 24시간을 뜻하는 상수인 AlarmManager.INTERVAL_DAY를 더해줌
+        am.setInexactRepeating(am.RTC_WAKEUP, calendar.getTimeInMillis(), am.INTERVAL_DAY, sender);
 
-            calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE), 18, 11, 0);
+        SimpleDateFormat format = new SimpleDateFormat("MM/dd kk:mm:ss");
+        String setRestTime = format.format(new Date(calendar.getTimeInMillis()+am.INTERVAL_DAY));
 
-            //알람 예약
-            am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), sender);
-            /*if(am != null && sender != null){
+        Log.d("resetAlarm", "ResetHour: " + setRestTime);
+
+    }*/
+    /* public class AlarmHATT {
+         private Context context;
+         public AlarmHATT(Context context) {
+             this.context=context;
+         }
+         public void Alarm() {
+             AlarmManager am = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
+             Intent intent = new Intent(RealService.this, AlarmReceiver.class);
+
+             PendingIntent sender = PendingIntent.getBroadcast(RealService.this, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+
+             Calendar calendar = Calendar.getInstance();
+             //알람시간 calendar에 set해주기
+
+             calendar.set(calendar.get(Calendar.YEAR), calendar.get(Calendar.MONTH), calendar.get(Calendar.DATE), 18, 11, 0);
+             Log.d("date", Calendar.YEAR + " " + Calendar.MONTH + " " + Calendar.DATE);
+
+             //알람 예약
+             am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), sender);
+             *//*if(am != null && sender != null){
                 am.cancel(sender);
-            }*/
+            }*//*
         }
     }
-
+*/
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
         PedoActivity.step_value =Integer.toString(PedoActivity.cnt);
         PedoActivity.goal_step = Integer.toString(PedoActivity.goal);
         serviceIntent = intent;
 
+        //resetAlarm(getApplicationContext());
         /*String step_value = serviceIntent.getStringExtra("step");
         PedoActivity.cnt = Integer.parseInt(step_value);*/
 

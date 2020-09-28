@@ -182,7 +182,7 @@ public class MainActivity extends AppCompatActivity {
 
             public void onClick(View v) {
 
-                Intent intent = new Intent(getApplicationContext(), com.example.lets_walk_firebase.GPSActivity.class);
+                Intent intent = new Intent(getApplicationContext(), com.example.lets_walk_firebase.MapsActivity.class);
 
                 startActivity(intent);
 

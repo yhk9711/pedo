@@ -109,7 +109,7 @@ public class FoundFriendActivity extends AppCompatActivity {
         maps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(FoundFriendActivity.this, GPSActivity.class);
+                Intent intent = new Intent(FoundFriendActivity.this, MapsActivity.class);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
             }

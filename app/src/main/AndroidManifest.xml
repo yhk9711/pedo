@@ -96,7 +96,7 @@
             android:configChanges="orientation|screenSize|locale"
             android:screenOrientation="unspecified"
             android:windowSoftInputMode="adjustResize"></activity>
-        <activity android:name=".GPSActivity"
+        <activity android:name=".MapsActivity"
             android:configChanges="orientation|screenSize|locale"
             android:screenOrientation="unspecified"
             android:windowSoftInputMode="adjustResize"></activity>
@@ -113,9 +113,12 @@
         <service
             android:name=".RealService"
             android:enabled="true"
-            android:exported="true" />
+            android:exported="true" >
 
-        <receiver android:name="AlarmReceiver">
+        </service>
+
+
+        <receiver android:name="com.example.lets_walk_firebase.AlarmReceiver">
             <intent-filter>
                 <action android:name="com.enspert.app.alarms.ALARM_ALERT" />
             </intent-filter>

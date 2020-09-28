@@ -113,7 +113,7 @@ public class NoticeActivity extends AppCompatActivity implements View.OnClickLis
         maps.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(NoticeActivity.this, com.example.lets_walk_firebase.GPSActivity.class);
+                Intent intent = new Intent(NoticeActivity.this, com.example.lets_walk_firebase.MapsActivity.class);
                 /*String id_value2 = null;
                 Intent i2 = getIntent();
                 i2.getStringExtra("id");
