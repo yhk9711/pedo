@@ -18,7 +18,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 
@@ -38,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     public static String nowmyid;
     public static int height;
     String sheight;
+    List<Integer> stplist= new ArrayList<>();
 
     @Override
 
@@ -119,6 +122,7 @@ public class MainActivity extends AppCompatActivity {
                             DataSnapshot dt = child.next();
                             dt_id = dt.getKey();
                             Map<String, String> map = (Map)dt.getValue();
+                            Map<Integer, Integer> map1=(Map)dt.getValue();
 
                             if(dt.getKey().equals(checkId.getText().toString()))
                             {

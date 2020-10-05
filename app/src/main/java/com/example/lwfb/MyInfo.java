@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -22,7 +23,11 @@ import com.github.mikephil.charting.data.BarData;
 import com.github.mikephil.charting.data.BarDataSet;
 import com.github.mikephil.charting.data.BarEntry;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.Locale;
 
 public class MyInfo extends AppCompatActivity {
     private DrawerLayout drawerLayout;
@@ -169,23 +174,38 @@ public class MyInfo extends AppCompatActivity {
 
         ArrayList NoOfEmp = new ArrayList();
 
-        NoOfEmp.add(new BarEntry(700f, 0));
-        NoOfEmp.add(new BarEntry(10400f, 1));
-        NoOfEmp.add(new BarEntry(6532f, 2));
-        NoOfEmp.add(new BarEntry(7893f, 3));
-        NoOfEmp.add(new BarEntry(1239f, 4));
-        NoOfEmp.add(new BarEntry(6789f, 5));
-        NoOfEmp.add(new BarEntry(10500f, 6));
+        Log.e("int 값 프린트 ", String.valueOf(PedoActivity.cntlist.get(0)));
+        Log.e("long 값 프린트 ", String.valueOf(Long.valueOf(PedoActivity.cntlist.get(0))));
+        NoOfEmp.add(new BarEntry((Long.valueOf(PedoActivity.cntlist.get(0))), 0));
+        NoOfEmp.add(new BarEntry((Long.valueOf(PedoActivity.cntlist.get(1))), 1));
+        NoOfEmp.add(new BarEntry((Long.valueOf(PedoActivity.cntlist.get(2))), 2));
+        NoOfEmp.add(new BarEntry((Long.valueOf(PedoActivity.cntlist.get(3))), 3));
+        NoOfEmp.add(new BarEntry((Long.valueOf(PedoActivity.cntlist.get(4))), 4));
+        NoOfEmp.add(new BarEntry((Long.valueOf(PedoActivity.cntlist.get(5))), 5));
+        NoOfEmp.add(new BarEntry((Long.valueOf(PedoActivity.cntlist.get(6))), 6));
 
         ArrayList year = new ArrayList();
 
-        year.add("5/08");
-        year.add("5/09");
-        year.add("5/10");
-        year.add("5/11");
-        year.add("5/12");
-        year.add("5/13");
-        year.add("5/14");
+        Date currentTime = Calendar.getInstance().getTime();
+        SimpleDateFormat weekdayFormat = new SimpleDateFormat("EE", Locale.getDefault());
+        SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.getDefault());
+        SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
+        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
+
+        String weekDay = weekdayFormat.format(currentTime);
+//        String year = yearFormat.format(currentTime);
+//        String month = monthFormat.format(currentTime);
+//        String day = dayFormat.format(currentTime);
+
+        //Log.d("webnautes", year + "년 " + month + "월 " + day + "일 " + weekDay + "요일");
+
+        year.add(weekdayFormat.format(currentTime));
+        year.add(weekdayFormat.format(currentTime));
+        year.add(weekDay+2);
+        year.add(weekDay+3);
+        year.add(weekDay+4);
+        year.add(weekDay+5);
+        year.add(weekDay+6);
         BarDataSet bardataset = new BarDataSet(NoOfEmp, "");
         //chart.animateY(5000);
         BarData data = new BarData(year, bardataset);      // MPAndroidChart v3.X 오류 발생
