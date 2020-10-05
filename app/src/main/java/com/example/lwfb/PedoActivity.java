@@ -454,8 +454,8 @@ public class PedoActivity extends Activity implements SensorEventListener {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
 
-        calendar.set(Calendar.HOUR_OF_DAY, 15);
-        calendar.set(Calendar.MINUTE, 17);
+        calendar.set(Calendar.HOUR_OF_DAY, 13);
+        calendar.set(Calendar.MINUTE, 23);
         calendar.set(Calendar.SECOND, 0);
 
         long aTime = System.currentTimeMillis();
