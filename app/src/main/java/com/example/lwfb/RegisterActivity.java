@@ -52,8 +52,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     String name;
     int step = 0;
     int goal_step = 10000;
-    int index=0;
-    public static int mon=0;
+    int index = 0;
 
     public List<String> friends = new ArrayList<String>();
     public List<Integer> steps = new ArrayList<>();
@@ -221,7 +220,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         if(add){
 
-            FirebasePost post = new FirebasePost(ID, PW, name, age, gender, step, goal_step, height, friends, steps);
+            FirebasePost post = new FirebasePost(ID, PW, name, age, gender, step, goal_step, height, friends, steps, index);
             postValues = post.toMap();
 
         }

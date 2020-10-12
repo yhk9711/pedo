@@ -149,14 +149,14 @@ public class PedoActivity extends Activity implements SensorEventListener {
             my_name = bundle22.getString("name");
             user_name = my_name;
         }
-//        Intent i45 = getIntent();
-//        i.getStringExtra("index");
-//        Bundle bundle45 = getIntent().getExtras();
-//        if (bundle != null) {
-//            index = Integer.valueOf(bundle.getString("index"));
-//            Log.d("index", String.valueOf(index));
-//
-//        }
+        Intent i45 = getIntent();
+        i45.getStringExtra("index");
+        Bundle bundle45 = getIntent().getExtras();
+        if (bundle45 != null) {
+            index = Integer.valueOf(bundle.getString("index"));
+            Log.d("index값 페도에서 가져옴", String.valueOf(index));
+
+        }
 
         //String main_id = null;
         Intent i44 = getIntent();
@@ -484,8 +484,8 @@ public class PedoActivity extends Activity implements SensorEventListener {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
 
-        calendar.set(Calendar.HOUR_OF_DAY, 17);
-        calendar.set(Calendar.MINUTE, 58);
+        calendar.set(Calendar.HOUR_OF_DAY, 12);
+        calendar.set(Calendar.MINUTE, 17);
         calendar.set(Calendar.SECOND, 0);
 
         long aTime = System.currentTimeMillis();

@@ -33,9 +33,9 @@ public class AlarmReceiver extends BroadcastReceiver {
         }
         FirebasePost user = new FirebasePost();
         user.WriteStep(PedoActivity.my_id, PedoActivity.cnt);
+        Log.e("인덱스 값 alarm 전", String.valueOf(PedoActivity.index));
         PedoActivity.index++;
-        RegisterActivity.mon++;
-        Log.e("인덱스 값", String.valueOf(PedoActivity.index));
+        Log.e("인덱스 값 alarm 후", String.valueOf(PedoActivity.index));
 //        if (RegisterActivity.index==7){
 //            RegisterActivity.index=0;
 //            RegisterActivity.mon=0;

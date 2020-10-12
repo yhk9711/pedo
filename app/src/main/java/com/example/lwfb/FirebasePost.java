@@ -36,7 +36,7 @@ public class FirebasePost {
     }
 
 
-    public FirebasePost(String id, String pw, String name, Long age, String gender, int step, int goal_step, int height, List<String> friends, List<Integer> steps) {
+    public FirebasePost(String id, String pw, String name, Long age, String gender, int step, int goal_step, int height, List<String> friends, List<Integer> steps, int index) {
 
         this.id = id;
         this.pw = pw;
@@ -98,7 +98,7 @@ public class FirebasePost {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("MEMBER").child(userId).child("steps").setValue(steps);
     }
-    public void WriteIndex(String userId, int Index) {
+    public void WriteIndex(String userId, int index) {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("MEMBER").child(userId).child("index").setValue(index);
     }

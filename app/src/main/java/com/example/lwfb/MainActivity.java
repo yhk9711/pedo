@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
     public static String nowmyid;
     public static int height;
     String sheight;
+    String indexstr;
     List<Integer> stplist= new ArrayList<>();
 
     @Override
@@ -77,6 +78,7 @@ public class MainActivity extends AppCompatActivity {
                         {
                             pass = map.get("pw");
                             step_num = String.valueOf(map.get("step"));
+                            indexstr = String.valueOf(map.get("index"));
 
                             Log.d("password", pass);
                             Log.d("step", step_num);
@@ -93,6 +95,8 @@ public class MainActivity extends AppCompatActivity {
                             intent.putExtra("goal_step", goal_step);
                             intent.putExtra("height",sheight);
                             intent.putExtra("name", map.get("name"));
+                            intent.putExtra("index", indexstr);
+                            Log.e("인덱스 값 메인", indexstr);
                             nowmyid = dt_id;
                             startActivity(intent);
                             overridePendingTransition(0, 0);
@@ -130,6 +134,7 @@ public class MainActivity extends AppCompatActivity {
                                 step_num = String.valueOf(map.get("step"));
                                 goal_step= String.valueOf(map.get("goal_step"));
                                 sheight =String.valueOf(map.get("height"));
+                                indexstr = String.valueOf(map.get("index"));
                                 Log.d("password", pass);
                                 if(pass.equals(checkpw.getText().toString()))
                                 {
@@ -149,6 +154,7 @@ public class MainActivity extends AppCompatActivity {
                                     intent.putExtra("goal_step", goal_step);
                                     intent.putExtra("height", sheight);
                                     intent.putExtra("name", map.get("name"));
+                                    intent.putExtra("index",indexstr);
 
                                     startActivity(intent);
                                     overridePendingTransition(0, 0);
