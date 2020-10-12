@@ -37,14 +37,16 @@ public class AlarmReceiver extends BroadcastReceiver {
 //            RegisterActivity.mon=0;
 //        }
         user.WriteIndex(PedoActivity.my_id, PedoActivity.index);
-        user.WriteSteps(PedoActivity.my_id, PedoActivity.cntlist);
+        //user.WriteSteps(PedoActivity.my_id, PedoActivity.cntlist);
+        user.WriteSteps(PedoActivity.my_id);
         //cntlist.set(0,PedoActivity.cnt);
         PedoActivity.cnt=0;
 
         //cntlist.add(6,PedoActivity.cnt);
         //cntlist.add(0,cntlist.get(1));
 
-        user.WriteSteps(PedoActivity.my_id, PedoActivity.cntlist);
+//        user.WriteSteps(PedoActivity.my_id, PedoActivity.cntlist);
+        user.WriteSteps(PedoActivity.my_id);
         //Toast.makeText(context.getApplicationContext(),"alarm!", Toast.LENGTH_LONG).show();
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
