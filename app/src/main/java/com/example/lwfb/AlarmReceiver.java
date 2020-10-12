@@ -11,17 +11,13 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Iterator;
-import java.util.List;
 
 public class AlarmReceiver extends BroadcastReceiver {
     //  String INTENT_ACTION = Intent.ACTION_BOOT_COMPLETED;
 
     private DatabaseReference databaseReference;
     String dt_id;
-    public static List<Integer> cntlist= new ArrayList<>(Arrays.asList(0,0,0,0,0,0,0));
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -29,7 +25,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
         databaseReference = FirebaseDatabase.getInstance().getReference("MEMBER");
         for (int i =0 ; i<7 ; i++) {
-            Log.e("cntlist", Integer.toString(cntlist.get(i)));
+            //Log.e("cntlist", Integer.toString(RegisterActivity.cntlistreg.get(i)));
         }
         FirebasePost user = new FirebasePost();
         user.WriteStep(PedoActivity.my_id, PedoActivity.cnt);
@@ -48,8 +44,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         //cntlist.add(6,PedoActivity.cnt);
         //cntlist.add(0,cntlist.get(1));
 
-        user.WriteSteps(PedoActivity.my_id, cntlist);
-        Log.d("알람서비스!!!!!!!!!", "걸음수 바뀜ㅁㅁㅁㅁㅁ");
+        user.WriteSteps(PedoActivity.my_id, PedoActivity.cntlist);
         //Toast.makeText(context.getApplicationContext(),"alarm!", Toast.LENGTH_LONG).show();
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {

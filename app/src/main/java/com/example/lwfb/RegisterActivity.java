@@ -22,6 +22,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -56,6 +57,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     public List<String> friends = new ArrayList<String>();
     public List<Integer> steps = new ArrayList<>();
+    public static List<Integer> cntlistreg= new ArrayList<>(Arrays.asList(0,0,0,0,0,0,0));
 
     long age;
 

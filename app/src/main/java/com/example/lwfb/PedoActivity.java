@@ -36,7 +36,6 @@ import com.google.firebase.database.ValueEventListener;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
@@ -45,8 +44,8 @@ import java.util.Map;
 public class PedoActivity extends Activity implements SensorEventListener {
 
     public static List<String> friends = new ArrayList<String>();
-    //public static List<Integer> cntlist= new ArrayList<>();
-    public static List<Integer> cntlist= new ArrayList<>(Arrays.asList(0,0,0,0,0,0,0));
+    public static List<Integer> cntlist= new ArrayList<>();
+//    public static List<Integer> cntlist= new ArrayList<>(Arrays.asList(0,0,0,0,0,0,0));
     private static int ONE_MINUTE = 5626;
     public static int index=0;
 
@@ -182,9 +181,10 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 Map<String, List<Integer>> map3 = (Map) dataSnapshot.getValue();
 
                 List<Integer> stplist = map3.get("steps");
-                Log.d("stplist", String.valueOf(stplist));
+                Log.e("stplist", String.valueOf(stplist));
                 cntlist=stplist;
-                Log.d("cntlist", String.valueOf(stplist));
+                Log.e("cntlistreg", String.valueOf(RegisterActivity.cntlistreg));
+                Log.e("cntlist", String.valueOf(cntlist));
             }
 
             @Override
@@ -484,8 +484,8 @@ public class PedoActivity extends Activity implements SensorEventListener {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
 
-        calendar.set(Calendar.HOUR_OF_DAY, 12);
-        calendar.set(Calendar.MINUTE, 17);
+        calendar.set(Calendar.HOUR_OF_DAY, 16);
+        calendar.set(Calendar.MINUTE, 24);
         calendar.set(Calendar.SECOND, 0);
 
         long aTime = System.currentTimeMillis();
@@ -1091,8 +1091,8 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 FirebasePost user = new FirebasePost();
                 user.WriteStep(my_id, cnt);
                 cntlist.set(index, cnt);
-                user.WriteSteps(my_id, cntlist);
-
+                //user.WriteSteps(my_id, RegisterActivity.cntlistreg);
+                Log.d("pedo에서writesteps",String.valueOf(cntlist));
                 Intent intent2 = new Intent(getApplicationContext(), RealService.class);
                 intent2.putExtra("id", my_id);
 
