@@ -22,12 +22,25 @@ public class AlarmReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
+        FirebasePost user = new FirebasePost();
+
         databaseReference = FirebaseDatabase.getInstance().getReference("MEMBER");
 
+        PedoActivity.steps.set(PedoActivity.index, PedoActivity.cnt);
+        //user.steps = PedoActivity.steps;
+
         PedoActivity.cnt=0;
-        FirebasePost user = new FirebasePost();
+        PedoActivity.index++;
+        PedoActivity.pedo_index++;
+        if(PedoActivity.index == 7){
+            PedoActivity.index = 0;
+            PedoActivity.pedo_index = 0;
+        }
+        user.WriteIndex(PedoActivity.my_id, PedoActivity.index);
         user.WriteStep(PedoActivity.my_id, PedoActivity.cnt);
+
         Log.d("알람서비스!!!!!!!!!", "걸음수 바뀜ㅁㅁㅁㅁㅁ");
+
         //Toast.makeText(context.getApplicationContext(),"alarm!", Toast.LENGTH_LONG).show();
 
         databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {

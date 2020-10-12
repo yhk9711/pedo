@@ -69,6 +69,7 @@
             android:layout_marginBottom="10dp"
             android:background="#d3ebf2"
             android:text="내 정보"
+            android:textSize="14dp"
             android:textStyle="bold"
             android:stateListAnimator="@null"
             android:textColor="#505152" />
@@ -104,6 +105,7 @@
             android:layout_marginTop="10dp"
             android:background="#d3ebf2"
             android:text="친구 리스트"
+            android:textSize="14dp"
             android:textStyle="bold"
             android:stateListAnimator="@null"
             android:textColor="#505152" />
@@ -150,6 +152,7 @@
             android:background="#d3ebf2"
             android:stateListAnimator="@null"
             android:text="지도"
+            android:textSize="14dp"
             android:textColor="#505152"
             android:textStyle="bold" />
 
@@ -196,6 +199,7 @@
             android:background="#d3ebf2"
             android:stateListAnimator="@null"
             android:text="공지 사항"
+            android:textSize="14dp"
             android:textColor="#505152"
             android:textStyle="bold" />
 
@@ -217,6 +221,7 @@
             android:background="#d3ebf2"
             android:stateListAnimator="@null"
             android:text="로그아웃"
+            android:textSize="14dp"
             android:textColor="#505152"
             android:textStyle="bold" />
 
@@ -231,6 +236,7 @@
             android:background="#d3ebf2"
             android:stateListAnimator="@null"
             android:text="홈 트레이닝"
+            android:textSize="14dp"
             android:textColor="#505152"
             android:textStyle="bold" />
     </RelativeLayout>

@@ -52,8 +52,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     String name;
     int step = 0;
     int goal_step = 10000;
+    int index = 0;
 
     public List<String> friends = new ArrayList<String>();
+    public List<Integer> steps = new ArrayList<Integer>();
 
     long age;
 
@@ -113,6 +115,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         getFirebaseDatabase();
 
         btn_Insert.setEnabled(true);
+
 
     }
 
@@ -206,6 +209,15 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         friends.add(ID);
         FirebasePost.friends=friends;
+        steps.add(0, 0);
+        steps.add(1, 0);
+        steps.add(2, 0);
+        steps.add(3, 0);
+        steps.add(4, 0);
+        steps.add(5, 0);
+        steps.add(6, 0);
+        FirebasePost.steps = steps;
+
         Log.d("regis.fr", String.valueOf(friends));
 
         mPostReference = FirebaseDatabase.getInstance().getReference();
@@ -216,7 +228,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         if(add){
 
-            FirebasePost post = new FirebasePost(ID, PW, name, age, gender, step, goal_step, height, friends);
+            FirebasePost post = new FirebasePost(ID, PW, name, age, gender, step, goal_step, height, friends, steps, index);
             postValues = post.toMap();
 
         }

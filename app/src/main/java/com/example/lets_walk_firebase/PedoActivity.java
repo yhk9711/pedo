@@ -44,6 +44,11 @@ import java.util.Map;
 public class PedoActivity extends Activity implements SensorEventListener {
 
     public static List<String> friends = new ArrayList<String>();
+    public static List<String> ssteps = new ArrayList<String>();
+    public static List<Integer> steps = new ArrayList<>();
+
+
+
     private static int ONE_MINUTE = 5626;
 
 
@@ -52,6 +57,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
     private View drawerView;
 
     private DatabaseReference databaseReference;
+    private DatabaseReference databaseReference2;
 
     public static String sheight ="123";
     public static int height;
@@ -60,6 +66,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
     public static int goal = 10000;
     public static String my_id;
     public static String my_name;
+    public static int index = 0;
 
 
     private TextView fView;
@@ -88,6 +95,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
     public static String step_value;
     public static String goal_step;
     public static String main_id;
+    public static int pedo_index;
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -95,6 +103,16 @@ public class PedoActivity extends Activity implements SensorEventListener {
         setContentView(R.layout.activity_pedometer);
 
         friends.add(my_id);
+
+        /*steps.add(0, 0);
+        steps.add(1, 0);
+        steps.add(2, 0);
+        steps.add(3, 0);
+        steps.add(4, 0);
+        steps.add(5, 0);
+        steps.add(6, 0);*/
+
+
 
         databaseReference = FirebaseDatabase.getInstance().getReference("CALORIE").child("0");
 
@@ -156,13 +174,46 @@ public class PedoActivity extends Activity implements SensorEventListener {
             main_id = bundle33.getString("id");
             Log.d("id", main_id);
         }
+        Intent i55 = getIntent();
+        i55.getStringExtra("index");
+        Bundle bundle55 = getIntent().getExtras();
+        if(bundle55 != null){
+            pedo_index = Integer.parseInt(bundle55.getString("index"));
+            Log.d("index", String.valueOf(pedo_index));
+        }
+
         my_id = main_id;
 
+        databaseReference2 = FirebaseDatabase.getInstance().getReference("MEMBER").child(PedoActivity.my_id);
+
+        databaseReference2.addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot dataSnapshot) {
+
+                Map<String, List<Integer>> map3 = (Map) dataSnapshot.getValue();
+
+                List<Integer> stplist = map3.get("steps");
+                steps = stplist;
+
+                //steps = Integer.parseInt(ssteps);
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError databaseError) {
+
+            }
+        });
+
         cnt = Integer.parseInt(step_value);
+        index = pedo_index;
+
         Log.e("Pedo의 onCreate에서 step", step_value);
         Log.e("Pedo의 onCreate에서 cnt", String.valueOf(cnt));
+        Log.d("Pedo의 Oncreate에서 index", String.valueOf(index));
         //goal = Integer.parseInt(goal_step);
         kcal = cnt / 30;
+
+
 
 
         databaseReference = FirebaseDatabase.getInstance().getReference("CALORIE");
@@ -454,8 +505,8 @@ public class PedoActivity extends Activity implements SensorEventListener {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
 
-        calendar.set(Calendar.HOUR_OF_DAY, 0);
-        calendar.set(Calendar.MINUTE, 0);
+        calendar.set(Calendar.HOUR_OF_DAY, 17);
+        calendar.set(Calendar.MINUTE, 33);
         calendar.set(Calendar.SECOND, 0);
 
         long aTime = System.currentTimeMillis();
@@ -482,12 +533,14 @@ public class PedoActivity extends Activity implements SensorEventListener {
     @Override
     protected void onDestroy() {
         step_value = String.valueOf(cnt);
+        pedo_index = index;
         super.onDestroy();
         Log.d("여기는", "페도의 onDestroy");
 
         serviceIntent = new Intent(this, RealService.class);
         serviceIntent.putExtra("id", my_id);
         serviceIntent.putExtra("step", cnt);
+        serviceIntent.putExtra("index", index);
         startService(serviceIntent);
 
     }
@@ -522,13 +575,14 @@ public class PedoActivity extends Activity implements SensorEventListener {
             stopService(serviceIntent);
         }
         step_value = String.valueOf(cnt);
+        pedo_index = index;
         //resetAlarm(getApplicationContext());
 
         if (accelerormeterSensor != null) {
             sensorManager.registerListener(this, accelerormeterSensor,
                     SensorManager.SENSOR_DELAY_GAME);
             IntentFilter intentFilter = new IntentFilter();
-            intentFilter.addAction("com.example.fbtest");
+            intentFilter.addAction("com.example.lets_walk_firebase");
             registerReceiver(broadcastReceiver, intentFilter);
             Log.e("페도의 ", "onstart입니다");
             //new AlarmHATT(getApplicationContext()).Alarm();
@@ -858,6 +912,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
             serviceIntent.putExtra("id", my_id);
             serviceIntent.putExtra("step", cnt);
+            serviceIntent.putExtra("index", index);
             startService(serviceIntent);
         }
     }
@@ -1005,9 +1060,12 @@ public class PedoActivity extends Activity implements SensorEventListener {
                     fView.setText("" + goal);
                     ++cnt;
                     step_value = String.valueOf(cnt);
+
                     kView.setText("" + cnt / 30);
                     String km = String.format("%.1f", (height *0.01*0.37 *cnt));
                     dView.setText("" + km);
+
+
 
                     PieChart pieChart = findViewById(R.id.piechart);
 
@@ -1060,6 +1118,20 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
                 FirebasePost user = new FirebasePost();
                 user.WriteStep(my_id, cnt);
+
+                /*steps = user.steps;
+                if(steps.get(0) == 0){
+                    steps.add(0, cnt);
+                    user.WriteSteps(my_id, steps);
+                } else if(steps.get(1) == 0){
+                    steps.add(1, cnt);
+                    user.WriteSteps(my_id, steps);
+                } else if(steps.get(2) == 0){
+                    steps.add(2, cnt);
+                    user.WriteSteps(my_id, steps);
+                }*/
+                steps.set(index, cnt);
+                user.WriteSteps(my_id, steps);
 
                 Intent intent2 = new Intent(getApplicationContext(), RealService.class);
                 intent2.putExtra("id", my_id);
