@@ -10,17 +10,16 @@ import android.widget.DatePicker;
 import androidx.appcompat.app.AppCompatActivity;
 
 public class MonthActivity extends AppCompatActivity {
-
     Button MonthBtn;
+    public static int syear=0;
+    public static int smonth=0;
+    public static int sday=0;
 
     DatePickerDialog.OnDateSetListener d = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth){
-            //Log.d("YearMonthPickerTest", "year = " + year + ", month = " + monthOfYear + ", day = " + dayOfMonth);
-
             Intent intent=new Intent(MonthActivity.this,StatisticsActivity.class);
             startActivity(intent);
-
         }
     };
 

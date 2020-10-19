@@ -2,7 +2,8 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/Home"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="#d3ebf2">
 
     <CalendarView
         android:id="@+id/calendar"
@@ -10,6 +11,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="80dp"
         android:layout_marginBottom="20dp"
+        android:background="#484848"
         android:focusedMonthDateColor="#EC5656"
 
         android:maxDate="12/31/2023"
