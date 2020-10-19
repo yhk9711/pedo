@@ -22,6 +22,7 @@ import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -55,7 +56,8 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     int index = 0;
 
     public List<String> friends = new ArrayList<String>();
-    public List<Integer> steps = new ArrayList<Integer>();
+    public List<Integer> steps = new ArrayList<>();
+    public static List<Integer> cntlistreg= new ArrayList<>(Arrays.asList(0,0,0,0,0,0,0));
 
     long age;
 
@@ -115,7 +117,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         getFirebaseDatabase();
 
         btn_Insert.setEnabled(true);
-
 
     }
 
@@ -209,17 +210,10 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         friends.add(ID);
         FirebasePost.friends=friends;
-        steps.add(0, 0);
-        steps.add(1, 0);
-        steps.add(2, 0);
-        steps.add(3, 0);
-        steps.add(4, 0);
-        steps.add(5, 0);
-        steps.add(6, 0);
-        FirebasePost.steps = steps;
-
         Log.d("regis.fr", String.valueOf(friends));
-
+        for (int a= 0 ; a<7; a++){
+            steps.add(0);
+        }
         mPostReference = FirebaseDatabase.getInstance().getReference();
 
         Map<String, Object> childUpdates = new HashMap<>();

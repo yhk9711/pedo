@@ -18,20 +18,20 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 
 
 public class MainActivity extends AppCompatActivity {
-
-
 
     private DatabaseReference databaseReference;
     EditText checkId;
     EditText checkpw;
     Button login;
     Button register;
-    Button gps;
+    Button map;
     String pass;
     String loginId, loginPwd;
     String dt_id;
@@ -40,8 +40,8 @@ public class MainActivity extends AppCompatActivity {
     public static String nowmyid;
     public static int height;
     String sheight;
-    //int index;
-    String sindex; //steps배열의 인덱스
+    String indexstr;
+    List<Integer> stplist= new ArrayList<>();
 
     @Override
 
@@ -64,6 +64,7 @@ public class MainActivity extends AppCompatActivity {
         loginPwd = auto.getString("inputPwd",null);
 
         if(loginId != null && loginPwd != null) {
+
             databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -78,6 +79,7 @@ public class MainActivity extends AppCompatActivity {
                         {
                             pass = map.get("pw");
                             step_num = String.valueOf(map.get("step"));
+                            indexstr = String.valueOf(map.get("index"));
 
                             Log.d("password", pass);
                             Log.d("step", step_num);
@@ -86,16 +88,16 @@ public class MainActivity extends AppCompatActivity {
                             Toast.makeText(MainActivity.this, loginId +"님 자동로그인 입니다.", Toast.LENGTH_SHORT).show();
                             Log.d("자동로그인 성공함",pass);
                             goal_step= String.valueOf(map.get("goal_step"));
-                            sheight =String.valueOf(map.get("height"));
-                            //index = Integer.parseInt(map.get("index"));
-                            sindex = String.valueOf(map.get("index"));
+                            sheight= String.valueOf(map.get("height"));
+
                             Intent intent = new Intent(MainActivity.this, PedoActivity.class);
                             intent.putExtra("id", dt_id);
                             intent.putExtra("step", step_num);
                             intent.putExtra("goal_step", goal_step);
+                            intent.putExtra("height",sheight);
                             intent.putExtra("name", map.get("name"));
-                            intent.putExtra("height", sheight);
-                            intent.putExtra("index", sindex);
+                            intent.putExtra("index", indexstr);
+                            Log.e("인덱스 값 메인_자동", indexstr);
                             nowmyid = dt_id;
                             startActivity(intent);
                             overridePendingTransition(0, 0);
@@ -125,15 +127,15 @@ public class MainActivity extends AppCompatActivity {
                             DataSnapshot dt = child.next();
                             dt_id = dt.getKey();
                             Map<String, String> map = (Map)dt.getValue();
+                            Map<Integer, Integer> map1=(Map)dt.getValue();
 
                             if(dt.getKey().equals(checkId.getText().toString()))
                             {
                                 pass = map.get("pw");
                                 step_num = String.valueOf(map.get("step"));
                                 goal_step= String.valueOf(map.get("goal_step"));
-                                sheight = String.valueOf(map.get("height"));
-                                //index = Integer.parseInt(map.get("index"));
-                                sindex = String.valueOf(map.get("index"));
+                                sheight =String.valueOf(map.get("height"));
+                                indexstr = String.valueOf(map.get("index"));
                                 Log.d("password", pass);
                                 if(pass.equals(checkpw.getText().toString()))
                                 {
@@ -148,13 +150,13 @@ public class MainActivity extends AppCompatActivity {
                                     Toast.makeText(getApplicationContext(), "로그인에 성공하셨습니다.", Toast.LENGTH_LONG).show();
                                     Intent intent = new Intent(getApplicationContext(), PedoActivity.class);
                                     nowmyid = dt_id;
-                                    //index = Integer.parseInt(sindex);
                                     intent.putExtra("id", dt_id);
                                     intent.putExtra("step", step_num);
                                     intent.putExtra("goal_step", goal_step);
                                     intent.putExtra("height", sheight);
                                     intent.putExtra("name", map.get("name"));
-                                    intent.putExtra("index", sindex);
+                                    intent.putExtra("index",indexstr);
+                                    Log.e("인덱스 값 메인_자동", indexstr);
 
                                     startActivity(intent);
                                     overridePendingTransition(0, 0);
@@ -183,23 +185,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        gps = (Button)findViewById(R.id.gps);
 
-        gps.setOnClickListener(new View.OnClickListener() {
-
-            @Override
-
-            public void onClick(View v) {
-
-                Intent intent = new Intent(getApplicationContext(), com.example.lets_walk_firebase.MapsActivity.class);
-
-                startActivity(intent);
-
-                overridePendingTransition(0, 0);
-
-            }
-
-        });
 
 
     }
