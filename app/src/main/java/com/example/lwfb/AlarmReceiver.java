@@ -32,10 +32,9 @@ public class AlarmReceiver extends BroadcastReceiver {
         Log.e("인덱스 값 alarm 전", String.valueOf(PedoActivity.index));
         PedoActivity.index++;
         Log.e("인덱스 값 alarm 후", String.valueOf(PedoActivity.index));
-//        if (RegisterActivity.index==7){
-//            RegisterActivity.index=0;
-//            RegisterActivity.mon=0;
-//        }
+        if (PedoActivity.index==7){
+            PedoActivity.index=0;
+        }
         user.WriteIndex(PedoActivity.my_id, PedoActivity.index);
         //user.WriteSteps(PedoActivity.my_id, PedoActivity.cntlist);
         user.WriteSteps(PedoActivity.my_id);

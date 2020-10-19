@@ -219,6 +219,7 @@ public class RealService extends Service implements SensorEventListener {
                     FirebasePost user = new FirebasePost();
 
                     user.WriteStep(id_value, PedoActivity.cnt);
+                    user.WriteSteps(id_value);
                     Intent intent1 = new Intent();
                     intent1.setAction("com.example.lets_walk_firebase");
 
