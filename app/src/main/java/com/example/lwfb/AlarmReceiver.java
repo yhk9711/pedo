@@ -18,6 +18,7 @@ public class AlarmReceiver extends BroadcastReceiver {
 
     private DatabaseReference databaseReference;
     String dt_id;
+    public static int alcnt=0;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -38,6 +39,7 @@ public class AlarmReceiver extends BroadcastReceiver {
         user.WriteIndex(PedoActivity.my_id, PedoActivity.index);
         //user.WriteSteps(PedoActivity.my_id, PedoActivity.cntlist);
         user.WriteSteps(PedoActivity.my_id);
+        alcnt = PedoActivity.cnt;
         //cntlist.set(0,PedoActivity.cnt);
         PedoActivity.cnt=0;
 

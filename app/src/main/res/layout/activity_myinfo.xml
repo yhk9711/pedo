@@ -31,6 +31,12 @@
                 android:textSize="30dp" />
         </LinearLayout>
 
+        <Button
+            android:id="@+id/cal"
+            android:layout_width="101dp"
+            android:layout_height="50dp"
+            android:text="월별 통계" />
+
         <com.github.mikephil.charting.charts.BarChart
             android:id="@+id/barchart"
             android:layout_width="match_parent"
@@ -174,6 +180,7 @@
                 android:background="#639cd4"
                 android:gravity="center"
                 android:text="수정" />
+
         </LinearLayout>
 
 

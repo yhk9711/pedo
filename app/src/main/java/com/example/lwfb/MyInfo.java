@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -36,6 +35,7 @@ public class MyInfo extends AppCompatActivity {
     private EditText edit_height;
     Button btn_changed;
     Button btn_changed_height;
+    Button cal;
     ArrayAdapter<String> arrayAdapter;
 
     static ArrayList<String> arrayIndex = new ArrayList<String>();
@@ -46,6 +46,7 @@ public class MyInfo extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_myinfo);
+        cal = (Button) findViewById(R.id.cal);
         btn_changed = (Button) findViewById(R.id.btn_changed);
         edit_goal = (EditText) findViewById(R.id.edit_goal);
         btn_changed.setEnabled(true);
@@ -169,20 +170,59 @@ public class MyInfo extends AppCompatActivity {
                 }
             }
         });
+        cal.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(MyInfo.this, com.example.lwfb.MonthActivity.class);
+                startActivity(intent);
+            }
+        });
 
         BarChart chart = findViewById(R.id.barchart);
 
         ArrayList NoOfEmp = new ArrayList();
 
-        Log.e("int 값 프린트 ", String.valueOf(PedoActivity.cntlist.get(0)));
-        Log.e("long 값 프린트 ", String.valueOf(Long.valueOf(PedoActivity.cntlist.get(0))));
-        NoOfEmp.add(new BarEntry((Long.valueOf(PedoActivity.cntlist.get(0))), 0));
-        NoOfEmp.add(new BarEntry((Long.valueOf(PedoActivity.cntlist.get(1))), 1));
-        NoOfEmp.add(new BarEntry((Long.valueOf(PedoActivity.cntlist.get(2))), 2));
-        NoOfEmp.add(new BarEntry((Long.valueOf(PedoActivity.cntlist.get(3))), 3));
-        NoOfEmp.add(new BarEntry((Long.valueOf(PedoActivity.cntlist.get(4))), 4));
-        NoOfEmp.add(new BarEntry((Long.valueOf(PedoActivity.cntlist.get(5))), 5));
-        NoOfEmp.add(new BarEntry((Long.valueOf(PedoActivity.cntlist.get(6))), 6));
+        //Log.e("int 값 프린트 ", String.valueOf(PedoActivity.cntlist.get(0)));
+        //Log.e("long 값 프린트 ", String.valueOf(Long.valueOf(PedoActivity.cntlist.get(0))));
+//        NoOfEmp.add(new BarEntry((Long.valueOf(PedoActivity.cntlist.get(0))), 0));
+//        NoOfEmp.add(new BarEntry((Long.valueOf(PedoActivity.cntlist.get(1))), 1));
+//        NoOfEmp.add(new BarEntry((Long.valueOf(PedoActivity.cntlist.get(2))), 2));
+//        NoOfEmp.add(new BarEntry((Long.valueOf(PedoActivity.cntlist.get(3))), 3));
+//        NoOfEmp.add(new BarEntry((Long.valueOf(PedoActivity.cntlist.get(4))), 4));
+//        NoOfEmp.add(new BarEntry((Long.valueOf(PedoActivity.cntlist.get(5))), 5));
+//        NoOfEmp.add(new BarEntry((Long.valueOf(PedoActivity.cntlist.get(6))), 6));
+
+        NoOfEmp.add(new BarEntry(700f, 0));
+        NoOfEmp.add(new BarEntry(10400f, 1));
+        NoOfEmp.add(new BarEntry(6532f, 2));
+        NoOfEmp.add(new BarEntry(7893f, 3));
+        NoOfEmp.add(new BarEntry(1239f, 4));
+        NoOfEmp.add(new BarEntry(6789f, 5));
+        NoOfEmp.add(new BarEntry(10500f, 6));
+        NoOfEmp.add(new BarEntry(10500f, 7));
+        NoOfEmp.add(new BarEntry(10500f, 8));
+        NoOfEmp.add(new BarEntry(10500f, 9));
+        NoOfEmp.add(new BarEntry(10500f, 10));
+        NoOfEmp.add(new BarEntry(10500f, 11));
+        NoOfEmp.add(new BarEntry(10500f, 12));
+        NoOfEmp.add(new BarEntry(10500f, 13));
+        NoOfEmp.add(new BarEntry(10500f, 14));
+        NoOfEmp.add(new BarEntry(700f, 15));
+        NoOfEmp.add(new BarEntry(10400f, 16));
+        NoOfEmp.add(new BarEntry(6532f, 17));
+        NoOfEmp.add(new BarEntry(7893f, 18));
+        NoOfEmp.add(new BarEntry(1239f, 19));
+        NoOfEmp.add(new BarEntry(6789f, 20));
+        NoOfEmp.add(new BarEntry(10500f, 21));
+        NoOfEmp.add(new BarEntry(10500f, 22));
+        NoOfEmp.add(new BarEntry(10500f, 23));
+        NoOfEmp.add(new BarEntry(10500f, 24));
+        NoOfEmp.add(new BarEntry(10500f, 25));
+        NoOfEmp.add(new BarEntry(10500f, 26));
+        NoOfEmp.add(new BarEntry(10500f, 27));
+        NoOfEmp.add(new BarEntry(10500f, 28));
+        NoOfEmp.add(new BarEntry(10500f, 29));
+        NoOfEmp.add(new BarEntry(10500f, 30));
 
         ArrayList year = new ArrayList();
 
@@ -206,6 +246,33 @@ public class MyInfo extends AppCompatActivity {
         year.add(weekDay+4);
         year.add(weekDay+5);
         year.add(weekDay+6);
+        year.add(weekDay+7);
+        year.add(weekDay+8);
+        year.add(weekDay+9);
+        year.add(weekDay+10);
+        year.add(weekDay+11);
+        year.add(weekDay+12);
+        year.add(weekDay+13);
+        year.add(weekDay+14);
+        year.add(weekDay+15);
+        year.add(weekDay+16);
+        year.add(weekDay+17);
+        year.add(weekDay+18);
+        year.add(weekDay+19);
+        year.add(weekDay+20);
+        year.add(weekDay+21);
+        year.add(weekDay+22);
+        year.add(weekDay+23);
+        year.add(weekDay+24);
+        year.add(weekDay+25);
+        year.add(weekDay+26);
+        year.add(weekDay+27);
+        year.add(weekDay+28);
+        year.add(weekDay+29);
+        year.add(weekDay+30);
+
+
+
         BarDataSet bardataset = new BarDataSet(NoOfEmp, "");
         //chart.animateY(5000);
         BarData data = new BarData(year, bardataset);      // MPAndroidChart v3.X 오류 발생
