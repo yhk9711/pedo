@@ -124,7 +124,6 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 case 7:
                     index = 5; //토요일
                     break;
-
             }
 
             databaseReference = FirebaseDatabase.getInstance().getReference("CALORIE").child("0");
@@ -516,7 +515,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
         calendar.setTimeInMillis(System.currentTimeMillis());
 
         calendar.set(Calendar.HOUR_OF_DAY, 16);
-        calendar.set(Calendar.MINUTE, 14);
+        calendar.set(Calendar.MINUTE, 59);
         calendar.set(Calendar.SECOND, 0);
 
         long aTime = System.currentTimeMillis();
