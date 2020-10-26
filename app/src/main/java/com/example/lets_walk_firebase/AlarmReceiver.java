@@ -21,7 +21,7 @@ public class AlarmReceiver extends BroadcastReceiver {
     private DatabaseReference databaseReference;
     String dt_id;
     String dt_step;
-    //int index;
+    int index;
 
     @Override
     public void onReceive(Context context, Intent intent) {
@@ -33,24 +33,31 @@ public class AlarmReceiver extends BroadcastReceiver {
         switch(day){
             case 1:
                 PedoActivity.index = 6; //일요일
+                index = 6;
                 break;
             case 2:
                 PedoActivity.index = 0; //월요일
+                index = 0;
                 break;
             case 3:
                 PedoActivity.index = 1; //화요일
+                index = 1;
                 break;
             case 4:
                 PedoActivity.index = 2; //수요일
+                index = 2;
                 break;
             case 5:
                 PedoActivity.index = 3; //목요일
+                index = 3;
                 break;
             case 6:
                 PedoActivity.index = 4; //금요일
+                index = 4;
                 break;
             case 7:
                 PedoActivity.index = 5; //토요일
+                index = 5;
                 break;
         }
 
@@ -104,10 +111,16 @@ public class AlarmReceiver extends BroadcastReceiver {
                         Map<String, String> map = (Map) dt.getValue();
                         dt_step = String.valueOf(map.get("step"));
 
-                        user2.WriteIndex(dt_id, PedoActivity.index);
-                        user2.WriteZeroSteps(dt_id, PedoActivity.index - 1, Integer.parseInt(dt_step));
+                        user2.WriteIndex(dt_id, index);
+                        if(index == 0){
+                            user2.WriteZeroSteps(dt_id, 6, Integer.parseInt(dt_step));
+                        } else{
+                            user2.WriteZeroSteps(dt_id, index - 1, Integer.parseInt(dt_step));
+                        }
+
+                        //user2.WriteZeroSteps(dt_id, PedoActivity.index - 1, Integer.parseInt(dt_step));
                         user2.WriteStep(dt_id, 0);
-                        user2.WriteZeroSteps(dt_id, PedoActivity.index, 0);
+                        user2.WriteZeroSteps(dt_id, index, 0);
 
                     }
                 }

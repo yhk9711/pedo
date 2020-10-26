@@ -93,40 +93,40 @@ public class PedoActivity extends Activity implements SensorEventListener {
     public static String goal_step;
     public static String main_id;
 
-        protected void onCreate(Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pedometer);
 
         friends.add(my_id);
 
-            Calendar cal = Calendar.getInstance();
-            int day = cal.get(Calendar.DAY_OF_WEEK);
+        Calendar cal = Calendar.getInstance();
+        int day = cal.get(Calendar.DAY_OF_WEEK);
 
-            switch(day){
-                case 1:
-                    index = 6; //일요일
-                    break;
-                case 2:
-                    index = 0; //월요일
-                    break;
-                case 3:
-                    index = 1; //화요일
-                    break;
-                case 4:
-                    index = 2; //수요일
-                    break;
-                case 5:
-                    index = 3; //목요일
-                    break;
-                case 6:
-                    index = 4; //금요일
-                    break;
-                case 7:
-                    index = 5; //토요일
-                    break;
-            }
+        switch(day){
+            case 1:
+                index = 6; //일요일
+                break;
+            case 2:
+                index = 0; //월요일
+                break;
+            case 3:
+                index = 1; //화요일
+                break;
+            case 4:
+                index = 2; //수요일
+                break;
+            case 5:
+                index = 3; //목요일
+                break;
+            case 6:
+                index = 4; //금요일
+                break;
+            case 7:
+                index = 5; //토요일
+                break;
+        }
 
-            databaseReference = FirebaseDatabase.getInstance().getReference("CALORIE").child("0");
+        databaseReference = FirebaseDatabase.getInstance().getReference("CALORIE").child("0");
 
 
         sensorManager = (SensorManager) getSystemService(SENSOR_SERVICE);
@@ -1121,6 +1121,11 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
                 FirebasePost user = new FirebasePost();
                 user.WriteStep(my_id, cnt);
+                SimpleDateFormat format1 = new SimpleDateFormat ( "yyyyMMdd");
+                Date time = new Date();
+                String time1 = format1.format(time);
+
+                user.WritePastSteps(my_id,time1);
                 cntlist.set(index, cnt);
 //                user.WriteSteps(my_id, RegisterActivity.cntlistreg);
                 user.WriteSteps(my_id);

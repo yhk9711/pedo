@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/Home"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#d3ebf2">
+
+    <CalendarView
+        android:id="@+id/calendar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="80dp"
+        android:layout_marginBottom="20dp"
+        android:background="#484848"
+        android:focusedMonthDateColor="#EC5656"
+
+        android:maxDate="12/31/2023"
+        android:minDate="01/01/2020"
+        android:selectedWeekBackgroundColor="#ffff00"
+        android:showWeekNumber="false"
+        android:unfocusedMonthDateColor="#0000ff"
+        android:weekSeparatorLineColor="#00ff00" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="71dp"
+        android:gravity="center">
+
+        <Button
+            android:id="@+id/month_button"
+            android:layout_width="62dp"
+            android:layout_height="30dp"
+            android:gravity="center"
+            android:text="월 선택"
+            android:background="#639cd4"
+            android:textSize="10dp" />
+
+    </LinearLayout>
+
+</RelativeLayout>
