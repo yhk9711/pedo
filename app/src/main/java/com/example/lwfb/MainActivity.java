@@ -64,7 +64,7 @@ public class MainActivity extends AppCompatActivity {
         loginPwd = auto.getString("inputPwd",null);
 
         if(loginId != null && loginPwd != null) {
-            
+
             databaseReference.addListenerForSingleValueEvent(new ValueEventListener() {
                 @Override
                 public void onDataChange(DataSnapshot dataSnapshot) {
@@ -97,7 +97,7 @@ public class MainActivity extends AppCompatActivity {
                             intent.putExtra("height",sheight);
                             intent.putExtra("name", map.get("name"));
                             intent.putExtra("index", indexstr);
-                            Log.e("인덱스 값 메인", indexstr);
+                            Log.e("인덱스 값 메인_자동", indexstr);
                             nowmyid = dt_id;
                             startActivity(intent);
                             overridePendingTransition(0, 0);
@@ -156,6 +156,7 @@ public class MainActivity extends AppCompatActivity {
                                     intent.putExtra("height", sheight);
                                     intent.putExtra("name", map.get("name"));
                                     intent.putExtra("index",indexstr);
+                                    Log.e("인덱스 값 메인_자동", indexstr);
 
                                     startActivity(intent);
                                     overridePendingTransition(0, 0);

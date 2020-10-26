@@ -98,10 +98,12 @@ public class FirebasePost {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("MEMBER").child(userId).child("steps").child(String.valueOf(PedoActivity.index)).setValue(PedoActivity.cnt);
     }
-//    public void WriteSteps2(String userId, List<Integer> steps) {
-//        mDatabase = FirebaseDatabase.getInstance().getReference();
-//        mDatabase.child("MEMBER").child(userId).child("steps").setValue(steps);
-//    }
+    public void WriteZeroSteps(String userId, int index, int step){
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("MEMBER").child(userId).child("steps").child(String.valueOf(index)).setValue(step);
+    }
+
     public void WriteIndex(String userId, int index) {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("MEMBER").child(userId).child("index").setValue(index);

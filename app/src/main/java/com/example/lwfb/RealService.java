@@ -69,6 +69,7 @@ public class RealService extends Service implements SensorEventListener {
 
         // new AlarmHATT(getApplicationContext()).Alarm();
         resetAlarm(getApplicationContext());
+        Log.e("reservice", "리얼서비스에서 알람서비스 호출_oncreate");
 
         /*String step_value = serviceIntent.getStringExtra("step");
         PedoActivity.cnt = Integer.parseInt(step_value);*/
@@ -83,13 +84,13 @@ public class RealService extends Service implements SensorEventListener {
     public static void resetAlarm(Context context){
         AlarmManager am = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, com.example.lwfb.AlarmReceiver.class);
-        PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, PendingIntent.FLAG_ONE_SHOT);
+        PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, 0);
 
         //자정 시간
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
-        calendar.set(Calendar.HOUR_OF_DAY, 17);
-        calendar.set(Calendar.MINUTE, 13);
+        calendar.set(Calendar.HOUR_OF_DAY, 16);
+        calendar.set(Calendar.MINUTE, 59);
         calendar.set(Calendar.SECOND, 0);
 
         long aTime = System.currentTimeMillis();
@@ -143,7 +144,8 @@ public class RealService extends Service implements SensorEventListener {
         PedoActivity.goal_step = Integer.toString(PedoActivity.goal);
         serviceIntent = intent;
 
-        resetAlarm(getApplicationContext());
+        //resetAlarm(getApplicationContext());
+        //Log.e("reservice", "리얼서비스에서 알람서비스 호출_onstartcommand");
         /*String step_value = serviceIntent.getStringExtra("step");
         PedoActivity.cnt = Integer.parseInt(step_value);*/
 
@@ -219,6 +221,9 @@ public class RealService extends Service implements SensorEventListener {
                     FirebasePost user = new FirebasePost();
 
                     user.WriteStep(id_value, PedoActivity.cnt);
+                    PedoActivity.cntlist.set(PedoActivity.index, PedoActivity.cnt);
+//                user.WriteSteps(my_id, RegisterActivity.cntlistreg);
+
                     user.WriteSteps(id_value);
                     Intent intent1 = new Intent();
                     intent1.setAction("com.example.lets_walk_firebase");

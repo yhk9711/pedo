@@ -65,6 +65,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
     public static String my_id;
     public static String my_name;
 
+
     private TextView fView;
     private TextView kView;
     private TextView dView;
@@ -97,6 +98,33 @@ public class PedoActivity extends Activity implements SensorEventListener {
         setContentView(R.layout.activity_pedo);
 
         friends.add(my_id);
+
+        Calendar cal = Calendar.getInstance();
+        int day = cal.get(Calendar.DAY_OF_WEEK);
+
+        switch(day){
+            case 1:
+                index = 6; //일요일
+                break;
+            case 2:
+                index = 0; //월요일
+                break;
+            case 3:
+                index = 1; //화요일
+                break;
+            case 4:
+                index = 2; //수요일
+                break;
+            case 5:
+                index = 3; //목요일
+                break;
+            case 6:
+                index = 4; //금요일
+                break;
+            case 7:
+                index = 5; //토요일
+                break;
+        }
 
         databaseReference = FirebaseDatabase.getInstance().getReference("CALORIE").child("0");
 
@@ -149,14 +177,14 @@ public class PedoActivity extends Activity implements SensorEventListener {
             my_name = bundle22.getString("name");
             user_name = my_name;
         }
-        Intent i45 = getIntent();
+        /*Intent i45 = getIntent();
         i45.getStringExtra("index");
         Bundle bundle45 = getIntent().getExtras();
         if (bundle45 != null) {
             index = Integer.valueOf(bundle.getString("index"));
             Log.d("index값 페도에서 가져옴", String.valueOf(index));
 
-        }
+        }*/
 
         //String main_id = null;
         Intent i44 = getIntent();
@@ -445,6 +473,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
         });
 
         resetAlarm(getApplicationContext());
+        Log.e("pedo", "페도에서 알람서비스 호출_oncreate");
         //  new AlarmHATT(getApplicationContext()).Alarm();
         cntlist.set(index, cnt);
 
@@ -478,15 +507,15 @@ public class PedoActivity extends Activity implements SensorEventListener {
     public static void resetAlarm(Context context){
         AlarmManager am = (AlarmManager)context.getSystemService(Context.ALARM_SERVICE);
         Intent intent = new Intent(context, com.example.lwfb.AlarmReceiver.class);
-        PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent, 0);
+        PendingIntent sender = PendingIntent.getBroadcast(context, 0, intent,0);
 
 
         //자정 시간
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
 
-        calendar.set(Calendar.HOUR_OF_DAY, 17);
-        calendar.set(Calendar.MINUTE, 13);
+        calendar.set(Calendar.HOUR_OF_DAY, 16);
+        calendar.set(Calendar.MINUTE, 59);
         calendar.set(Calendar.SECOND, 0);
 
         long aTime = System.currentTimeMillis();
@@ -496,6 +525,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
         while(aTime > bTime) {
             bTime += interval;
+            Log.e("btime", "btime: " + bTime);
         }
 
         //다음날 0시에 맞추기 위해 24시간을 뜻하는 상수인 AlarmManager.INTERVAL_DAY를 더해줌
@@ -1094,7 +1124,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
                 cntlist.set(index, cnt);
 //                user.WriteSteps(my_id, RegisterActivity.cntlistreg);
                 user.WriteSteps(my_id);
-                Log.d("pedo에서writesteps",String.valueOf(cntlist));
+                //Log.d("pedo에서writesteps",String.valueOf(cntlist));
                 Intent intent2 = new Intent(getApplicationContext(), RealService.class);
                 intent2.putExtra("id", my_id);
 
