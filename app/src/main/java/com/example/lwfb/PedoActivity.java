@@ -1121,6 +1121,11 @@ public class PedoActivity extends Activity implements SensorEventListener {
 
                 FirebasePost user = new FirebasePost();
                 user.WriteStep(my_id, cnt);
+                SimpleDateFormat format1 = new SimpleDateFormat ( "yyyyMMdd");
+                Date time = new Date();
+                String time1 = format1.format(time);
+
+                user.WritePastSteps(my_id,time1);
                 cntlist.set(index, cnt);
 //                user.WriteSteps(my_id, RegisterActivity.cntlistreg);
                 user.WriteSteps(my_id);
