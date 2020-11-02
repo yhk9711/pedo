@@ -11,9 +11,9 @@ import androidx.appcompat.app.AppCompatActivity;
 
 public class MonthActivity extends AppCompatActivity {
     Button MonthBtn;
-    public static int syear=0;
-    public static int smonth=0;
-    public static int sday=0;
+    public static int syear = 0;
+    public static int smonth = 0;
+    public static int sday = 0;
 
     DatePickerDialog.OnDateSetListener d = new DatePickerDialog.OnDateSetListener() {
         @Override
