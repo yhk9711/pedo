@@ -31,6 +31,7 @@ import java.util.Locale;
 public class MyInfo extends AppCompatActivity {
     private DrawerLayout drawerLayout;
     private View drawerView;
+    private TextView aView;
     private EditText edit_goal;
     private EditText edit_height;
     Button btn_changed;
@@ -58,6 +59,7 @@ public class MyInfo extends AppCompatActivity {
         drawerView = (View) findViewById(R.id.drawerView);
         drawerLayout.setDrawerListener(listener);
         TextView name = (TextView) findViewById(R.id.nameofuser);
+        TextView averagestep = (TextView) findViewById(R.id.averagestep3);
         name.setText("" + PedoActivity.my_name + " 님");
         //drawerLayout.openDrawer(drawerView);
         Button logout = (Button) findViewById(R.id.button);
@@ -192,18 +194,24 @@ public class MyInfo extends AppCompatActivity {
 //        NoOfEmp.add(new BarEntry((Long.valueOf(PedoActivity.cntlist.get(5))), 5));
 //        NoOfEmp.add(new BarEntry((Long.valueOf(PedoActivity.cntlist.get(6))), 6));
 
-        NoOfEmp.add(new BarEntry(700f, 0));
-        NoOfEmp.add(new BarEntry(10400f, 1));
-        NoOfEmp.add(new BarEntry(6532f, 2));
-        NoOfEmp.add(new BarEntry(7893f, 3));
-        NoOfEmp.add(new BarEntry(1239f, 4));
-        NoOfEmp.add(new BarEntry(6789f, 5));
-        NoOfEmp.add(new BarEntry(10500f, 6));
+
+
+        //String s = String.valueOf(PedoActivity.cntlist.get(1));
+        averagestep.setText("" +(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(0)))+Long.parseLong(String.valueOf(PedoActivity.cntlist.get(1)))+Long.parseLong(String.valueOf(PedoActivity.cntlist.get(2)))
+                +Long.parseLong(String.valueOf(PedoActivity.cntlist.get(3)))+Long.parseLong(String.valueOf(PedoActivity.cntlist.get(4)))+Long.parseLong(String.valueOf(PedoActivity.cntlist.get(5)))
+                +Long.parseLong(String.valueOf(PedoActivity.cntlist.get(6))))/7);
 
         ArrayList year = new ArrayList();
 
         Date currentTime = Calendar.getInstance().getTime();
+
+        Date dDate = new Date();
+        dDate = new Date(dDate.getTime()+(1000*60*60*24*-1));
+        SimpleDateFormat dSdf = new SimpleDateFormat("yyyy/MM/dd EE", Locale.KOREA);
+        String yesterday = dSdf.format(dDate);
+
         SimpleDateFormat weekdayFormat = new SimpleDateFormat("EE", Locale.getDefault());
+
         SimpleDateFormat dayFormat = new SimpleDateFormat("dd", Locale.getDefault());
         SimpleDateFormat monthFormat = new SimpleDateFormat("MM", Locale.getDefault());
         SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy", Locale.getDefault());
@@ -212,16 +220,119 @@ public class MyInfo extends AppCompatActivity {
 //        String year = yearFormat.format(currentTime);
 //        String month = monthFormat.format(currentTime);
 //        String day = dayFormat.format(currentTime);
+        if (PedoActivity.index==0){
+            NoOfEmp.add(new BarEntry(Integer.parseInt(String.valueOf(PedoActivity.cntlist.get(1))), 0));
+            NoOfEmp.add(new BarEntry(Integer.parseInt(String.valueOf(PedoActivity.cntlist.get(2))), 1));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(3))), 2));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(4))), 3));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(5))), 4));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(6))), 5));
+            NoOfEmp.add(new BarEntry(Integer.parseInt(String.valueOf(PedoActivity.cntlist.get(0))), 6));
+            year.add("화");
+            year.add("수");
+            year.add("목");
+            year.add("금");
+            year.add("토");
+            year.add("일");
+            year.add("월");
+        }
+        if (PedoActivity.index==1){
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(2))), 1));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(3))), 2));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(4))), 3));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(5))), 4));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(6))), 5));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(0))), 6));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(1))), 0));
+            year.add("수");
+            year.add("목");
+            year.add("금");
+            year.add("토");
+            year.add("일");
+            year.add("월");
+            year.add("화");
+        }
+        if (PedoActivity.index==2){
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(3))), 2));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(4))), 3));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(5))), 4));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(6))), 5));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(0))), 6));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(1))), 0));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(2))), 1));
+            year.add("목");
+            year.add("금");
+            year.add("토");
+            year.add("일");
+            year.add("월");
+            year.add("화");
+            year.add("수");
+        }
+        if (PedoActivity.index==3){
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(4))), 3));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(5))), 4));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(6))), 5));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(0))), 6));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(1))), 0));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(2))), 1));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(3))), 2));
+            year.add("금");
+            year.add("토");
+            year.add("일");
+            year.add("월");
+            year.add("화");
+            year.add("수");
+            year.add("목");
+        }
+        if (PedoActivity.index==4){
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(5))), 4));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(6))), 5));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(0))), 6));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(1))), 0));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(2))), 1));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(3))), 2));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(4))), 3));
+            year.add("토");
+            year.add("일");
+            year.add("월");
+            year.add("화");
+            year.add("수");
+            year.add("목");
+            year.add("금");
+        }
+        if (PedoActivity.index==5){
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(6))), 5));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(0))), 6));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(1))), 0));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(2))), 1));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(3))), 2));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(4))), 3));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(5))), 4));
+            year.add("일");
+            year.add("월");
+            year.add("화");
+            year.add("수");
+            year.add("목");
+            year.add("금");
+            year.add("토");
+        }
+        if (PedoActivity.index==6){
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(0))), 6));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(1))), 0));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(2))), 1));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(3))), 2));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(4))), 3));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(5))), 4));
+            NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(6))), 5));
+            year.add("월");
+            year.add("화");
+            year.add("수");
+            year.add("목");
+            year.add("금");
+            year.add("토");
+            year.add("일");
+        }
 
-        //Log.d("webnautes", year + "년 " + month + "월 " + day + "일 " + weekDay + "요일");
-
-        year.add(weekdayFormat.format(currentTime));
-        year.add(weekdayFormat.format(currentTime));
-        year.add(weekDay+2);
-        year.add(weekDay+3);
-        year.add(weekDay+4);
-        year.add(weekDay+5);
-        year.add(weekDay+6);
 
 
 
