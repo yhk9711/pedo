@@ -15,14 +15,14 @@ public class MonthActivity extends AppCompatActivity {
     public static int smonth = 0;
     public static int sday = 0;
 
+
     DatePickerDialog.OnDateSetListener d = new DatePickerDialog.OnDateSetListener() {
         @Override
         public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth){
-            Intent intent=new Intent(MonthActivity.this,StatisticsActivity.class);
+            Intent intent=new Intent(MonthActivity.this, StatisticsActivity.class);
             startActivity(intent);
         }
     };
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

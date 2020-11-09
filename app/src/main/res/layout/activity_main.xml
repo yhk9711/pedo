@@ -120,7 +120,7 @@
         android:stateListAnimator="@null"
         android:text="회원가입" />
 
-    <Button
+   <!-- <Button
 
         android:id="@+id/gps"
 
@@ -139,7 +139,7 @@
         android:stateListAnimator="@null"
 
         android:text="gps" />
-
+-->
 
 
 

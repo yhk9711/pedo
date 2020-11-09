@@ -1,6 +1,7 @@
 package com.example.lets_walk_firebase;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -38,10 +40,21 @@ public class MyInfo extends AppCompatActivity {
     Button cal;
     private TextView average_step;
     ArrayAdapter<String> arrayAdapter;
+    public static int syear = 0;
+    public static int smonth = 0;
+    public static int sday = 0;
 
     static ArrayList<String> arrayIndex = new ArrayList<String>();
 
     static ArrayList<String> arrayData = new ArrayList<String>();
+
+    DatePickerDialog.OnDateSetListener d = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth){
+            Intent intent = new Intent(MyInfo.this, StatisticsActivity.class);
+            startActivity(intent);
+        }
+    };
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -173,12 +186,19 @@ public class MyInfo extends AppCompatActivity {
                 }
             }
         });
+
+
+
         cal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MyInfo.this, com.example.lets_walk_firebase.MonthActivity.class);
-                startActivity(intent);
+                com.example.lets_walk_firebase.PickerActivity pd = new com.example.lets_walk_firebase.PickerActivity();
+                pd.setListener(d);
+                pd.show(getSupportFragmentManager(), "PickerActivity");
             }
+                /*Intent intent = new Intent(MyInfo.this, com.example.lets_walk_firebase.PickerActivity.class);
+                startActivity(intent);*/
+
         });
 
         BarChart chart = findViewById(R.id.barchart);
@@ -212,7 +232,7 @@ public class MyInfo extends AppCompatActivity {
         //Log.d("webnautes", year + "년 " + month + "월 " + day + "일 " + weekDay + "요일");
 
 
-        if (PedoActivity.index==0){
+        if (PedoActivity.index == 0){
             year.add("화");
             year.add("수");
             year.add("목");
@@ -228,7 +248,7 @@ public class MyInfo extends AppCompatActivity {
             NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(6))), 5));
             NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(0))), 6));
         }
-        if (PedoActivity.index==1){
+        if (PedoActivity.index == 1){
             year.add("수");
             year.add("목");
             year.add("금");
@@ -244,7 +264,7 @@ public class MyInfo extends AppCompatActivity {
             NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(0))), 5));
             NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(1))), 6));
         }
-        if (PedoActivity.index==2){
+        if (PedoActivity.index == 2){
             year.add("목");
             year.add("금");
             year.add("토");
@@ -260,7 +280,7 @@ public class MyInfo extends AppCompatActivity {
             NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(1))), 5));
             NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(2))), 6));
         }
-        if (PedoActivity.index==3){
+        if (PedoActivity.index == 3){
             year.add("금");
             year.add("토");
             year.add("일");
@@ -276,7 +296,7 @@ public class MyInfo extends AppCompatActivity {
             NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(2))), 5));
             NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(3))), 6));
         }
-        if (PedoActivity.index==4){
+        if (PedoActivity.index == 4){
             year.add("토");
             year.add("일");
             year.add("월");
@@ -292,7 +312,7 @@ public class MyInfo extends AppCompatActivity {
             NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(3))), 5));
             NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(4))), 6));
         }
-        if (PedoActivity.index==5){
+        if (PedoActivity.index == 5){
             year.add("일");
             year.add("월");
             year.add("화");
@@ -308,7 +328,7 @@ public class MyInfo extends AppCompatActivity {
             NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(4))), 5));
             NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(PedoActivity.cntlist.get(5))), 6));
         }
-        if (PedoActivity.index==6){
+        if (PedoActivity.index == 6){
             year.add("월");
             year.add("화");
             year.add("수");
