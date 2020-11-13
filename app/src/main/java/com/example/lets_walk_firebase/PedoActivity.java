@@ -47,6 +47,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
     public static List<String> friends = new ArrayList<String>();
     //public static List<Integer> cntlist= new ArrayList<>();
     public static List<Integer> cntlist= new ArrayList<>(Arrays.asList(0,0,0,0,0,0,0));
+
     private static int ONE_MINUTE = 5626;
     public static int index=0;
 
@@ -207,9 +208,12 @@ public class PedoActivity extends Activity implements SensorEventListener {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
+
+
                 Map<String, List<Integer>> map3 = (Map) dataSnapshot.getValue();
 
                 List<Integer> stplist = map3.get("steps");
+
                 Log.e("stplist", String.valueOf(stplist));
                 cntlist=stplist;
                 Log.e("cntlistreg", String.valueOf(RegisterActivity.cntlistreg));
@@ -747,7 +751,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
             pieChart.setData(data);
             data.setValueTextSize(14f);
             //data.setValueTextColor(Color.TRANSPARENT);
-            final int[] MY_COLORS = {Color.rgb(102, 153, 204), Color.rgb(255, 255, 255), Color.rgb(255, 192, 0),
+            final int[] MY_COLORS = {Color.rgb(102, 153, 204), Color.rgb(222, 169, 55), Color.rgb(255, 192, 0),
                     Color.rgb(127, 127, 127), Color.rgb(146, 208, 80), Color.rgb(0, 176, 80), Color.rgb(79, 129, 189)};
             ArrayList<Integer> colors = new ArrayList<Integer>();
 

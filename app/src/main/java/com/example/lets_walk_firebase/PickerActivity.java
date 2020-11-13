@@ -127,7 +127,7 @@ public class PickerActivity extends DialogFragment {
         monthPicker.setValue(cal.get(Calendar.MONTH) + 1);
 
         int year = cal.get(Calendar.YEAR);
-        yearPicker.setMinValue(2015);
+        yearPicker.setMinValue(2020);
         yearPicker.setMaxValue(MAX_YEAR);
         yearPicker.setValue(year);
 
