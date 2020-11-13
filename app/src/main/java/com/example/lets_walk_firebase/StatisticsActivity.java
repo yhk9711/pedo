@@ -27,8 +27,8 @@ import java.util.Map;
 public class StatisticsActivity extends AppCompatActivity {
 
     private DatabaseReference databaseReference;
-    public static ArrayList past_date = new ArrayList();
-    public static ArrayList past_cnt = new ArrayList();
+    public ArrayList<String> past_date = new ArrayList();
+    public ArrayList<Integer> past_cnt = new ArrayList();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -71,14 +71,21 @@ public class StatisticsActivity extends AppCompatActivity {
 
                 ArrayList NoOfEmp = new ArrayList();
 
-                for(int i = 1; i < past_cnt.size(); i++){
+
+                for(int j = 1; j < past_cnt.size(); j++){
 
                     Log.e("past_cnt-size", String.valueOf(past_cnt.size()));
-                    String date_value = String.valueOf(past_date.get(i));
+                    String date_value = String.valueOf(past_date.get(j));
+                    Log.e("date_value", String.valueOf(past_date.get(j)));
                     String substring = date_value.substring(6);
                     Log.e("subSTring", substring);
-                    NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(past_cnt.get(i))), Integer.parseInt(substring) - 1));
-                    Log.e("past_cnt_value", String.valueOf(past_cnt.get(i)));
+                    NoOfEmp.add(new BarEntry(Long.parseLong(String.valueOf(past_cnt.get(j))), Integer.parseInt(substring) - 1));
+                    Log.e("past_cnt_value", String.valueOf(past_cnt.get(j)));
+                    Log.e("jjj", String.valueOf(j));
+                    Log.e("past_cnt보기", String.valueOf(past_cnt));
+                    if(j == past_cnt.size()){
+                        break;
+                    }
                 }
 
 
