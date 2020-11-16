@@ -202,7 +202,7 @@ public class FindFriendActivity extends AppCompatActivity {
 
     public void onBackPressed() {
         super.onBackPressed();
-        Intent intent = new Intent(getApplicationContext(), FriendListActivity.class);
+        Intent intent = new Intent(getApplicationContext(), com.example.lwfb.FriendListActivity.class);
         intent.addFlags (Intent.FLAG_ACTIVITY_NO_ANIMATION);
         startActivity(intent);
         overridePendingTransition(0, 0);

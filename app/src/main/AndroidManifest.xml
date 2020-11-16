@@ -18,17 +18,22 @@
     <uses-permission android:name="Android.permission.CHANGE_CONFIGURATION" ></uses-permission>
     <uses-permission android:name="Android.permission.MODIFY_AUDIO_SETTINGS" ></uses-permission>
     <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label="렛츠워크"
+        android:label="lets_walk"
+        android:largeHeap="true"
         android:supportsRtl="true"
         android:theme="@style/Theme.AppCompat.NoActionBar">
 
+        <uses-library android:name="org.apache.http.legacy" android:required="false"/>
+
         <meta-data
             android:name="com.google.android.geo.API_KEY"
-            android:value="AIzaSyCP6JWaN7sE67Eo8KlfCX8PVXvExZ-OlfY" />
+            android:value="AIzaSyAzsHvGAdwLr1RbVGPF1llQWJK6hiFLbcE" />
 
         <activity android:name=".SplashActivity">
             <!-- 시작 액티비티를 스플래시로 변경. -->
@@ -92,6 +97,7 @@
             android:configChanges="orientation|screenSize|locale"
             android:screenOrientation="unspecified"
             android:windowSoftInputMode="adjustResize"></activity>
+
         <activity
             android:name=".MapsActivity"
             android:configChanges="orientation|screenSize|locale"
@@ -103,16 +109,19 @@
             android:configChanges="orientation|screenSize|locale"
             android:screenOrientation="unspecified"
             android:windowSoftInputMode="adjustResize"></activity>
-        <activity
-            android:name=".StatisticsActivity"
-            android:configChanges="orientation|screenSize|locale"
-            android:screenOrientation="unspecified"
-            android:windowSoftInputMode="adjustResize"></activity>
+
         <activity
             android:name=".PickerActivity"
             android:configChanges="orientation|screenSize|locale"
             android:screenOrientation="unspecified"
             android:windowSoftInputMode="adjustResize"></activity>
+
+        <activity
+            android:name=".StatisticsActivity"
+            android:configChanges="orientation|screenSize|locale"
+            android:screenOrientation="unspecified"
+            android:windowSoftInputMode="adjustResize"></activity>
+
 
         <activity
             android:name="com.example.lwfb.YouTubeAPIDemoActivity">
@@ -127,7 +136,7 @@
             android:enabled="true"
             android:exported="true" />
 
-        <receiver android:name="AlarmReceiver">
+        <receiver android:name=".AlarmReceiver">
             <intent-filter>
                 <action android:name="com.enspert.app.alarms.ALARM_ALERT" />
             </intent-filter>

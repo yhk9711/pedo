@@ -7,17 +7,16 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="#ffff"
-    tools:context="com.example.lwfb.MainActivity">
+    android:background="#ffffff"
+    >
 
 
     <ImageView
-        android:id="@+id/imageView3"
-        android:layout_width="276dp"
-        android:layout_height="65dp"
-        app:srcCompat="@drawable/login_image" />
+        android:id="@+id/imageView"
+        android:layout_width="160dp"
+        android:layout_height="70dp"
+        app:srcCompat="@drawable/login3" />
 
-    ?
 
     <TextView
         android:id="@+id/blank_"
@@ -29,16 +28,17 @@
         android:textSize="30dp" />
 
     <EditText
-        android:layout_width="300dp"
+        android:layout_width="250dp"
         android:id="@+id/checkId"
         android:layout_height="50dp"
         android:gravity="center"
         android:hint="ID"
+        android:textSize="14dp"
         android:fontFamily="@font/nanum_round"
-        android:textColorHint="#505152"
+        android:textColorHint="#4d4b4b"
         android:textColor="#000000"
         android:background="@drawable/round_corner"
-        android:backgroundTint="#F0F0F0"/>
+        android:backgroundTint="#f0f0f0"/>
 
     <TextView
         android:id="@+id/blank1"
@@ -50,13 +50,14 @@
         android:textSize="25dp" />
 
     <EditText
-        android:layout_width="300dp"
+        android:layout_width="250dp"
         android:id="@+id/checkpw"
         android:layout_height="50dp"
         android:gravity="center"
-        android:hint="PW"
+        android:hint="PASSWORD"
+        android:textSize="14dp"
         android:fontFamily="@font/nanum_round"
-        android:textColorHint="#505152"
+        android:textColorHint="#4d4b4b"
         android:textColor="#000000"
         android:backgroundTint="#f0f0f0"
         android:background="@drawable/round_corner"
@@ -74,13 +75,14 @@
 
     <Button
         android:id="@+id/login"
-        android:layout_width="300dp"
+        android:layout_width="250dp"
         android:layout_height="wrap_content"
         android:backgroundTint="#8ec1db"
         android:background="@drawable/round_corner"
         android:stateListAnimator="@null"
-        android:text="LOGIN"
-        android:fontFamily="@font/nanum_round"/>
+        android:fontFamily="@font/nanum_round"
+        android:textSize="15dp"
+        android:text="login" />
 
     <TextView
         android:id="@+id/blank3"
@@ -108,19 +110,20 @@
         android:text="아이디가 없으신가요?"
         android:fontFamily="@font/nanum_round"
         android:textColor="#505152"
-        android:textSize="15dp" />
+        android:textSize="13dp" />
 
     <Button
         android:id="@+id/register"
-        android:layout_width="wrap_content"
+        android:layout_width="90dp"
         android:layout_height="30dp"
         android:backgroundTint="#8ec1db"
-        android:textColorHint="#3f89b3"
+        android:textColorHint="#505152"
         android:textColor="#ffffff"
+        android:fontFamily="@font/nanum_round"
+        android:textSize="12dp"
         android:background="@drawable/round_corner"
         android:stateListAnimator="@null"
-        android:text="SIGN UP"
-        android:fontFamily="@font/nanum_round"/>
+        android:text="sign up" />
 
 
 </LinearLayout>

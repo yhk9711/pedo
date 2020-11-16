@@ -76,7 +76,7 @@ public final class HighActivity extends Activity implements OnFullscreenListener
         setContentView(R.layout.activity_high);
 
         listFragment = (VideoListFragment) getFragmentManager().findFragmentById(R.id.list_fragment);
-        listFragment.getView().setBackgroundColor(Color.rgb(211, 235, 242));
+        listFragment.getView().setBackgroundColor(Color.rgb(255, 255, 255));
         videoFragment =
                 (VideoFragment) getFragmentManager().findFragmentById(R.id.video_fragment_container);
 
@@ -196,7 +196,7 @@ public final class HighActivity extends Activity implements OnFullscreenListener
             List<VideoEntry> list = new ArrayList<VideoEntry>();
             list.add(new VideoEntry(" ", "MMswNnLdHso"));
             list.add(new VideoEntry(" ", "lKwZ2DU4P-A"));
-            list.add(new VideoEntry(" ", "h9E_JHENdNI"));
+            list.add(new VideoEntry(" ", "CkRDw4En_78"));
             list.add(new VideoEntry(" ", "ZZ0rheDg7AQ"));
             list.add(new VideoEntry(" ", "D8z8nN_u7CM"));
             VIDEO_LIST = Collections.unmodifiableList(list);

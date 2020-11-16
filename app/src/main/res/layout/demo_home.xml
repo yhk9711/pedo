@@ -24,6 +24,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="demo_select"
+        android:fontFamily="@font/nanum_round"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:textColor="@android:color/white" />
 
@@ -31,6 +32,7 @@
         android:id="@+id/demo_list"
         android:layout_width="match_parent"
         android:layout_height="0dp"
+        android:fontFamily="@font/nanum_round"
         android:layout_weight="1" />
 
     <TextView

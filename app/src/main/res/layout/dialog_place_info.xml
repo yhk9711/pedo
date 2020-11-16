@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:gravity="center"
-    android:background="#d3ebf2">
+    android:background="#ffffff">
 
     <!--    <TextView-->
     <!--    android:id="@+id/textView_dialog_placeTitle"-->
@@ -64,7 +64,8 @@
         android:layout_marginStart="22dp"
         android:layout_marginTop="26dp"
         android:textStyle="bold"
-        android:textColor="#639cd4"
+        android:fontFamily="@font/nanum_round"
+        android:textColor="#505152"
         android:text="해당 위치를 목적지로 설정하시겠습니까?" />
 
     <Button
@@ -75,7 +76,8 @@
         android:layout_alignRight="@+id/textView_dialog_placeTitle"
         android:layout_below="@+id/textView_dialog_placeTitle"
         android:layout_marginTop="26dp"
-        android:backgroundTint="#52789e"
+        android:fontFamily="@font/nanum_round"
+        android:backgroundTint="#8ec1db"
         android:text="예" />
 
     <!--    <TextView-->
@@ -93,12 +95,11 @@
         android:id="@+id/button_dialog_placeno"
         android:layout_width="80dp"
         android:layout_height="wrap_content"
-
+        android:fontFamily="@font/nanum_round"
         android:layout_below="@+id/textView_dialog_placeTitle"
         android:layout_toRightOf="@+id/button_dialog_placeyes"
-
         android:layout_marginTop="26dp"
-        android:backgroundTint="#52789e"
+        android:backgroundTint="#8ec1db"
         android:text="아니요" />
 
 </RelativeLayout>

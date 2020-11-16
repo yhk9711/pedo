@@ -25,11 +25,12 @@
         android:layout_width="25dp"
         android:layout_height="match_parent"
         android:layout_weight="1"
-        android:backgroundTint="#52789e"
+        android:fontFamily="@font/nanum_round"
+        android:backgroundTint="#8ec1db"
+        android:background="#00ff0000"
         android:gravity="center"
         android:stateListAnimator="@null"
-        android:textSize="11dp"
-        android:text="친구 끊기" />
+        android:text=" " />
 
 
 </LinearLayout>

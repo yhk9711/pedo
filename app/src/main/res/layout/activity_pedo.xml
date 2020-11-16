@@ -5,7 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/pedo_color"
+    android:background="@drawable/pedo8"
     android:orientation="vertical"
     tools:context=".PedoActivity">
 
@@ -44,7 +44,7 @@
                 android:id="@+id/goalsteptext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nanum_extrabold"
+                android:fontFamily="@font/nanum_round_extrabold"
                 android:gravity="center"
                 android:text="목표 걸음 수 : "
                 android:textStyle="bold"
@@ -55,7 +55,7 @@
                 android:id="@+id/goalstepnum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:fontFamily="@font/nanum_extrabold"
+                android:fontFamily="@font/nanum_round_extrabold"
                 android:gravity="center"
                 android:text="  10000 걸음"
                 android:textStyle="bold"

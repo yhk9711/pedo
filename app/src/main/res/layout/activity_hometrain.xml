@@ -5,34 +5,46 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#d3ebf2"
+    android:background="#ffffff"
     android:orientation="vertical"
     tools:context=".HomeTrainActivity">
 
 
-    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
-        xmlns:tools="http://schemas.android.com/tools"
+    <LinearLayout
         android:id="@+id/activity_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#ffff"
+        android:background="#ffffff"
         android:gravity="center"
         android:orientation="vertical"
-        tools:context="com.example.lets_walk_firebase.MainActivity">
+        tools:context="com.example.lwfb.MainActivity">
 
-        <TextView
-            android:id="@+id/textView2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_alignParentEnd="true"
-            android:gravity="center"
-            android:text="홈 트레이닝"
-            android:textColor="#639cd4"
-            android:textColorHint="#d3ebf2"
-            android:textSize="30dp"
-            android:fontFamily="@font/nanum_round_extrabold"
-            android:textStyle="bold" />
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="20dp"
+            android:gravity="center">
+
+        </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="110dp"
+            android:gravity="center">
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="284dp"
+                android:layout_height="110dp"
+                app:srcCompat="@drawable/hometraining" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="5dp"
+            android:gravity="center">
+
+        </LinearLayout>
 
         <TextView
             android:id="@+id/blank19"
@@ -49,84 +61,78 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:text="못 걸은 양을 홈트레이닝으로 채워보아요!"
-            android:textColor="#000000"
             android:fontFamily="@font/nanum_round"
-            android:textSize="15dp" />
-
+            android:textColor="#000000"
+            android:textSize="12dp" />
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
+            android:layout_height="20dp"
             android:gravity="center">
 
-            <Button
-                android:id="@+id/high"
-                android:layout_width="55dp"
-                android:layout_height="wrap_content"
-                android:layout_alignParentEnd="true"
-                android:background="@drawable/round_corner"
-                android:backgroundTint="#52789e"
-                android:gravity="center"
-                android:stateListAnimator="@null"
-                android:text="상"
-                android:fontFamily="@font/nanum_round_extrabold"
-                android:textSize="30dp" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/blank17"
-            android:layout_width="161dp"
-            android:layout_height="wrap_content"
-            android:gravity="center"
-            android:text="     "
-            android:textColor="#000000"
-            android:textSize="25dp" />
+
+        <LinearLayout
+            android:layout_width="275dp"
+            android:layout_height="120dp"
+            android:gravity="left">
+
+            <ImageButton
+                android:id="@+id/easy"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_alignParentEnd="true"
+                android:background="@drawable/imgbtn_easy"
+                android:gravity="left"
+
+                />
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:gravity="center">
+            android:layout_height="10dp"
+            android:gravity="center"></LinearLayout>
 
-            <Button
-                android:id="@+id/medi"
-                android:layout_width="55dp"
-                android:layout_height="wrap_content"
+        <LinearLayout
+            android:layout_width="275dp"
+            android:layout_height="120dp"
+            android:gravity="right">
+
+            <ImageButton
+                android:id="@+id/normal"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
-                android:background="@drawable/round_corner"
-                android:backgroundTint="#52789e"
-                android:gravity="center"
-                android:stateListAnimator="@null"
-                android:text="중"
-                android:fontFamily="@font/nanum_round_extrabold"
-                android:textSize="30dp" />
+                android:background="@drawable/imgbtn_normal"
+                android:gravity="right"
+
+                />
         </LinearLayout>
 
         <TextView
             android:id="@+id/blank18"
             android:layout_width="161dp"
-            android:layout_height="wrap_content"
+            android:layout_height="11dp"
             android:gravity="center"
             android:text="     "
             android:textColor="#000000"
             android:textSize="25dp" />
 
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="60dp"
-            android:gravity="center">
+            android:layout_width="275dp"
+            android:layout_height="120dp"
+            android:gravity="left">
 
-            <Button
-                android:id="@+id/low"
-                android:layout_width="55dp"
-                android:layout_height="wrap_content"
+            <ImageButton
+                android:id="@+id/hard"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:layout_alignParentEnd="true"
-                android:background="@drawable/round_corner"
-                android:backgroundTint="#52789e"
-                android:gravity="center"
-                android:stateListAnimator="@null"
-                android:text="하"
-                android:fontFamily="@font/nanum_round_extrabold"
-                android:textSize="30dp" />
+                android:background="@drawable/imgbtn_hard"
+                android:gravity="left"
+
+                />
         </LinearLayout>
 
         <TextView
@@ -138,11 +144,6 @@
             android:textColor="#000000"
             android:textSize="25dp" />
 
-        <ImageView
-            android:id="@+id/imageView5"
-            android:layout_width="351dp"
-            android:layout_height="241dp"
-            app:srcCompat="@drawable/homt" />
 
 
     </LinearLayout>

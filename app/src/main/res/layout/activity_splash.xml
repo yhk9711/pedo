@@ -12,9 +12,9 @@
 
     <ImageView
         android:id="@+id/imageView"
-        android:layout_width="458dp"
-        android:layout_height="859dp"
-        app:srcCompat="@drawable/splash" />
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:srcCompat="@drawable/lw3" />
 
 
 </LinearLayout>

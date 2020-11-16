@@ -2,21 +2,21 @@
 
 <merge xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/container"
-    android:background="#d3ebf2"
+    android:background="#ffffff"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
     <fragment
         class="com.example.lwfb.MediActivity$VideoListFragment"
         android:id="@+id/list_fragment"
-        android:background="#d3ebf2"
+        android:background="#ffffff"
         android:layout_width="match_parent"
         android:layout_height="match_parent"/>
 
     <LinearLayout
         android:id="@+id/video_box"
         android:layout_width="wrap_content"
-        android:background="#d3ebf2"
+        android:background="#ffffff"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         android:orientation="vertical">
@@ -26,7 +26,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:background="#d3ebf2"
+            android:background="#ffffff"
             android:src="@android:drawable/btn_dialog"
             android:textColor="#505152"
             android:onClick="onClickClose"/>
@@ -34,7 +34,7 @@
         <fragment
             class="com.example.lwfb.MediActivity$VideoFragment"
             android:id="@+id/video_fragment_container"
-            android:background="#d3ebf2"
+            android:background="#ffffff"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"/>
 

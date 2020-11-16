@@ -5,7 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#d3ebf2"
+    android:background="#ffffff"
     android:orientation="vertical"
     tools:context=".FriendListActivity">
 
@@ -15,10 +15,10 @@
         android:id="@+id/activity_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#d3ebf2"
+        android:background="#ffffff"
         android:gravity="center"
         android:orientation="vertical"
-        tools:context="MainActivity">
+        tools:context=".MainActivity">
 
         <TextView
             android:id="@+id/nowmystepis"
@@ -27,8 +27,9 @@
             android:layout_alignParentEnd="true"
             android:gravity="center"
             android:text="현재 내 순위는"
-            android:textColor="#639cd4"
-            android:textColorHint="#d3ebf2"
+            android:fontFamily="@font/nanum_round"
+            android:textColor="#8ec1db"
+            android:textColorHint="#8ec1db"
             android:textSize="30dp"
             android:textStyle="bold" />
 
@@ -44,8 +45,9 @@
                 android:layout_alignParentEnd="true"
                 android:gravity="center"
                 android:text="  n"
-                android:textColor="#639cd4"
-                android:textColorHint="#d3ebf2"
+                android:textColor="#8ec1db"
+                android:fontFamily="@font/nanum_round"
+                android:textColorHint="#8ec1db"
                 android:textSize="30dp"
                 android:textStyle="bold" />
 
@@ -55,9 +57,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:gravity="center"
+                android:fontFamily="@font/nanum_round"
                 android:text="  등입니다."
-                android:textColor="#639cd4"
-                android:textColorHint="#d3ebf2"
+                android:textColor="#8ec1db"
+                android:textColorHint="#8ec1db"
                 android:textSize="30dp"
                 android:textStyle="bold" />
         </LinearLayout>
@@ -292,6 +295,7 @@
 
             <ListView
                 android:id="@+id/listview1"
+                android:fontFamily="@font/nanum_round"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent" />
         </ScrollView>
@@ -326,9 +330,10 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:background="@drawable/round_corner"
-                android:backgroundTint="#52789e"
+                android:backgroundTint="#8ec1db"
                 android:gravity="center"
                 android:stateListAnimator="@null"
+                android:fontFamily="@font/nanum_round"
                 android:text="친구 찾기" />
 
             <TextView

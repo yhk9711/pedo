@@ -48,7 +48,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="    목표 위치까지 약 "
-                android:fontFamily="@font/nanum_extrabold"
+                android:fontFamily="@font/nanum_round_extrabold"
                 android:textColor="#639cd4"
                 android:textSize="17dp" />
 

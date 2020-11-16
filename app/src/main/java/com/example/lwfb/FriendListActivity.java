@@ -194,7 +194,7 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
 
                 if (0<friendname.size()){
                     item = new ListViewBtnItem();
-                    item.setIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.firstimg));
+                    item.setIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.gold));
                     String temp = (String)it.next();
 //                    item.setText(1+ "등" + "   " + friendname.get(0) + "   " + friendstep.get(0) + "걸음");
                     item.setText(1+ "등" + "   " + temp + "   " + sort_friends.get(temp) + "걸음");
@@ -210,7 +210,7 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
                 if (1<friendname.size()){
                     item = new ListViewBtnItem();
                     String temp = (String)it.next();
-                    item.setIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.secondimg));
+                    item.setIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.silver));
 //                    item.setText(2+ "등" + "   " + friendname.get(1) + "   " + friendstep.get(1) + "걸음");
                     item.setText(2+ "등" + "   " + temp + "   " + sort_friends.get(temp) + "걸음");
                     Log.d("item", item.toString());
@@ -224,7 +224,7 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
                 if (2<friendname.size()){
                     item = new ListViewBtnItem();
                     String temp = (String)it.next();
-                    item.setIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.thirdimg));
+                    item.setIcon(ContextCompat.getDrawable(getApplicationContext(), R.drawable.bronze));
 //                    item.setText(3+ "등" + "   " + friendname.get(2) + "   " + friendstep.get(2) + "걸음");
                     item.setText(3+ "등" + "   " + temp + "   " + sort_friends.get(temp) + "걸음");
                     Log.d("item", item.toString());
@@ -318,7 +318,7 @@ public class FriendListActivity extends AppCompatActivity implements ListViewBtn
 
     @Override
     public void onListBtnClick(int position) {
-        Toast.makeText(this, Integer.toString(position + 1) + " Item is selected..", Toast.LENGTH_SHORT).show();
+        //    Toast.makeText(this, Integer.toString(position + 1) + " Item is selected..", Toast.LENGTH_SHORT).show();
     }
 
     DrawerLayout.DrawerListener listener = new DrawerLayout.DrawerListener() {

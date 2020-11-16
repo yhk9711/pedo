@@ -489,7 +489,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
         }
         public void Alarm() {
             AlarmManager am = (AlarmManager)getSystemService(Context.ALARM_SERVICE);
-            Intent intent = new Intent(PedoActivity.this, com.example.fbtest.AlarmReceiver.class);
+            Intent intent = new Intent(PedoActivity.this, com.example.lwfb.AlarmReceiver.class);
 
             PendingIntent sender = PendingIntent.getBroadcast(PedoActivity.this, 0, intent, 0);
 
@@ -593,7 +593,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
             sensorManager.registerListener(this, accelerormeterSensor,
                     SensorManager.SENSOR_DELAY_GAME);
             IntentFilter intentFilter = new IntentFilter();
-            intentFilter.addAction("com.example.fbtest");
+            intentFilter.addAction("com.example.lwfb");
             registerReceiver(broadcastReceiver, intentFilter);
             Log.e("페도의 ", "onstart입니다");
             //new AlarmHATT(getApplicationContext()).Alarm();
