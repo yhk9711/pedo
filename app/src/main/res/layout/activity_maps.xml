@@ -6,7 +6,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#d3ebf2"
+    android:background="#ffffff"
     android:orientation="vertical"
     tools:context=".MapsActivity">
 
@@ -22,8 +22,9 @@
             android:id="@+id/map"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
-            android:layout_height="0dp"
-            android:layout_weight="9"
+            android:layout_height="60dp"
+            android:gravity="center"
+            android:layout_weight="140"
             tools:context=".MapsActivity" />
         <LinearLayout
             android:layout_width="match_parent"
@@ -46,29 +47,43 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="목표 위치까지 약 "
+                android:text="    목표 위치까지 약 "
+                android:fontFamily="@font/nanum_extrabold"
                 android:textColor="#639cd4"
-                android:textSize="20dp" />
+                android:textSize="17dp" />
 
             <TextView
                 android:id="@+id/blank3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
-                android:text="                     "
+                android:text="                    "
                 android:textStyle="bold"
                 android:textColor="#639cd4"
                 android:textSize="20dp" />
 
             <Button
                 android:id="@+id/button"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
+                android:layout_width="10dp"
+                android:layout_height="25dp"
                 android:layout_marginRight="10dp"
                 android:layout_weight="40"
                 android:background="@drawable/round_corner"
-                android:backgroundTint="#52789e"
+                android:fontFamily="@font/nanum_round"
+                android:backgroundTint="#8ec1db"
+                android:textColor="#ffffff"
+                android:textSize="11dp"
                 android:text="Start" />
+
+            <TextView
+                android:id="@+id/blank4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="         "
+                android:textStyle="bold"
+                android:textColor="#639cd4"
+                android:textSize="20dp" />
 
         </LinearLayout>
 
@@ -93,6 +108,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="0"
+                android:fontFamily="@font/nanum_round"
                 android:textStyle="bold"
                 android:textColor="#639cd4"
                 android:textSize="20dp" />
@@ -104,6 +120,7 @@
                 android:gravity="center"
                 android:text="  kcal    "
                 android:textColor="#639cd4"
+                android:fontFamily="@font/nanum_round"
                 android:textSize="15dp" />
 
 
@@ -124,6 +141,7 @@
                 android:gravity="center"
                 android:text="  m  "
                 android:textColor="#639cd4"
+                android:fontFamily="@font/nanum_round"
                 android:textSize="15dp" />
 
             <TextView
@@ -134,6 +152,7 @@
                 android:text="0 "
                 android:textStyle="bold"
                 android:textColor="#639cd4"
+                android:fontFamily="@font/nanum_round"
                 android:textSize="20dp" />
 
             <TextView
@@ -142,6 +161,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text=" 걸음"
+                android:fontFamily="@font/nanum_round"
                 android:textColor="#639cd4"
                 android:textSize="15dp" />
 

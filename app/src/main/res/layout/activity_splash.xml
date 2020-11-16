@@ -14,7 +14,7 @@
         android:id="@+id/imageView"
         android:layout_width="458dp"
         android:layout_height="859dp"
-        app:srcCompat="@drawable/letswalkstart2" />
+        app:srcCompat="@drawable/splash" />
 
 
 </LinearLayout>

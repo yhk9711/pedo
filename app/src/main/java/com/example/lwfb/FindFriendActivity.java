@@ -57,8 +57,9 @@ public class FindFriendActivity extends AppCompatActivity {
         //drawerLayout.openDrawer(drawerView);
         Button logout = (Button) findViewById(R.id.button);
         Button notice = (Button) findViewById(R.id.notice);
+        Button myInfo = (Button) findViewById(R.id.myinfo);
         Button hometraining = (Button) findViewById(R.id.hometraining);
-        Button friendlist = (Button) findViewById(R.id.friendlist);
+        //Button friendlist = (Button) findViewById(R.id.friendlist);
         Button maps = (Button) findViewById(R.id.maps);
         logout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -77,6 +78,24 @@ public class FindFriendActivity extends AppCompatActivity {
 
             }
         });
+        myInfo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(FindFriendActivity.this, com.example.lwfb.MyInfo.class);
+                /*String id_value2 = null;
+                Intent i2 = getIntent();
+                i2.getStringExtra("id");
+                Bundle bundle2 = getIntent().getExtras();
+                if (bundle2 != null) {
+                    id_value2 = bundle2.getString("id");
+                    //Log.d("id", id_value2);
+                }
+                intent.putExtra("id", id_value2);
+                intent.putExtra("name", user_name);*/
+                startActivity(intent);
+                overridePendingTransition(0, 0);
+            }
+        });
         notice.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -85,14 +104,14 @@ public class FindFriendActivity extends AppCompatActivity {
                 overridePendingTransition(0, 0);
             }
         });
-        friendlist.setOnClickListener(new View.OnClickListener() {
+        /*friendlist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(FindFriendActivity.this, FriendListActivity.class);
                 startActivity(intent);
                 overridePendingTransition(0, 0);
             }
-        });
+        });*/
         hometraining.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

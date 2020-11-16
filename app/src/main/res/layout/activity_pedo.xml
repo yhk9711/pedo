@@ -5,79 +5,104 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#d3ebf2"
+    android:background="@drawable/pedo_color"
     android:orientation="vertical"
     tools:context=".PedoActivity">
 
+    <!--    <ImageView-->
+    <!--        android:id="@+id/imageView"-->
+    <!--        android:layout_width="match_parent"-->
+    <!--        android:layout_height="match_parent"-->
+    <!--        app:srcCompat="@drawable/pedo" />-->
+
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="70dp"
         android:gravity="center"
         android:orientation="vertical">
+        <!--        <ImageView-->
+        <!--            android:id="@+id/imageView"-->
+        <!--            android:layout_width="160dp"-->
+        <!--            android:layout_height="70dp"-->
+        <!--            app:srcCompat="@drawable/pedo" />-->
 
+        <!--        <TextView-->
+        <!--            android:id="@+id/nowstepnum"-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="71dp"-->
+        <!--            android:gravity="center"-->
+        <!--            android:text="현재 걸음수"-->
+        <!--            android:textStyle="bold"-->
+        <!--            android:textColor="#639cd4"-->
+        <!--            android:textSize="25dp" />-->
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="68dp"
+            android:layout_height="80dp"
             android:gravity="center">
 
             <TextView
                 android:id="@+id/goalsteptext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_extrabold"
                 android:gravity="center"
-                android:text="목표 걸음 수:"
+                android:text="목표 걸음 수 : "
                 android:textStyle="bold"
-                android:textColor="#639cd4"
-                android:textSize="25dp" />
+                android:textColor="#ffffff"
+                android:textSize="26dp" />
 
             <TextView
                 android:id="@+id/goalstepnum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_extrabold"
                 android:gravity="center"
                 android:text="  10000 걸음"
-                android:textColor="#639cd4"
-                android:textSize="25dp" />
+                android:textStyle="bold"
+                android:textColor="#ffffff"
+                android:textSize="26dp" />
         </LinearLayout>
 
-<!--        <TextView-->
-<!--            android:id="@+id/nowstepnum"-->
-<!--            android:layout_width="match_parent"-->
-<!--            android:layout_height="71dp"-->
-<!--            android:gravity="center"-->
-<!--            android:text="현재 걸음수"-->
-<!--            android:textStyle="bold"-->
-<!--            android:textColor="#639cd4"-->
-<!--            android:textSize="25dp" />-->
         <com.github.mikephil.charting.charts.PieChart
             android:id="@+id/piechart"
+            android:fontFamily="@font/nanum_round"
+            android:textColor="#505152"
             android:layout_width="260dp"
             android:layout_height="260dp" />
-<!--        <LinearLayout-->
-<!--            android:id="@+id/View"-->
-<!--            android:layout_width="335dp"-->
-<!--            android:layout_height="wrap_content"-->
-<!--            android:background="@drawable/round_corner"-->
-<!--            android:gravity="center">-->
+        <!--        <LinearLayout-->
+        <!--            android:id="@+id/View"-->
+        <!--            android:layout_width="335dp"-->
+        <!--            android:layout_height="wrap_content"-->
+        <!--            android:background="@drawable/round_corner"-->
+        <!--            android:gravity="center">-->
 
-<!--            <TextView-->
-<!--                android:id="@+id/cntView"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:gravity="center"-->
-<!--                android:text="숫자"-->
-<!--                android:textColor="#639cd4"-->
-<!--                android:textSize="80dp" />-->
+        <!--            <TextView-->
+        <!--                android:id="@+id/cntView"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:gravity="center"-->
+        <!--                android:text="숫자"-->
+        <!--                android:textColor="#639cd4"-->
+        <!--                android:textSize="80dp" />-->
 
-<!--            <TextView-->
-<!--                android:id="@+id/steptext"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:gravity="center"-->
-<!--                android:text="    걸음"-->
-<!--                android:textColor="#639cd4"-->
-<!--                android:textSize="25dp" />-->
-<!--        </LinearLayout>-->
+        <!--            <TextView-->
+        <!--                android:id="@+id/steptext"-->
+        <!--                android:layout_width="wrap_content"-->
+        <!--                android:layout_height="wrap_content"-->
+        <!--                android:gravity="center"-->
+        <!--                android:text="    걸음"-->
+        <!--                android:textColor="#639cd4"-->
+        <!--                android:textSize="25dp" />-->
+        <!--        </LinearLayout>-->
+
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="125dp"
+            android:gravity="center">
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="wrap_content"
@@ -89,40 +114,55 @@
                 android:id="@+id/kcalnum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_round"
                 android:gravity="center"
-                android:text="칼로리 "
-                android:textStyle="bold"
-                android:textColor="#639cd4"
-                android:textSize="25dp" />
+                android:text="칼로리  "
+                android:textColor="#505152"
+                android:textSize="17dp"
+                />
 
             <TextView
                 android:id="@+id/kcaltext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_round"
                 android:gravity="center"
-                android:text="kcal    "
-                android:textColor="#639cd4"
-                android:textSize="25dp" />
+                android:text="kcal        "
+                android:textColor="#505152"
+                android:textSize="17dp" />
 
 
             <TextView
                 android:id="@+id/distancenum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_round"
                 android:gravity="center"
-                android:text="  거리 "
-                android:textStyle="bold"
-                android:textColor="#639cd4"
-                android:textSize="25dp" />
+                android:text="  거리   "
+                android:textColor="#505152"
+                android:textSize="17dp"
+                />
 
             <TextView
                 android:id="@+id/distancetext"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_round"
                 android:gravity="center"
-                android:text="m"
-                android:textColor="#639cd4"
-                android:textSize="25dp" />
+                android:text="m        "
+                android:textColor="#505152"
+                android:textSize="17dp" />
+
+            <TextView
+                android:id="@+id/kcalfoodname"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_round"
+                android:gravity="center"
+                android:text="음식 "
+                android:textColor="#505152"
+                android:textSize="17dp"
+                />
 
         </LinearLayout>
 
@@ -131,34 +171,7 @@
             android:layout_height="wrap_content"
             android:gravity="center">
 
-            <TextView
-                android:id="@+id/kcalfoodname"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="음식 "
-                android:textColor="#639cd4"
-                android:textSize="25dp"
-                android:textStyle="bold" />
         </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="40dp"
-            android:gravity="center">
-
-            <TextView
-                android:id="@+id/kcalfood"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="만큼의 칼로리를 소모하였습니다."
-                android:textColor="#639cd4"
-                android:textSize="20dp" />
-
-        </LinearLayout>
-
-
 
     </LinearLayout>
     <include layout="@layout/nav1"/>

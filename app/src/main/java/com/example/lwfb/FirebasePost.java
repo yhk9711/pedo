@@ -24,6 +24,10 @@ public class FirebasePost {
     public int goal_step;
     public int height;
     public int index;
+    public String year;
+    public String month;
+    public String day;
+    public String date;
     public static List<String> friends;
     public static List<Integer> steps;
     public static List<Integer> paststeps;
@@ -51,6 +55,10 @@ public class FirebasePost {
         this.steps = steps;
         this.paststeps = paststeps;
         this.index =index;
+        this.year = year;
+        this.month = month;
+        this.day = day;
+        this.date = date;
 
     }
 
@@ -73,6 +81,10 @@ public class FirebasePost {
         result.put("steps", steps);
         result.put("paststeps", paststeps);
         result.put("index", index);
+        result.put("year", year);
+        result.put("month", month);
+        result.put("day", day);
+        result.put("date", date);
         return result;
 
     }
@@ -114,5 +126,13 @@ public class FirebasePost {
     public void WritePastSteps(String userId, String date) {
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("MEMBER").child(userId).child("paststeps").child(String.valueOf(date)).setValue(PedoActivity.cnt);
+    }
+    public void Writeregyear(String userId,int year) {
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("MEMBER").child(userId).child("regyear").setValue(year);
+    }
+    public void Writeregmonth(String userId,int month) {
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("MEMBER").child(userId).child("regmonth").setValue(month);
     }
 }

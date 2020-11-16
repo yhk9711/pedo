@@ -21,8 +21,11 @@ import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.Query;
 import com.google.firebase.database.ValueEventListener;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -214,7 +217,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         for (int a= 0 ; a<7; a++){
             steps.add(0);
         }
-        paststeps.add(0);
+        FirebasePost user = new FirebasePost();
+        SimpleDateFormat format1 = new SimpleDateFormat ( "yyyyMMdd");
+        Date time = new Date();
+        String time1 = format1.format(time);
+
+        user.WritePastSteps(ID,time1);
         mPostReference = FirebaseDatabase.getInstance().getReference();
 
         Map<String, Object> childUpdates = new HashMap<>();
@@ -312,7 +320,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
                     postFirebaseDatabase(true);
                     getFirebaseDatabase();
-
+                    FirebasePost user = new FirebasePost();
+                    Calendar cal = Calendar.getInstance();
+                    int year = cal.get(Calendar.YEAR);
+                    int month = cal.get(Calendar.MONTH) + 1;
+                    user.Writeregyear(ID, year);
+                    user.Writeregmonth(ID, month);
                     setInsertMode();
                     Toast.makeText(getApplicationContext(),"회원가입에 성공하셨습니다.",Toast.LENGTH_LONG).show();
 

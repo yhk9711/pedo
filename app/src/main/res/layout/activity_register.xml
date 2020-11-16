@@ -6,22 +6,28 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#d3ebf2"
+    android:background="#ffff"
     android:gravity="center"
     android:orientation="vertical"
     tools:context="com.example.lwfb.MainActivity">
 
-    <TextView
-        android:id="@+id/textView2"
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="226dp"
+        android:layout_height="57dp"
+        app:srcCompat="@drawable/sign_up_image" />
+
+    <!--<TextView-->
+       <!-- android:id="@+id/textView2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentEnd="true"
         android:gravity="center"
-        android:text="회원가입"
+        android:text=" "
         android:textColor="#639cd4"
         android:textColorHint="#d3ebf2"
         android:textSize="30dp"
-        android:textStyle="bold" />
+        android:textStyle="bold" />-->
 
     <TextView
         android:id="@+id/blank_"
@@ -62,10 +68,11 @@
             android:layout_height="30dp"
             android:layout_below="@+id/textView2"
             android:background="@drawable/round_corner"
-            android:backgroundTint="#ffffff"
+            android:backgroundTint="#f0f0f0"
             android:ems="10"
             android:gravity="center"
             android:hint=" 영문, 숫자 10자 이내"
+            android:fontFamily="@font/nanum_font"
             android:inputType="textPersonName"
             android:maxLength="10"
             android:textColor="#000000"
@@ -101,11 +108,12 @@
 
             android:layout_height="30dp"
             android:background="@drawable/round_corner"
-            android:backgroundTint="#ffffff"
+            android:backgroundTint="#f0f0f0"
 
             android:ems="10"
             android:gravity="center"
             android:hint=" 영문, 숫자 10자 이내"
+            android:fontFamily="@font/nanum_font"
             android:inputType="textPassword"
             android:maxLength="10"
             android:textColor="#000000"
@@ -142,7 +150,7 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:background="@drawable/round_corner"
-            android:backgroundTint="#ffffff"
+            android:backgroundTint="#f0f0f0"
             android:ems="10"
             android:gravity="center"
             android:inputType="textPersonName"
@@ -175,7 +183,7 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:background="@drawable/round_corner"
-            android:backgroundTint="#ffffff"
+            android:backgroundTint="#f0f0f0"
             android:ems="10"
             android:gravity="center"
             android:inputType="number"
@@ -207,7 +215,7 @@
             android:layout_width="wrap_content"
             android:layout_height="30dp"
             android:background="@drawable/round_corner"
-            android:backgroundTint="#ffffff"
+            android:backgroundTint="#f0f0f0"
             android:ems="10"
             android:gravity="center"
             android:inputType="number"
@@ -286,10 +294,11 @@
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:background="@drawable/round_corner"
-            android:backgroundTint="#52789e"
+            android:backgroundTint="#8ec1db"
             android:gravity="center"
             android:stateListAnimator="@null"
-            android:text="가입완료" />
+            android:text="가입완료"
+            android:fontFamily="@font/nanum_font"/>
 
     </LinearLayout>
 

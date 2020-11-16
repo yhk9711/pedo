@@ -16,7 +16,7 @@
         android:id="@+id/activity_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#d3ebf2"
+        android:background="#ffff"
         android:gravity="center"
         android:orientation="vertical"
         tools:context="com.example.lets_walk_firebase.MainActivity">
@@ -31,6 +31,7 @@
             android:textColor="#639cd4"
             android:textColorHint="#d3ebf2"
             android:textSize="30dp"
+            android:fontFamily="@font/nanum_round_extrabold"
             android:textStyle="bold" />
 
         <TextView
@@ -49,6 +50,7 @@
             android:gravity="center"
             android:text="못 걸은 양을 홈트레이닝으로 채워보아요!"
             android:textColor="#000000"
+            android:fontFamily="@font/nanum_round"
             android:textSize="15dp" />
 
 
@@ -67,6 +69,7 @@
                 android:gravity="center"
                 android:stateListAnimator="@null"
                 android:text="상"
+                android:fontFamily="@font/nanum_round_extrabold"
                 android:textSize="30dp" />
         </LinearLayout>
 
@@ -94,6 +97,7 @@
                 android:gravity="center"
                 android:stateListAnimator="@null"
                 android:text="중"
+                android:fontFamily="@font/nanum_round_extrabold"
                 android:textSize="30dp" />
         </LinearLayout>
 
@@ -121,6 +125,7 @@
                 android:gravity="center"
                 android:stateListAnimator="@null"
                 android:text="하"
+                android:fontFamily="@font/nanum_round_extrabold"
                 android:textSize="30dp" />
         </LinearLayout>
 

@@ -5,7 +5,7 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#d3ebf2"
+    android:background="@drawable/myinfo_back"
     android:orientation="vertical"
     tools:context=".MyInfo">
 
@@ -15,35 +15,41 @@
         android:gravity="center"
         android:orientation="vertical">
 
+
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="73dp"
             android:gravity="center">
-
-            <TextView
-                android:id="@+id/goalsteptext"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="마이 페이지"
-                android:textStyle="bold"
-                android:textColor="#639cd4"
-                android:textSize="30dp" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="160dp"
+                android:layout_height="70dp"
+                app:srcCompat="@drawable/mypage" />
         </LinearLayout>
+
+
+        <com.github.mikephil.charting.charts.BarChart
+            android:id="@+id/barchart"
+            android:layout_width="330dp"
+            android:layout_height="280dp" />
 
         <Button
             android:id="@+id/cal"
             android:layout_width="77dp"
             android:layout_height="28dp"
-            android:background="#639cd4"
+            android:backgroundTint="#8ec1db"
+            android:background="@drawable/round_corner"
+            android:fontFamily="@font/nanum_round"
+            android:textStyle="bold"
             android:text="월별 통계" />
 
-
-        <com.github.mikephil.charting.charts.BarChart
-            android:id="@+id/barchart"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="340dp" />
+            android:layout_height="15dp"
+            android:gravity="center">
 
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -56,8 +62,10 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="최근 일주일 동안 "
-                android:textColor="#639cd4"
-                android:textSize="20dp" />
+                android:textStyle="bold"
+                android:textColor="#8ec1db"
+                android:fontFamily="@font/nanum_round"
+                android:textSize="15dp" />
 
         </LinearLayout>
 
@@ -71,19 +79,22 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:fontFamily="@font/nanum_round"
                 android:text="하루 평균 "
-                android:textColor="#639cd4"
-                android:textSize="20dp" />
+                android:textStyle="bold"
+                android:textColor="#8ec1db"
+                android:textSize="15dp" />
 
             <TextView
                 android:id="@+id/averagestep3"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="match_parent"
+                android:fontFamily="@font/nanum_round"
                 android:gravity="center"
                 android:text="9786"
-                android:textStyle="bold"
-                android:textColor="#639cd4"
-                android:textSize="25dp" />
+                android:textColor="#8ec1db"
+                android:textSize="18dp"
+                android:textStyle="bold" />
 
             <TextView
                 android:id="@+id/averagestep4"
@@ -91,13 +102,21 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text=" 걸음 걸었습니다"
-                android:textColor="#639cd4"
-                android:textSize="20dp" />
+                android:textColor="#8ec1db"
+                android:textStyle="bold"
+                android:fontFamily="@font/nanum_round"
+                android:textSize="15dp" />
 
         </LinearLayout>
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="71dp"
+            android:layout_height="15dp"
+            android:gravity="center">
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
             android:gravity="center">
 
             <TextView
@@ -107,8 +126,9 @@
                 android:gravity="center"
                 android:text="목표 걸음 수: "
                 android:textStyle="bold"
-                android:textColor="#639cd4"
-                android:textSize="20dp" />
+                android:fontFamily="@font/nanum_round"
+                android:textColor="#8ec1db"
+                android:textSize="15dp" />
 
             <EditText
                 android:id="@+id/edit_goal"
@@ -117,6 +137,7 @@
                 android:gravity="center"
                 android:ems="7"
                 android:maxLength="5"
+                android:fontFamily="@font/nanum_round"
                 android:inputType="number"
                 android:backgroundTint="#1B5019"
                 android:textColor="#000000"
@@ -134,15 +155,17 @@
                 android:layout_width="62dp"
                 android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
-                android:background="#639cd4"
+                android:backgroundTint="#8ec1db"
+                android:background="@drawable/round_corner"
                 android:gravity="center"
+                android:fontFamily="@font/nanum_round"
                 android:text="수정" />
         </LinearLayout>
 
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="71dp"
+            android:layout_height="60dp"
             android:gravity="center">
 
             <TextView
@@ -151,9 +174,10 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="키: "
+                android:fontFamily="@font/nanum_round"
                 android:textStyle="bold"
-                android:textColor="#639cd4"
-                android:textSize="20dp" />
+                android:textColor="#8ec1db"
+                android:textSize="15dp" />
 
             <EditText
                 android:id="@+id/edit_height"
@@ -161,6 +185,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:ems="7"
+                android:fontFamily="@font/nanum_round"
                 android:maxLength="5"
                 android:inputType="number"
                 android:backgroundTint="#1B5019"
@@ -179,8 +204,10 @@
                 android:layout_width="62dp"
                 android:layout_height="30dp"
                 android:layout_alignParentEnd="true"
-                android:background="#639cd4"
+                android:backgroundTint="#8ec1db"
+                android:background="@drawable/round_corner"
                 android:gravity="center"
+                android:fontFamily="@font/nanum_round"
                 android:text="수정" />
 
         </LinearLayout>

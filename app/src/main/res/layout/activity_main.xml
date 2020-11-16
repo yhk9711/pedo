@@ -7,19 +7,17 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="#d3ebf2"
+    android:background="#ffff"
     tools:context="com.example.lwfb.MainActivity">
 
 
-    <TextView
-        android:id="@+id/blank"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:gravity="center"
-        android:text="  로그인  "
-        android:textStyle="bold"
-        android:textColor="#639cd4"
-        android:textSize="50dp" />
+    <ImageView
+        android:id="@+id/imageView3"
+        android:layout_width="276dp"
+        android:layout_height="65dp"
+        app:srcCompat="@drawable/login_image" />
+
+    ?
 
     <TextView
         android:id="@+id/blank_"
@@ -35,11 +33,12 @@
         android:id="@+id/checkId"
         android:layout_height="50dp"
         android:gravity="center"
-        android:hint="아이디 입력"
+        android:hint="ID"
+        android:fontFamily="@font/nanum_round"
         android:textColorHint="#505152"
         android:textColor="#000000"
         android:background="@drawable/round_corner"
-        android:backgroundTint="#ffffff"/>
+        android:backgroundTint="#F0F0F0"/>
 
     <TextView
         android:id="@+id/blank1"
@@ -55,10 +54,11 @@
         android:id="@+id/checkpw"
         android:layout_height="50dp"
         android:gravity="center"
-        android:hint="비밀번호 입력"
+        android:hint="PW"
+        android:fontFamily="@font/nanum_round"
         android:textColorHint="#505152"
         android:textColor="#000000"
-        android:backgroundTint="#ffffff"
+        android:backgroundTint="#f0f0f0"
         android:background="@drawable/round_corner"
         android:inputType="textPassword"
         />
@@ -76,10 +76,11 @@
         android:id="@+id/login"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:backgroundTint="#52789e"
+        android:backgroundTint="#8ec1db"
         android:background="@drawable/round_corner"
         android:stateListAnimator="@null"
-        android:text="로그인" />
+        android:text="LOGIN"
+        android:fontFamily="@font/nanum_round"/>
 
     <TextView
         android:id="@+id/blank3"
@@ -105,6 +106,7 @@
         android:layout_height="30dp"
         android:gravity="center"
         android:text="아이디가 없으신가요?"
+        android:fontFamily="@font/nanum_round"
         android:textColor="#505152"
         android:textSize="15dp" />
 
@@ -112,13 +114,13 @@
         android:id="@+id/register"
         android:layout_width="wrap_content"
         android:layout_height="30dp"
-        android:backgroundTint="#52789e"
-        android:textColorHint="#505152"
+        android:backgroundTint="#8ec1db"
+        android:textColorHint="#3f89b3"
         android:textColor="#ffffff"
         android:background="@drawable/round_corner"
         android:stateListAnimator="@null"
-        android:text="회원가입" />
-
+        android:text="SIGN UP"
+        android:fontFamily="@font/nanum_round"/>
 
 
 </LinearLayout>

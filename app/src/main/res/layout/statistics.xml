@@ -2,12 +2,14 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#d3ebf2"
+    android:background="@drawable/month_back"
     android:orientation="vertical">
 
     <com.github.mikephil.charting.charts.BarChart
         android:id="@+id/barchart"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"/>
+        android:layout_width="356dp"
+        android:layout_height="671dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="30dp"/>
 
 </LinearLayout>

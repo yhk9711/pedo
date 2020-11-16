@@ -15,7 +15,7 @@
         android:id="@+id/activity_main"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="#d3ebf2"
+        android:background="#ffff"
         android:gravity="center"
         android:orientation="vertical"
         tools:context="com.example.lets_walk_firebase.MainActivity">
@@ -29,7 +29,8 @@
             android:text="친구 찾기"
             android:textColor="#639cd4"
             android:textColorHint="#d3ebf2"
-            android:textSize="30dp"
+            android:textSize="33dp"
+            android:fontFamily="@font/nanum_extrabold"
             android:textStyle="bold" />
 
         <TextView
@@ -55,13 +56,13 @@
                 android:layout_height="30dp"
                 android:layout_below="@+id/textView2"
                 android:background="@drawable/round_corner"
-                android:backgroundTint="#ffffff"
+                android:backgroundTint="#F0F0F0"
                 android:ems="10"
                 android:gravity="center"
                 android:hint="친구 ID를 입력하세요."
                 android:inputType="textPersonName"
                 android:maxLength="10"
-                android:textColor="#000000"
+                android:textColor="#F0F0F0"
                 android:textColorHint="#505152" />
 
             <TextView
@@ -79,7 +80,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentEnd="true"
                 android:background="@drawable/round_corner"
-                android:backgroundTint="#52789e"
+                android:backgroundTint="#8ec1db"
                 android:gravity="center"
                 android:stateListAnimator="@null"
                 android:text="검색" />

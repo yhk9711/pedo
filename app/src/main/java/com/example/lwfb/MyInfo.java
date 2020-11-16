@@ -1,6 +1,7 @@
 package com.example.lwfb;
 
 import android.app.Activity;
+import android.app.DatePickerDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
@@ -9,6 +10,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.DatePicker;
 import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -29,6 +31,10 @@ import java.util.Date;
 import java.util.Locale;
 
 public class MyInfo extends AppCompatActivity {
+    public static int syear=0;
+    public static int smonth=0;
+    public static int sday=0;
+
     private DrawerLayout drawerLayout;
     private View drawerView;
     private TextView aView;
@@ -42,6 +48,14 @@ public class MyInfo extends AppCompatActivity {
     static ArrayList<String> arrayIndex = new ArrayList<String>();
 
     static ArrayList<String> arrayData = new ArrayList<String>();
+
+    final DatePickerDialog.OnDateSetListener d = new DatePickerDialog.OnDateSetListener() {
+        @Override
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth){
+            Intent intent=new Intent(MyInfo.this,StatisticsActivity.class);
+            startActivity(intent);
+        }
+    };
 
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -172,11 +186,14 @@ public class MyInfo extends AppCompatActivity {
                 }
             }
         });
+
+
         cal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(MyInfo.this, com.example.lwfb.MonthActivity.class);
-                startActivity(intent);
+                com.example.lwfb.PickerActivity pd = new com.example.lwfb.PickerActivity();
+                pd.setListener(d);
+                pd.show(getSupportFragmentManager(), "PickerActivity");
             }
         });
 

@@ -4,6 +4,8 @@
     android:layout_height="wrap_content"
     android:orientation="vertical"
     android:layout_marginTop="20dp"
+    android:background="#ffff"
+
     >
 
     <TextView
@@ -13,6 +15,9 @@
         android:layout_marginTop="15dp"
         android:layout_alignParentTop="true"
         android:text="월별 통계"
+        android:textStyle="bold"
+        android:fontFamily="@font/nanum_round_extrabold"
+        android:textColor="#8ec1db"
         android:textSize="20dp"
         />
 
@@ -21,6 +26,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
+        android:background="#ffff"
         android:orientation="horizontal">
 
         <NumberPicker
@@ -28,6 +34,8 @@
             android:layout_width="wrap_content"
             android:layout_height="150dp"
             android:layout_margin="10dp"
+
+            android:background="#ffff"
             >
         </NumberPicker>
 
@@ -36,6 +44,7 @@
             android:layout_width="wrap_content"
             android:layout_height="150dp"
             android:layout_margin="10dp"
+            android:background="#ffff"
             >
         </NumberPicker>
 
@@ -55,8 +64,11 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:text="취소"
+            android:fontFamily="@font/nanum_round"
+            android:backgroundTint="#8ec1db"
             android:textSize="20dp"
             android:layout_weight="1"
+            android:textStyle="bold"
             android:textAllCaps="false"
             />
 
@@ -64,9 +76,12 @@
             android:id="@+id/btn_confirm"
             android:layout_width="0dp"
             android:layout_weight="1"
+            android:backgroundTint="#8ec1db"
             android:layout_height="wrap_content"
             android:textSize="20dp"
             android:text="확인"
+            android:textStyle="bold"
+            android:fontFamily="@font/nanum_round"
             android:textAllCaps="false"
             android:paddingLeft="3dp"
 

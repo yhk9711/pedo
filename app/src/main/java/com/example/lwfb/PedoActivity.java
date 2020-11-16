@@ -47,6 +47,7 @@ public class PedoActivity extends Activity implements SensorEventListener {
     public static List<String> friends = new ArrayList<String>();
     //public static List<Integer> cntlist= new ArrayList<>();
     public static List<Integer> cntlist= new ArrayList<>(Arrays.asList(0,0,0,0,0,0,0));
+
     private static int ONE_MINUTE = 5626;
     public static int index=0;
 
@@ -207,9 +208,12 @@ public class PedoActivity extends Activity implements SensorEventListener {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
 
+
+
                 Map<String, List<Integer>> map3 = (Map) dataSnapshot.getValue();
 
                 List<Integer> stplist = map3.get("steps");
+
                 Log.e("stplist", String.valueOf(stplist));
                 cntlist=stplist;
                 Log.e("cntlistreg", String.valueOf(RegisterActivity.cntlistreg));
@@ -514,8 +518,8 @@ public class PedoActivity extends Activity implements SensorEventListener {
         Calendar calendar = Calendar.getInstance();
         calendar.setTimeInMillis(System.currentTimeMillis());
 
-        calendar.set(Calendar.HOUR_OF_DAY, 16);
-        calendar.set(Calendar.MINUTE, 59);
+        calendar.set(Calendar.HOUR_OF_DAY, 12);
+        calendar.set(Calendar.MINUTE, 5);
         calendar.set(Calendar.SECOND, 0);
 
         long aTime = System.currentTimeMillis();
@@ -747,8 +751,8 @@ public class PedoActivity extends Activity implements SensorEventListener {
             pieChart.setData(data);
             data.setValueTextSize(14f);
             //data.setValueTextColor(Color.TRANSPARENT);
-            final int[] MY_COLORS = {Color.rgb(102, 153, 204), Color.rgb(255, 255, 255), Color.rgb(255, 192, 0),
-                    Color.rgb(127, 127, 127), Color.rgb(146, 208, 80), Color.rgb(0, 176, 80), Color.rgb(79, 129, 189)};
+            final int[] MY_COLORS = {Color.rgb(191,212,252), Color.rgb(142,169,219),
+                    Color.rgb(150,194,255), Color.rgb(97,157,242), Color.rgb(40,99,176), Color.rgb(14,73,156),Color.rgb(0,40,97)};
             ArrayList<Integer> colors = new ArrayList<Integer>();
 
             for (int c : MY_COLORS) colors.add(c);
